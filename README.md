@@ -11,4 +11,5 @@
 
 * [Pedro Vinícius](https://github.com/Pedro-V)
 * [Max Antônio](https://github.com/Max-Antonio)
-* 
+* [Jonas Gabriel](https://github.com/jonasgabrieel)
+* [Matheus Fontes](https://github.com/Ultedad)
