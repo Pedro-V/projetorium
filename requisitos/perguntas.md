@@ -8,5 +8,7 @@ Ideias de perguntas para a entrevista com Adicineia.
 * Deseja uma opção de filtro dos projetos?
 * Quais informações são essenciais na página de cada projeto?
 * A professora iria preencher manualmente cada projeto?
-* 
+* Será permitido editar e excluir projetos?
+
+  
 
