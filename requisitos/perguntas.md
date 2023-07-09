@@ -9,6 +9,10 @@ Ideias de perguntas para a entrevista com Adicineia.
 * Quais informações são essenciais na página de cada projeto?
 * A professora iria preencher manualmente cada projeto?
 * Será permitido editar e excluir projetos?
+* Quais seriam as permissões de um usuário dentro do software?
+* Existiria algum tipo de hierarquia dentro do software como por exemplo usuario adm, colaborador, usuario etc...?
+* Dentro do software seria interessante que os usuários pudessem avaliar outros projetos? Caixa de comentários validação com estrelas etc...
+* 
 
   
 
