@@ -1,4 +1,4 @@
-# Sistema Web pra Portfólio de Projetos de Engenharia de Software
+# Sistema Web pra Portfólio de Projetos de Engenharia de Software - Anotações
 
 Este sistema possui o intuito de ser uma plataforma para gerenciar projetos de Engenharia de Software, nele os alunos propoem temas e a professora os analisa e gerencia. 
 
