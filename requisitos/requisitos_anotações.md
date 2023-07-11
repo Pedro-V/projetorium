@@ -8,7 +8,7 @@ Projetos grandes poderão ter subprojetos filhos.
 
 NÃO é permitido excluir projetos.
 
-Um projeto poderá ter várias versões (versão 1, versão 2 etc.) com alunos diferentes, onde os unicos atributos ue serão mantidos são o nome e o cóigo do projeto.
+Um projeto poderá ter várias versões (versão 1, versão 2 etc.) com alunos diferentes, onde os unicos atributos que serão mantidos são o nome e o código do projeto.
 
 Um projeto PRECISA ter início e fim ou estimativa de fim.
 
