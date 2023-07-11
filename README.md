@@ -5,7 +5,7 @@
 
 ## Estrutura
 
-* `requesitos/`: Engenharia de Requisitos: elicitação, análise, validação.
+* `requisitos/`: Engenharia de Requisitos: elicitação, análise, validação.
 
 ## Membros
 
