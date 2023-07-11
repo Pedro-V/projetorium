@@ -21,6 +21,7 @@ incentivada**.
 
 ### Necessário
 
+* Anotar as observações e requisitos da professora em um documento de forma mais organizada e sucinta: Todos
 * Tirar dúvidas sobre o documento com a professora: Todos
     * O documento cita "nome da solução", e não "nome do sistema". Eles são diferentes?
     * O que é um RNF de Implantação?
@@ -30,6 +31,7 @@ incentivada**.
     * Pedir sugestão de ferramentas para fazer o esboço de protótipo de tela.
 
 ### Seria legal
+
 
 ## Membros
 
