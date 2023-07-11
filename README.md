@@ -5,7 +5,31 @@
 
 ## Estrutura
 
-* `requisitos/`: Engenharia de Requisitos: elicitação, análise, validação.
+* `requisitos/`: Engenharia de Requisitos: elicitação, análise e validação.
+
+## TODO
+
+Tarefas que temos que fazer, em ordem de prioridade e com atribuições. **Autoatribuição é
+incentivada**.
+
+### Urgente
+
+* Estudar {Plant}UML, tentar fazer um diagrama de caso de uso na ferramenta: Todos
+* Ler o template do doc 1, começar a preencher os campos: Todos
+    * Capítulos 1 à 2: Pedro
+    * Seções 6.0 à 6.4: Pedro
+
+### Necessário
+
+* Tirar dúvidas sobre o documento com a professora: Todos
+    * O documento cita "nome da solução", e não "nome do sistema". Eles são diferentes?
+    * O que é um RNF de Implantação?
+    * Perguntar no sábado sobre RNFs, especialmente os que não perguntamos: Desempenho,
+      usabilidade/acessibilidade, confiabilidade, padrões
+    * Perguntar sobre a prioridade dos requisitos.
+    * Pedir sugestão de ferramentas para fazer o esboço de protótipo de tela.
+
+### Seria legal
 
 ## Membros
 
