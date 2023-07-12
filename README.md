@@ -19,6 +19,7 @@ incentivada**.
     * Capítulos 1 à 2: Pedro
     * Seções 6.0 à 6.4: Pedro
     * Capítulos 7 a 8: Max
+    * Capitulos 3 à 3: Matheus
 
 ### Necessário
 
