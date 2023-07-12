@@ -9,6 +9,8 @@ Perguntas para a aula e dúvidas remota
 * É possível submeter um projeto sem uma disciplina relacionada?
 * Como é um cadastro de um usuário no sistema? (aluno, professor, gestor) que dados precisam ser fornecidos?
 * É possível fazer uma proposta de qualquer disciplina de qualquer departamento?
-* o SIGAA terá algum papel nesse sistema?
+* O SIGAA terá algum papel nesse sistema?
+* O professor mantém o aluno no sistema?
+* detalhar melhor a função do gestor, administrador e chefe fe departamento.
   
 
