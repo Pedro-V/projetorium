@@ -19,7 +19,10 @@ Ideias de perguntas para a entrevista com Adicineia.
 * Ao criar o projeto, ele ficaria no portfolio somente da professora? ou também dos alunos? (Obs: caso se o aluno fosse um usuario).
 * Seria interessante que cada projeto fosse uma publicação (Post)? Se sim, o que deveria mostrar em um Post?
 * Se caso o software abrange-se outras disciplinas do curso, esses alunos poderiam visualizar outros projetos de outras disciplinas?
-* 
+
+Perguntas para a aula e dúvidas remota
+
+*
 
   
 
