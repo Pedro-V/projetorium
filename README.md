@@ -18,6 +18,7 @@ incentivada**.
 * Ler o template do doc 1, começar a preencher os campos: Todos
     * Capítulos 1 à 2: Pedro
     * Seções 6.0 à 6.4: Pedro
+    * Capítulos 7 a 8: Max
 
 ### Necessário
 
