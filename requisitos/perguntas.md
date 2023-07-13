@@ -6,7 +6,7 @@ Perguntas para a aula e dúvidas remota
 * O que significa um projeto estar em estado inativo?
 * Apenas o professor possui o poder de mudar os estados de um projeto? (cancelar, suspender, concluir, deixar como em execução, deixar como inativo)
 * (Respondida) Quem analisa e aprova as propostas? apenas o professor da disciplina do projeto? o gestor possui algum papel em aprovar e analisar propostas?
-      O gestor analisa e aprova propostas.
+      * O gestor analisa e aprova propostas.
 * É possível submeter um projeto sem uma disciplina relacionada?
 * Como é um cadastro de um usuário no sistema? (aluno, professor, gestor) que dados precisam ser fornecidos?
 * É possível fazer uma proposta de qualquer disciplina de qualquer departamento?
