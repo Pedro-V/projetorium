@@ -12,5 +12,6 @@ Perguntas para a aula e dúvidas remota
 * É possível fazer uma proposta de qualquer disciplina de qualquer departamento?
 * O SIGAA terá algum papel nesse sistema?
 * O professor mantém o aluno no sistema?
+* é permitido excluir alunos, professores, gestores ou chefe de departamento?
   
 
