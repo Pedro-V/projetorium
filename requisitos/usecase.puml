@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+' Atores
+:Pessoa: as Pessoa
+:Aluno: as Aluno
+:Professor: as Professor
+:Gestor do Sistema: as Gestor
+:Sistema SIGAA: as SIGAA
+
+' Extensões de atores
+Pessoa <|-- Aluno
+Pessoa <|-- Professor
+Pessoa <|-- Gestor
+
+
+rectangle "Sistema Web para Portfólio de Projetos" {
+    (Consultar projeto) as ConsProj
+    (Propor projeto) as PropProj
+    (Manter projeto) as MantProj
+    (Efetuar login) as EfetLog
+    (Manter turma) as MantTurm
+    (Manter professor) as MantProf
+    (Manter aluno) as MantAlun
+    (Avaliar proposta) as AvalProp
+    (Associar projeto) as AssocProj
+}
+
+Aluno -- AssocProj
+
+Pessoa -- ConsProj
+Pessoa -- PropProj
+Pessoa -- EfetLog
+
+Professor -- MantAlun
+Professor -- MantTurm
+Professor -- MantProj
+
+Gestor -- AvalProp
+Gestor -- MantProj
+Gestor -- MantProf
+
+SIGAA -up- MantTurm
+SIGAA -up- MantAlun
+@enduml
+
