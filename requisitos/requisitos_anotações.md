@@ -60,7 +60,7 @@ Após os atributos serem preenchidos nossa proposta terá o estado de proposta e
 
 ## 4 - Consultas
 
-No sistema é possível fazer consultas de acordo com o nível de acesso do usuário através de filtros de busca como status, periodo de inícioo, período de fim, departamento, professor, aluno, ano etc.
+No sistema é possível fazer consultas de acordo com o nível de acesso do usuário através de filtros de busca como status, periodo de início, período de fim, departamento, professor, aluno, ano etc.
 
 
 
