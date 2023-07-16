@@ -20,6 +20,7 @@ incentivada**.
     * Seções 6.0 à 6.4: Pedro
     * Capítulos 7 a 8: Max
     * Capitulos 3 à 4: Matheus
+    * Capitulos 5 e 6.5 , 6.7
 
 ### Necessário
 
@@ -39,5 +40,5 @@ incentivada**.
 
 * [Pedro Vinícius](https://github.com/Pedro-V)
 * [Max Antônio](https://github.com/Max-Antonio)
-* [Jonas Gabriel](https://github.com/jonasgabrieel)
+* [Jonas Gabriel](https://github.com/jonasgabrieel), jonasgab@acadêmico.ufs.br
 * [Matheus Fontes](https://github.com/Ultedad)
