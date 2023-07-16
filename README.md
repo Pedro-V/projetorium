@@ -34,4 +34,4 @@ incentivada**.
 * [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
 * [Max Antônio](https://github.com/Max-Antonio) - [antoniomax@academico.ufs.br](mailto:antoniomax@academico.ufs.br)
 * [Jonas Gabriel](https://github.com/jonasgabrieel) - [jonasgab@academico.ufs.br](mailto:jonasgab@academico.ufs.br)
-* [Matheus Fontes](https://github.com/Ultedad) - 
+* [Matheus Fontes](https://github.com/Ultedad) - [matheusx123@academico.ufs.br](mailto:matheusx123@academico.ufs.br)
