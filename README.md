@@ -21,6 +21,7 @@ incentivada**.
     * Capítulos 7 a 8: Max
     * Capitulos 3 à 4: Matheus
     * Capitulos 5 e 6.5 , 6.7: Jonas
+    * Protótipo de Telas : Jonas, Max
 
 ### Necessário
 
