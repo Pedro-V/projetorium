@@ -9,37 +9,29 @@
 
 ## TODO
 
-Tarefas que temos que fazer, em ordem de prioridade e com atribuições. **Autoatribuição é
+Tarefas a fazer, em ordem de prioridade e com atribuições. **Autoatribuição é
 incentivada**.
 
 ### Urgente
 
-* Estudar {Plant}UML, tentar fazer um diagrama de caso de uso na ferramenta: Todos
-* Ler o template do doc 1, começar a preencher os campos: Todos
-    * Capítulos 1 à 2: Pedro
-    * Seções 6.0 à 6.4: Pedro
-    * Capítulos 7 a 8: Max
-    * Capitulos 3 à 4: Matheus
-    * Capitulos 5 e 6.5 , 6.7: Jonas
-    * Protótipo de Telas : Jonas, Max
+* Construção Documento I - Todos
+    * Capítulos 1, 2 e 7 - Pedro
+    * Seções 6.0 à 6.4 - Pedro
+    * Capitulos 3 à 4 - Matheus
+    * Capitulos 5 e 6.5 à 6.7 - Jonas
+    * Protótipo de Telas, usando Figma - Jonas, Max
 
 ### Necessário
 
-* Anotar as observações e requisitos da professora em um documento de forma mais organizada e sucinta: Todos
-* Tirar dúvidas sobre o documento com a professora: Todos
-    * O documento cita "nome da solução", e não "nome do sistema". Eles são diferentes?
-    * O que é um RNF de Implantação?
-    * Perguntar no sábado sobre RNFs, especialmente os que não perguntamos: Desempenho,
-      usabilidade/acessibilidade, confiabilidade, padrões
-    * Perguntar sobre a prioridade dos requisitos.
-    * Pedir sugestão de ferramentas para fazer o esboço de protótipo de tela.
+
 
 ### Seria legal
 
 
+
 ## Membros
 
-* [Pedro Vinícius](https://github.com/Pedro-V)
-* [Max Antônio](https://github.com/Max-Antonio) , antoniomax@academico.ufs.br
-* [Jonas Gabriel](https://github.com/jonasgabrieel), jonasgab@academico.ufs.br
-* [Matheus Fontes](https://github.com/Ultedad)
+* [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
+* [Max Antônio](https://github.com/Max-Antonio) - [antoniomax@academico.ufs.br](mailto:antoniomax@academico.ufs.br)
+* [Jonas Gabriel](https://github.com/jonasgabrieel) - [jonasgab@academico.ufs.br](mailto:jonasgab@academico.ufs.br)
+* [Matheus Fontes](https://github.com/Ultedad) - 
