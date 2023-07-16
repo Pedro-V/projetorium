@@ -40,6 +40,6 @@ incentivada**.
 ## Membros
 
 * [Pedro Vinícius](https://github.com/Pedro-V)
-* [Max Antônio](https://github.com/Max-Antonio)
-* [Jonas Gabriel](https://github.com/jonasgabrieel), jonasgab@acadêmico.ufs.br
+* [Max Antônio](https://github.com/Max-Antonio) , antoniomax@academico.ufs.br
+* [Jonas Gabriel](https://github.com/jonasgabrieel), jonasgab@academico.ufs.br
 * [Matheus Fontes](https://github.com/Ultedad)
