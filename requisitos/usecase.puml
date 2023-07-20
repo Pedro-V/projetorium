@@ -12,8 +12,7 @@ Pessoa <|-- Aluno
 Pessoa <|-- Professor
 Pessoa <|-- Gestor
 
-
-rectangle "Sistema Web para Portfólio de Projetos" {
+rectangle "Projetorium" {
     (Consultar projeto) as ConsProj
     (Propor projeto) as PropProj
     (Manter projeto) as MantProj

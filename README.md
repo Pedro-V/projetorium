@@ -1,4 +1,4 @@
-# Sistema Web pra Portfólio de Projetos de Engenharia de Software
+# Projetorium
 
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
