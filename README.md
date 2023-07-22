@@ -18,7 +18,7 @@ incentivada**.
     * Capítulo 6 - Pedro
     * Capitulos 3 à 4 - Matheus
     * Capitulos 5 - Jonas e Max
-    * Capítulo 8 - Jonas e Max
+    * Capítulo 8 - Jonas e Max (https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455)
 
 ### Necessário
 
