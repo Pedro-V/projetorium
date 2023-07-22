@@ -15,15 +15,17 @@ incentivada**.
 ### Urgente
 
 * Construção Documento I - Todos
-    * Capítulos 1, 2 e 7 - Pedro
-    * Seções 6.0 à 6.4 - Pedro
+    * Capítulo 6 - Pedro
     * Capitulos 3 à 4 - Matheus
-    * Capitulos 5 e 6.5 à 6.7 - Jonas
-    * Protótipo de Telas, usando Figma - Jonas, Max
+    * Capitulos 5 - Jonas e Max
+    * Capítulo 8 - Jonas e Max (https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455)
 
 ### Necessário
 
-
+* Construção dos diagramas de classes
+    * De domínio - 
+    * De projeto - 
+    * De implementação - 
 
 ### Seria legal
 
