@@ -3,6 +3,8 @@
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 
+[Protótipos de telas](https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455)
+
 ## Estrutura
 
 * `requisitos/`: Engenharia de Requisitos: elicitação, análise e validação.
@@ -15,10 +17,11 @@ incentivada**.
 ### Urgente
 
 * Construção Documento I - Todos
-    * Capítulo 6 - Pedro
-    * Capitulos 3 à 4 - Matheus
-    * Capitulos 5 - Jonas e Max
-    * Capítulo 8 - Jonas e Max (https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455)
+  * Capitulos 3 - Matheus
+  * Capitulo 5
+    * BPMN - Max
+    * RFs - Matheus e Jonas
+  * Capítulo 6 - Pedro
 
 ### Necessário
 
