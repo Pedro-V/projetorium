@@ -21,18 +21,19 @@ rectangle "Projetorium" {
     (Manter professor) as MantProf
     (Manter aluno) as MantAlun
     (Avaliar proposta) as AvalProp
-    (Associar projeto) as AssocProj
+    (Escolher projeto) as EscProj
 }
 
-Aluno -- AssocProj
-
 Pessoa -- ConsProj
-Pessoa -- PropProj
 Pessoa -- EfetLog
+
+Aluno -- PropProj
+Aluno -- EscProj
 
 Professor -- MantAlun
 Professor -- MantTurm
 Professor -- MantProj
+Professor -- PropProj
 
 Gestor -- AvalProp
 Gestor -- MantProj
