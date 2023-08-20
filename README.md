@@ -16,19 +16,10 @@ incentivada**.
 
 ### Urgente
 
-* Construção Documento I - Todos
-  * Capitulos 3 - Matheus
-  * Capitulo 5
-    * BPMN - Max
-    * RFs - Matheus e Jonas
-  * Capítulo 6 - Pedro
+* Documento II:
+  * Anotar dúvidas sobre requisitos para segunda reunião. Evitar repetição.
 
 ### Necessário
-
-* Construção dos diagramas de classes
-    * De domínio - 
-    * De projeto - 
-    * De implementação - 
 
 ### Seria legal
 
