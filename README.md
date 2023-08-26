@@ -17,7 +17,17 @@ incentivada**.
 ### Urgente
 
 * Documento II:
-  * Anotar dúvidas sobre requisitos para segunda reunião. Evitar repetição.
+  * Modularizar histórias de usuários (Pedro)
+  * Revisar protótipos de telas; Tentar colocar detalhes de interação (Max)
+  * Incluir BPMN (Max)
+  * Descrição dos casos de uso; Diagrama de Sequência (Pedro: 5/9 casos de uso)
+  (???: 4/9 casos de uso)
+  * Diagrama de Classes de Domínio (Pedro)
+  * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (???)
+  * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (???)
+  * [Diagrama de Classes de Projeto](https://plantuml.com/class-diagram) (???)
+  * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (???)
+  * Artefatos de planejamento SCRUM (???)
 
 ### Necessário
 
