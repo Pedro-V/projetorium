@@ -22,7 +22,6 @@ rectangle "Projetorium" {
     (Manter aluno) as MantAlun
     (Avaliar proposta) as AvalProp
     (Escolher projeto) as EscProj
-    (Ofertar projeto) as OfertProj
 }
 
 Pessoa -- ConsProj
@@ -35,7 +34,6 @@ Professor -- MantAlun
 Professor -- MantTurm
 Professor -- MantProj
 Professor -- PropProj
-Professor -- OfertProj
 Professor -- AvalProp
 
 Gestor -- MantProj
