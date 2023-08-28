@@ -23,11 +23,11 @@ incentivada**.
   * Descrição dos casos de uso; Diagrama de Sequência (Pedro: 5/9 casos de uso)
     (Max: 4/9 casos de uso)
   * Diagrama de Classes de Domínio (Pedro)
-  * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (???)
-  * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (???)
-  * [Diagrama de Classes de Projeto](https://plantuml.com/class-diagram) (???)
-  * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (???)
-  * Artefatos de planejamento SCRUM (???)
+  * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (Jonas)
+  * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
+  * [Diagrama de Classes de Projeto](https://plantuml.com/class-diagram) (Matheus)
+  * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (Matheus)
+  * Artefatos de planejamento SCRUM (Matheus e Jonas)
 
 ### Necessário
 
