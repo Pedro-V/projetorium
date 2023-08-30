@@ -18,8 +18,6 @@ incentivada**.
 
 * Documento II:
   * Modularizar histórias de usuários (Pedro)
-  * Revisar protótipos de telas; Tentar colocar detalhes de interação (Max)
-  * Incluir BPMN (Max)
   * Descrição dos casos de uso; Diagrama de Sequência (Pedro: 5/9 casos de uso)
     (Max: 4/9 casos de uso)
   * Diagrama de Classes de Domínio (Pedro)
@@ -33,7 +31,7 @@ incentivada**.
 
 ### Seria legal
 
-
+Tentar colocar detalhes de interação nas telas (Max)
 
 ## Membros
 
