@@ -2,13 +2,14 @@
 
 !include classes_comum.iuml
 
-class InterfaceProjetorium <<boundary>>
-class ControladorDoProjetorium <<control>>
+ class InterfaceProjetorium <<boundary>>
+ class ControladorDoProjetorium <<control>>
 
-Usuario "1" -- "1" Perfil
-Perfil "0..* " -- "1..* " Projeto
-ControladorDoProjetorium -- Perfil
-InterfaceProjetorium -- ControladorDoProjetorium
-turma "0..*" -- "1..* " Aluno
-turma "1 "-- "1..*" Professor
+ Usuario "1" -- "1" Buscador
+ Usuario "1" -- "1" Perfil
+ Perfil "0..* " -- "1..* " Projeto
+ ControladorDoProjetorium -- Perfil
+ InterfaceProjetorium -- ControladorDoProjetorium
+ turma "0..*" -- "1..* " Aluno
+ turma "1 "-- "1..*" Professor
 @enduml
