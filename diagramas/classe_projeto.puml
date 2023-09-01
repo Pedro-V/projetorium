@@ -5,8 +5,10 @@
 class InterfaceProjetorium <<boundary>>
 class ControladorDoProjetorium <<control>>
 
-Usuario -- Perfil
-Perfil -- Projeto
+Usuario "1" -- "1" Perfil
+Perfil "0..* " -- "1..* " Projeto
 ControladorDoProjetorium -- Perfil
 InterfaceProjetorium -- ControladorDoProjetorium
+turma "0..*" -- "1..* " Aluno
+turma "1 "-- "1..*" Professor
 @enduml
