@@ -72,13 +72,8 @@ class Buscador {
     SelecionarProjeto()
 }
 
-class ProductOwner {
-    ListarProjetos()
-}
-
 Usuario <|-- Professor
 Usuario <|-- Aluno
 Usuario <|-- Gestor
-Usuario <|-- ProductOwner
 
 @enduml
