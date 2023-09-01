@@ -1,0 +1,36 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Aluno" as Aluno
+actor ":Professor" as Professor
+boundary ":TelaInicial" as TelaInicial
+boundary ":TelaTurma" as TelaTurma
+boundary ":TelaEscolhaProjeto" as TelaEscolhaProjeto
+control ":ControladorProjeto" as ControladorProjeto
+participant ":Projeto" as Projeto
+database Banco
+
+ref over Aluno : sdEfetuarLogin
+ref over Professor : sdManterProjeto
+
+Aluno -> TelaInicial : acessarTurma()
+TelaInicial --> Aluno : exibirTelaTurma()
+Aluno -> TelaTurma : escolherProjeto()
+TelaTurma --> Aluno : exibirTelaEscolhaProjeto()
+TelaEscolhaProjeto -\\ Aluno : exibirProjetos()
+Aluno -> TelaEscolhaProjeto : informarMembros()
+Aluno -> TelaEscolhaProjeto : selecionarProjeto()
+TelaEscolhaProjeto -> ControladorProjeto : encontrarProjeto()
+ControladorProjeto --> TelaEscolhaProjeto : retornaProjeto()
+TelaEscolhaProjeto -> Projeto : efetuarMudanças()
+Projeto -> Projeto : registrarMembros()
+Projeto -> Banco : salvaDadosBanco()
+Banco --> Projeto : informa resultado
+alt sucesso na transação no banco
+    Projeto --> TelaEscolhaProjeto : informaSucesso()
+    TelaEscolhaProjeto -> Aluno : notificaMembros()
+else insucesso na transação
+    Projeto --> TelaEscolhaProjeto : informaErro()
+    TelaEscolhaProjeto -> Aluno : mostraErro()
+end
+@enduml

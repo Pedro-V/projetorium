@@ -1,0 +1,27 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Aluno" as Aluno
+actor ":Professor" as Professor
+boundary ":TelaInicial" as TelaInicial
+boundary ":TelaTurma" as TelaTurma
+boundary ":TelaProposta" as TelaProposta
+control ":ControladorTurma" as ControladorTurma
+participant ":Turma" as Turma
+
+ref over Aluno : sdEfetuarLogin
+ref over Professor : sdEfetuarLogin
+ref over Professor : sdManterProjeto
+
+Aluno -> TelaInicial : acessarTurma()
+Aluno -> TelaTurma : proporProjeto()
+Aluno -> TelaProposta : informarDados()
+
+TelaProposta -> ControladorTurma : registrarProposta()
+ControladorTurma -> Turma : adicionarProposta()
+Turma -> Turma : adicionarProposta()
+ControladorTurma --> TelaInicial : notificaProfessor()
+TelaInicial --> Professor : exibeNotificacao()
+
+ref over Professor, ControladorTurma : sdAvaliarProposta
+@enduml

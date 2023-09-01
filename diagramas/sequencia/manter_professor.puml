@@ -1,0 +1,36 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Gestor" as Gestor
+boundary ":TelaLogin"   as TelaLogin
+boundary ":TelaCadastro"    as TelaCadastro
+control ":GerenciadorContas" as GerenciadorContas
+entity "novoProfessor:Professor" as novoProfessor
+actor "Sistema SIGAA" as SIGAA
+database Banco
+
+ref over Gestor, TelaLogin : sdEfetuaLogin
+
+Gestor -> TelaCadastro ++: insereDados()
+TelaCadastro -> GerenciadorContas ++: enviaDados()
+alt criação individual
+    GerenciadorContas -> novoProfessor ++: criaProfessorIndividual()
+    novoProfessor -> Banco : registraBanco()
+else criação em lote
+    GerenciadorContas -> SIGAA ++: criarProfessorLote()
+    loop enquanto houver professor no lote
+        SIGAA -> novoProfessor : informa dados
+        novoProfessor -> Banco : registraBanco()
+    end
+end
+Banco --> novoProfessor : resultado da inserção
+novoProfessor --> GerenciadorContas --: notificaResultado()
+destroy novoProfessor
+GerenciadorContas --> TelaCadastro --: notificaResultado()
+
+alt cadastro realizado
+    TelaCadastro --> Gestor : informaSucesso()
+else erro de cadastro
+    TelaCadastro --> Gestor : informaInsucesso()
+end
+@enduml

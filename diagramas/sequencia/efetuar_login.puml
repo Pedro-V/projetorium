@@ -1,0 +1,19 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Pessoa" as Pessoa
+boundary ":TelaLogin" as TelaLogin
+control ":VerificadorLogin" as VerificadorLogin
+database Banco
+
+Pessoa -> TelaLogin ++: insereDados()
+TelaLogin -> VerificadorLogin ++: verificaCadastro()
+VerificadorLogin -> Banco : verifica validez no banco
+Banco --> VerificadorLogin : informa resultado
+VerificadorLogin --> TelaLogin : informaValidez()
+alt login válido
+    TelaLogin --> Pessoa : informaSucesso()
+else login inválido
+    TelaLogin --> Pessoa : informaFalha()
+end
+@enduml

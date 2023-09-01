@@ -1,0 +1,32 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Aluno" as Aluno
+actor ":Professor" as Professor
+boundary ":TelaInicial" as TelaInicial
+boundary ":TelaTurma" as TelaTurma
+boundary ":TelaRevisao" as TelaRevisao
+control ":ControladorProjeto" as ControladorProjeto
+participant ":Projeto" as Projeto
+
+ref over Aluno, Professor : sdProporProjeto
+
+Professor -> TelaInicial ++: verificaNotificacoes()
+Professor -> TelaInicial : acessarProjeto()
+Professor -> TelaTurma  ++: verPropostas()
+TelaTurma --> Professor : exibirPropostas()
+Professor ->> TelaTurma : revisarProposta()
+destroy TelaTurma
+Professor -\\ TelaRevisao ++: enviarRevisao()
+TelaRevisao -> ControladorProjeto ++: tratarRevisao()
+TelaRevisao --> Professor --: confirmarEnvio()
+ControladorProjeto -\\ Projeto ++: informaRevisao()
+alt aprovado
+    Projeto -> Projeto : aprovarProposta()
+else não aprovado
+    Projeto -> Projeto : rejeitarProposta()
+end
+destroy Projeto
+ControladorProjeto -\\ TelaInicial --: notificaAluno()
+TelaInicial ->> Aluno --: exibeNotificacoes()
+@enduml
