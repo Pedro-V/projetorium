@@ -9,7 +9,7 @@ entity "novoProfessor:Professor" as novoProfessor
 actor "Sistema SIGAA" as SIGAA
 database Banco
 
-ref over Gestor, TelaLogin : sdEfetuaLogin
+ref over Gestor, TelaLogin : sdEfetuarLogin
 
 Gestor -> TelaCadastro ++: insereDados()
 TelaCadastro -> GerenciadorContas ++: enviaDados()

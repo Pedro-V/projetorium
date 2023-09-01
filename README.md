@@ -17,7 +17,6 @@ incentivada**.
 ### Urgente
 
 * Documento II:
-  * [Diagrama de Sequência](https://plantuml.com/sequence-diagram) (Pedro 5/9; Max 4/9)
   * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (Jonas)
   * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
   * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (Matheus)
