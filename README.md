@@ -17,10 +17,7 @@ incentivada**.
 ### Urgente
 
 * Documento II:
-  * Modularizar histórias de usuários (Pedro)
-  * Descrição dos casos de uso; Diagrama de Sequência (Pedro: 5/9 casos de uso)
-    (Max: 4/9 casos de uso[manter professor, manter turma, manter aluno, propor projeto])
-  * Diagrama de Classes de Domínio (Pedro)
+  * [Diagrama de Sequência](https://plantuml.com/sequence-diagram) (Pedro 5/9; Max 4/9)
   * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (Jonas)
   * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
   * [Diagrama de Classes de Projeto](https://plantuml.com/class-diagram) (Matheus)
