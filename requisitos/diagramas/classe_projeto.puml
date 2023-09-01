@@ -1,0 +1,12 @@
+@startuml
+
+!include classes_comum.iuml
+
+class InterfaceProjetorium <<boundary>>
+class ControladorDoProjetorium <<control>>
+
+Usuario -- Perfil
+Perfil -- Projeto
+ControladorDoProjetorium -- Perfil
+InterfaceProjetorium -- ControladorDoProjetorium
+@enduml
