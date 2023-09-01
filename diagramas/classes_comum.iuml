@@ -10,7 +10,7 @@ class Usuario {
     FazerLogin()
 }
 
-class Professor {
+class Professor <<entity>>{
     Matricula: String 
 
     CriarTurma()
@@ -20,7 +20,7 @@ class Professor {
     ProporProposta()
 }
 
-class Aluno {
+class Aluno <<entity>>{
     Matricula: String
     DataDeEntrada: Data
 
@@ -28,7 +28,7 @@ class Aluno {
     EscolherProjeto()
 }
 
-class Gestor {
+class Gestor <<entity>>{
     Matricula: String
 
     CriarProfessor()
@@ -52,7 +52,7 @@ class Projeto <<entity>> {
     VerificarProjeto()
 }
 
-class Perfil <<entity>> {
+class Perfil  {
     Status: String
     Descrição: String
     Tipo: String
@@ -61,7 +61,7 @@ class Perfil <<entity>> {
     ConsultarProjeto()
 }
 
-class Turma {
+class Turma <<entity>>{
     codigo: String
     Disciplina: String
     Departamento: String
