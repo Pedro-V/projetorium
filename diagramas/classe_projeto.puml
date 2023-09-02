@@ -1,15 +1,107 @@
-@startuml
+@startuml ClasseDeProjeto
 
-!include classes_comum.iuml
+    class Usuario{
+        +Nome: String
+        +Idade: Int
+        +CEP: String
+        +Numero: String
+        +Complemento: String
+        +Telefone: String[]
+        informarDados()
+        obterMatricula()
+    }
 
- class InterfaceProjetorium <<boundary>>
- class ControladorDoProjetorium <<control>>
+    class Professor <<entity>>{
+        +Matricula: String 
+        criarTurma()
+        excluirTurma()
+        editarTurma()
+        avaliarProposta()
+        verProjeto()
+        mudarProjeto()
+        criarProjeto()
+    }
 
- Usuario "1" -- "1" Buscador
- Usuario "1" -- "1" Perfil
- Perfil "0..* " -- "1..* " Projeto
- ControladorDoProjetorium -- Perfil
- InterfaceProjetorium -- ControladorDoProjetorium
- turma "0..*" -- "1..* " Aluno
- turma "1 "-- "1..*" Professor
+    class Aluno <<entity>>{
+        +Matricula: String
+        +DataDeEntrada: Data
+        escolherProjeto()
+        acessarTurma()
+        informarMembros()
+        proporProjeto()
+    }
+
+    class Gestor <<entity>>{
+        +Matricula: String
+        criarProfessor()
+        excluirProfessor()
+        criarProjeto()
+        EditarProjeto()
+    }
+
+    class Projeto <<entity>>{
+        +Titulo: String
+        +Descrição: String
+        +Status: String
+        +Ano: Int
+        +Área: String
+        +Entrega: Data
+        +Autor: String
+        +Departamento: String
+        persisteMudanas()
+        notificaMembros()
+        registrarMembros()
+    }
+
+    class Perfil{
+        +Status: String
+        +Descrição: String
+        +Tipo: String
+        +Codigo: Int
+        ConsultarProjeto()
+    }
+
+    class turma <<entity>>{
+        +codigo: String
+        +Disciplina: String
+        +Departamento: String
+        adicionarProposta
+    }
+
+    class Buscador {
+    buscarProjeto()
+    selecionarProjeto()
+    informarResultados()
+}
+    
+    class InterfaceProjetorium <<boundary>>{
+        verificarCadastro()
+        informarSucesso()
+        exibeTelaProjeto()
+        exibeNotificacao()
+        efetuarProjeto()
+        exibeTelaEscolhaProjeto()
+        encontrarProjeto()
+        registrarProposta()
+    }
+    class ControladorDoProjetorium <<control>>{
+        informaValidez()
+        retornaProjeto()
+        adicionarProposta()
+        notificaMudanca()
+        notificaProfessor()
+        
+    }
+
+    Usuario <|-- Professor
+    Usuario <|-- Aluno
+    Usuario <|-- Gestor
+    Usuario "1" -- "1" Buscador
+    Usuario "1" -- "1" Perfil
+    Perfil "0..* " -- "1..* " Projeto
+    ControladorDoProjetorium -- Perfil
+    InterfaceProjetorium -- ControladorDoProjetorium
+    turma "0..*" -- "1..* " Aluno
+    turma "1 "-- "1..*" Professor
+
 @enduml
