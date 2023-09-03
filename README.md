@@ -21,7 +21,6 @@ incentivada**.
   * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
   * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (Matheus)
   * Artefatos de planejamento SCRUM (Matheus e Jonas)
-  * Fazer as telas restantes (Max)
 
 ### Necessário
 
