@@ -1,13 +1,13 @@
 @startuml ClasseDeProjeto
 
-    class Usuario{
+    class Pessoa{
         +Nome: String
         +Idade: Int
         +CEP: String
         +Numero: String
         +Complemento: String
         +Telefone: String[]
-        informarDados()
+        inserirDados()
         obterMatricula()
     }
 
@@ -16,7 +16,6 @@
         criarTurma()
         excluirTurma()
         editarTurma()
-        avaliarProposta()
         verProjeto()
         mudarProjeto()
         criarProjeto()
@@ -35,7 +34,7 @@
         +Matricula: String
         criarProfessor()
         excluirProfessor()
-        criarProjeto()
+        avaliarProposta()
         EditarProjeto()
     }
 
@@ -48,27 +47,36 @@
         +Entrega: Data
         +Autor: String
         +Departamento: String
-        persisteMudanas()
+        persisteMudancas()
         notificaMembros()
         registrarMembros()
-    }
-
-    class Perfil{
-        +Status: String
-        +Descrição: String
-        +Tipo: String
-        +Codigo: Int
-        ConsultarProjeto()
     }
 
     class turma <<entity>>{
         +codigo: String
         +Disciplina: String
         +Departamento: String
-        adicionarProposta
+        +Horario: String
+        +NumeroSala: Int
+        +Semestre: Data
+        adicionarProposta()
     }
 
-    class Buscador {
+    class Proposta{
+        +Titulo: String
+        +Descrição: String
+        +Departamento: String
+        +DataEntrega: Data
+        +Origem: String
+        +Disciplina: String
+        +ProfessorResponsavel: String
+        +Participantes: String[]
+        aprovarProposta()
+        rejeitarProposta()
+
+    }
+
+    class Buscador <<control>> {
     buscarProjeto()
     selecionarProjeto()
     informarResultados()
@@ -86,6 +94,7 @@
     }
     class ControladorDoProjetorium <<control>>{
         informaValidez()
+        verificarValidez()
         retornaProjeto()
         adicionarProposta()
         notificaMudanca()
@@ -93,15 +102,28 @@
         
     }
 
-    Usuario <|-- Professor
-    Usuario <|-- Aluno
-    Usuario <|-- Gestor
-    Usuario "1" -- "1" Buscador
-    Usuario "1" -- "1" Perfil
-    Perfil "0..* " -- "1..* " Projeto
-    ControladorDoProjetorium -- Perfil
-    InterfaceProjetorium -- ControladorDoProjetorium
-    turma "0..*" -- "1..* " Aluno
-    turma "1 "-- "1..*" Professor
+    class BancoDeDados <<entity>> {
+        getValLogin()
+        registraBanco()
+        informaResultado()
+    }
+
+    Pessoa <|-- Professor
+    Pessoa <|-- Aluno
+    Pessoa <|-- Gestor
+    Buscador "1" <-- "1" Pessoa: Instanciar
+    Pessoa "1" --> "1" ControladorDoProjetorium: Instanciar
+    InterfaceProjetorium "1" <-- "1" ControladorDoProjetorium: Instanciar
+    ControladorDoProjetorium "1" --> "1" BancoDeDados: Instanciar
+
+    Aluno "1..* " -- "0..* " Proposta: Propoe >
+    Gestor "1..*      "  -- "      0..*" Proposta : Avaliar >
+    Professor "1" --  "1  " Proposta: Propoe/Avaliar >
+
+    Gestor  --  Projeto
+    Professor  --  Projeto
+
+    turma "0..*" -- "1..* " Aluno : Frequenta
+    turma "1   "-- "1..*" Professor: Leciona
 
 @enduml
