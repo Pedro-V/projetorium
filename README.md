@@ -19,7 +19,6 @@ incentivada**.
 * Documento II:
   * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (Jonas)
   * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
-  * [Modelo de Dados/DER](https://plantuml.com/ie-diagram) (Matheus)
   * Artefatos de planejamento SCRUM (Matheus e Jonas)
 
 ### Necessário
