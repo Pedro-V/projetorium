@@ -17,9 +17,7 @@ incentivada**.
 ### Urgente
 
 * Documento II:
-  * [Diagrama de Máquina de Estados](https://plantuml.com/state-diagram) (Jonas)
-  * [Diagrama de Atividades](https://plantuml.com/activity-diagram-beta) (Jonas)
-  * Artefatos de planejamento SCRUM (Matheus e Jonas)
+* Finalizado
 
 ### Necessário
 
