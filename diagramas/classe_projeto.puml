@@ -102,11 +102,6 @@
         
     }
 
-    class BancoDeDados <<entity>> {
-        getValLogin()
-        registraBanco()
-        informaResultado()
-    }
 
     Pessoa <|-- Professor
     Pessoa <|-- Aluno
@@ -114,7 +109,6 @@
     Buscador "1" <-- "1" Pessoa: Instanciar
     Pessoa "1" --> "1" ControladorDoProjetorium: Instanciar
     InterfaceProjetorium "1" <-- "1" ControladorDoProjetorium: Instanciar
-    ControladorDoProjetorium "1" --> "1" BancoDeDados: Instanciar
 
     Aluno "1..* " -- "0..* " Proposta: Propoe >
     Gestor "1..*      "  -- "      0..*" Proposta : Avaliar >
@@ -127,3 +121,4 @@
     turma "1   "-- "1..*" Professor: Leciona
 
 @enduml
+
