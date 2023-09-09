@@ -23,8 +23,6 @@ incentivada**.
 
 ### Seria legal
 
-Tentar colocar detalhes de interação nas telas (Max)
-
 ## Membros
 
 * [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
