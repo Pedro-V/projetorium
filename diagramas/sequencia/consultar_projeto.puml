@@ -12,7 +12,7 @@ end
 Pessoa -> TelaBusca ++: informarTermoBusca()
 opt filtros
     Pessoa -> TelaBusca : selecionarFiltros()
-    TelaBusca --> Pessoa : exiberFiltros()
+    TelaBusca --> Pessoa : exibirFiltros()
     Pessoa -> TelaBusca : preencherFiltro()
 end
 Pessoa -> TelaBusca : confirmarBusca()
