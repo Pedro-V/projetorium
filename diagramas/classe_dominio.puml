@@ -3,7 +3,7 @@
 
 Aluno -- Projeto :  escolhe/trabalha num >
 Aluno -- Turma   :  estuda numa >
-Usuario -- Buscador : faz buscas no >
+Pessoa -- Buscador : faz buscas no >
 Professor -- Turma : ensina numa >
 Professor -- Projeto : propõe/supervisiona/aprova um >
 Gestor -- Professor : gerencia >

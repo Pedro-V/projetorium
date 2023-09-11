@@ -1,5 +1,5 @@
 @startuml
-class Usuario {
+class Pessoa {
     Nome: String
     Idade: Int
     CEP: String
@@ -72,8 +72,8 @@ class Buscador {
     SelecionarProjeto()
 }
 
-Usuario <|-- Professor
-Usuario <|-- Aluno
-Usuario <|-- Gestor
+Pessoa <|-- Professor
+Pessoa <|-- Aluno
+Pessoa <|-- Gestor
 
 @enduml
