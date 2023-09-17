@@ -1,6 +1,6 @@
 @startuml DiagramaDePack
 
-package Entidade{
+folder Model{
 
     class Pessoa{
         -Nome: String
@@ -46,8 +46,8 @@ package Entidade{
         registrarMembros()
     }
 
-    class turma {
-        -codigo: String
+    class Turma {
+        -Codigo: String
         -Disciplina: String
         -Departamento: String
         -Horario: String
@@ -85,7 +85,7 @@ package Entidade{
     Pessoa <|-- Gestor
 }
 
-package Control{
+folder Control{
     
     class Buscador  {
      processarBusca()
@@ -95,7 +95,7 @@ package Control{
     }
 
     class VerificadorLogin{
-        VerificaddorCadastro()
+        verificaddorCadastro()
     }
 
     class ControladorProjeto{
@@ -112,7 +112,7 @@ package Control{
     }
 }
 
-package Interface{
+folder View{
     class TelaLogin{
         insereDados()
         informarValidez()
@@ -121,7 +121,7 @@ package Interface{
     class TelaInicial{
         verificaNotificações()
         acessarProjeto()
-        NotificaAluno()
+        notificaAluno()
         acessarTurma()
         criarProjeto()
         verProjeto()
@@ -164,32 +164,8 @@ package Interface{
     }
 }
 
-package BancodeDados{
-    class CadastroAluno{
-    criaAlunoIndividual()
-    informaDados()
-}
-
-    class CadastroProfessor{
-    criarProfessorIndividual()
-    informaDados()
-}
-
-    class CadastroTurma{
-    criaTurmaIndividual()
-    informaDados()
-}
-
-    class Sigaa{
-    criarAlunoLote()
-    criarProfessorLote()
-    criarTurmaLote()
-}
-}
-
-Entidade --> Interface
-Interface --> Control
-BancodeDados <-- Control
+Control -- View
+Model -- Control
 
 
 
