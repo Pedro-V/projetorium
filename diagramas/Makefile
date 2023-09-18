@@ -1,21 +1,12 @@
 PU := plantuml
 PU_FLAGS := 
 
-diagrams := \
-	usecase	\
-	classe_dominio	\
-	classe_projeto
+diagrams := $(wildcard *.puml)
+images := $(patsubst %.puml,%.png,$(diagrams))
 
+all: $(images)
 
-all: $(diagrams)
-
-usecase: usecase.puml
-	$(PU) $(PU_FLAGS) $^
-
-classe_dominio: classe_dominio.puml
-	$(PU) $(PU_FLAGS) $^
-
-classe_projeto: classe_projeto.puml
+%.png: %.puml
 	$(PU) $(PU_FLAGS) $^
 
 clean:

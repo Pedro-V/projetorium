@@ -1,5 +1,88 @@
 @startuml
-!include classes_comum.iuml
+class Pessoa {
+    Nome: String
+    Idade: Int
+    CEP: String
+    Numero: String
+    Complemento: String
+    Telefone: String[]
+
+    FazerLogin()
+}
+
+class Professor <<entity>>{
+    Matricula: String 
+
+    CriarTurma()
+    ExcluirTurma()
+    EditarTurma()
+    AvaliarProposta()
+    ProporProposta()
+}
+
+class Aluno <<entity>>{
+    Matricula: String
+    DataDeEntrada: Data
+
+    ProporProposta()
+    EscolherProjeto()
+}
+
+class Gestor <<entity>>{
+    Matricula: String
+
+    CriarProfessor()
+    ExcluirProfessor()
+    CriarProjeto()
+    EditarProjeto()
+}
+
+class BaseProjeto {
+    Titulo: String
+    Descrição: String
+    Status: String
+    Criacao: Data
+    Autor: Pessoa
+    Tags: String[]
+    Departamento: String
+    Links: URL[]
+}
+
+class Projeto {
+    Entrega: Data
+    VerificarProjeto()
+    ProductOwner: Pessoa
+}
+
+class Proposta {
+}
+
+class Perfil  {
+    Status: String
+    Descrição: String
+    Tipo: String
+    Codigo: Int
+    
+    ConsultarProjeto()
+}
+
+class Turma {
+    codigo: String
+    Disciplina: String
+    Departamento: String
+}
+
+class Buscador {
+    BuscarProjeto()
+    SelecionarProjeto()
+}
+
+Pessoa <|-- Professor
+Pessoa <|-- Aluno
+Pessoa <|-- Gestor
+
+BaseProjeto <|-- Projeto
+BaseProjeto <|-- Proposta
 
 Aluno -- Projeto :  escolhe/trabalha num >
 Aluno -- Turma   :  estuda numa >
@@ -7,6 +90,4 @@ Pessoa -- Buscador : faz buscas no >
 Professor -- Turma : ensina numa >
 Professor -- Projeto : propõe/supervisiona/aprova um >
 Gestor -- Professor : gerencia >
-
-hide Perfil
 @enduml

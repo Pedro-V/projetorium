@@ -1,124 +1,122 @@
-@startuml ClasseDeProjeto
-
-    class Pessoa{
-        +Nome: String
-        +Idade: Int
-        +CEP: String
-        +Numero: String
-        +Complemento: String
-        +Telefone: String[]
-        inserirDados()
-        obterMatricula()
-    }
-
-    class Professor <<entity>>{
-        +Matricula: String 
-        criarTurma()
-        excluirTurma()
-        editarTurma()
-        verProjeto()
-        mudarProjeto()
-        criarProjeto()
-    }
-
-    class Aluno <<entity>>{
-        +Matricula: String
-        +DataDeEntrada: Data
-        escolherProjeto()
-        acessarTurma()
-        informarMembros()
-        proporProjeto()
-    }
-
-    class Gestor <<entity>>{
-        +Matricula: String
-        criarProfessor()
-        excluirProfessor()
-        avaliarProposta()
-        EditarProjeto()
-    }
-
-    class Projeto <<entity>>{
-        +Titulo: String
-        +Descrição: String
-        +Status: String
-        +Ano: Int
-        +Área: String
-        +Entrega: Data
-        +Autor: String
-        +Departamento: String
-        persisteMudancas()
-        notificaMembros()
-        registrarMembros()
-    }
-
-    class turma <<entity>>{
-        +codigo: String
-        +Disciplina: String
-        +Departamento: String
-        +Horario: String
-        +NumeroSala: Int
-        +Semestre: Data
-        adicionarProposta()
-    }
-
-    class Proposta{
-        +Titulo: String
-        +Descrição: String
-        +Departamento: String
-        +DataEntrega: Data
-        +Origem: String
-        +Disciplina: String
-        +ProfessorResponsavel: String
-        +Participantes: String[]
-        aprovarProposta()
-        rejeitarProposta()
-
-    }
-
-    class Buscador <<control>> {
-    buscarProjeto()
-    selecionarProjeto()
-    informarResultados()
+@startuml
+class Pessoa{
+    +Nome: String
+    +Idade: Int
+    +CEP: String
+    +Numero: String
+    +Complemento: String
+    +Telefone: String[]
+    inserirDados()
+    obterMatricula()
 }
+
+class Professor <<entity>>{
+    +Matricula: String 
+    criarTurma()
+    excluirTurma()
+    editarTurma()
+    verProjeto()
+    mudarProjeto()
+    criarProjeto()
+}
+
+class Aluno <<entity>>{
+    +Matricula: String
+    +DataDeEntrada: Data
+    escolherProjeto()
+    acessarTurma()
+    informarMembros()
+    proporProjeto()
+}
+
+class Gestor <<entity>>{
+    +Matricula: String
+    criarProfessor()
+    excluirProfessor()
+    avaliarProposta()
+    EditarProjeto()
+}
+
+class Projeto <<entity>>{
+    +Titulo: String
+    +Descrição: String
+    +Status: String
+    +Ano: Int
+    +Área: String
+    +Entrega: Data
+    +Autor: String
+    +Departamento: String
+    persisteMudancas()
+    notificaMembros()
+    registrarMembros()
+}
+
+class turma <<entity>>{
+    +codigo: String
+    +Disciplina: String
+    +Departamento: String
+    +Horario: String
+    +NumeroSala: Int
+    +Semestre: Data
+    adicionarProposta()
+}
+
+class Proposta{
+    +Titulo: String
+    +Descrição: String
+    +Departamento: String
+    +DataEntrega: Data
+    +Origem: String
+    +Disciplina: String
+    +ProfessorResponsavel: String
+    +Participantes: String[]
+    aprovarProposta()
+    rejeitarProposta()
+
+}
+
+class Buscador <<control>> {
+buscarProjeto()
+selecionarProjeto()
+informarResultados()
+}
+
+class InterfaceProjetorium <<boundary>>{
+    verificarCadastro()
+    informarSucesso()
+    exibeTelaProjeto()
+    exibeNotificacao()
+    efetuarProjeto()
+    exibeTelaEscolhaProjeto()
+    encontrarProjeto()
+    registrarProposta()
+}
+class ControladorDoProjetorium <<control>>{
+    informaValidez()
+    verificarValidez()
+    retornaProjeto()
+    adicionarProposta()
+    notificaMudanca()
+    notificaProfessor()
     
-    class InterfaceProjetorium <<boundary>>{
-        verificarCadastro()
-        informarSucesso()
-        exibeTelaProjeto()
-        exibeNotificacao()
-        efetuarProjeto()
-        exibeTelaEscolhaProjeto()
-        encontrarProjeto()
-        registrarProposta()
-    }
-    class ControladorDoProjetorium <<control>>{
-        informaValidez()
-        verificarValidez()
-        retornaProjeto()
-        adicionarProposta()
-        notificaMudanca()
-        notificaProfessor()
-        
-    }
+}
 
 
-    Pessoa <|-- Professor
-    Pessoa <|-- Aluno
-    Pessoa <|-- Gestor
-    Buscador "1" <-- "1" Pessoa: Instanciar
-    Pessoa "1" --> "1" ControladorDoProjetorium: Instanciar
-    InterfaceProjetorium "1" <-- "1" ControladorDoProjetorium: Instanciar
+Pessoa <|-- Professor
+Pessoa <|-- Aluno
+Pessoa <|-- Gestor
+Buscador "1" <-- "1" Pessoa: Instanciar
+Pessoa "1" --> "1" ControladorDoProjetorium: Instanciar
+InterfaceProjetorium "1" <-- "1" ControladorDoProjetorium: Instanciar
 
-    Aluno "1..* " -- "0..* " Proposta: Propoe >
-    Gestor "1..*      "  -- "      0..*" Proposta : Avaliar >
-    Professor "1" --  "1  " Proposta: Propoe/Avaliar >
+Aluno "1..* " -- "0..* " Proposta: Propoe >
+Gestor "1..*      "  -- "      0..*" Proposta : Avaliar >
+Professor "1" --  "1  " Proposta: Propoe/Avaliar >
 
-    Gestor  --  Projeto
-    Professor  --  Projeto
+Gestor  --  Projeto
+Professor  --  Projeto
 
-    turma "0..*" -- "1..* " Aluno : Frequenta
-    turma "1   "-- "1..*" Professor: Leciona
-
+turma "0..*" -- "1..* " Aluno : Frequenta
+turma "1   "-- "1..*" Professor: Leciona
 @enduml
 

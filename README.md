@@ -16,9 +16,6 @@ incentivada**.
 
 ### Urgente
 
-* Documento II:
-* Finalizado
-
 ### Necessário
 
 ### Seria legal
