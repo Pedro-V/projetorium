@@ -2,24 +2,24 @@
 folder Model{
 
     class Pessoa{
-        Nome: String
-        Idade: Int
-        CEP: String
-        Numero: String
-        Complemento: String
-        Telefone: String[]
+        nome: String
+        idade: Int
+        cep: String
+        numero: String
+        complemento: String
+        telefone: String[]
         getNome()
         getCep()
     }
 
     class Professor {
-        Matricula: String 
+        matricula: String 
         getMatricula()
     }
 
     class Aluno {
-        Matricula: String
-        DataDeEntrada: Data
+        matricula: String
+        dataDeEntrada: Data
         getMatricula()
         getDataDeEntrada()
     }
@@ -30,15 +30,15 @@ folder Model{
     }
 
     class BaseProjeto {
-        Titulo: String
-        Descrição: String
-        Status: String
-        Criacao: Data
-        Autor: Pessoa
-        Membros Pessoa[]
-        Tags: String[]
-        Departamento: String
-        Links: URL[]
+        titulo: String
+        descricao: String
+        status: String
+        criacao: Data
+        autor: Pessoa
+        membros: Pessoa[]
+        tags: String[]
+        departamento: String
+        links: URL[]
 
         getTitulo()
         getDescricao()
@@ -47,8 +47,8 @@ folder Model{
     }
 
     class Projeto {
-        Entrega: Data
-        ProductOwner: Pessoa
+        entrega: Data
+        productOwner: Pessoa
 
         informaRevisao()
         efetuarMudancas()
@@ -68,38 +68,36 @@ folder Model{
 
 
     class Turma {
-        Codigo: String
-        Disciplina: String
-        Departamento: String
-        Horario: String
-        NumeroSala: Int
-        Semestre: Data
+        codigo: String
+        disciplina: String
+        departamento: String
+        horario: String
+        numeroSala: Int
+        semestre: Data
         getCodigo()
         getDisciplina()
         getDepartamento()
     }
 
-    class Notificacao{
-        data: Data
-        tipo: String
-    }
-
     Pessoa <|-- Professor
     Pessoa <|-- Aluno
     Pessoa <|-- Gestor
+
+    Turma -- Aluno
+    Turma -- Professor
 }
 
 folder Control{
     
     class Buscador  {
      processarBusca()
-     insereProjetoNoResultado()
-     descartaProjetos()
+     inserirProjetoNoResultado()
+     descartarProjetos()
      gerarResultados()
     }
 
     class VerificadorLogin{
-        verificaddorCadastro()
+        verificarCadastro()
     }
 
     class ControladorProjeto{
@@ -108,7 +106,7 @@ folder Control{
     }
 
     class GerenciadorContas{
-        enviaDados()
+        enviarDados()
     }
 
     class ControladorTurma{
@@ -118,14 +116,14 @@ folder Control{
 
 folder View{
     class TelaLogin{
-        insereDados()
+        inserirDados()
         informarValidez()
     }
 
     class TelaInicial{
-        verificaNotificações()
+        verificarNotificações()
         acessarProjeto()
-        notificaAluno()
+        notificarAluno()
         acessarTurma()
         criarProjeto()
         verProjeto()
@@ -155,7 +153,7 @@ folder View{
     }
 
     class TelaCadastro{
-        insereDados()
+        inserirDados()
     }
 
     class TelaProjeto{
