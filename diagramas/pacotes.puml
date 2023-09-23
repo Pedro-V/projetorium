@@ -35,6 +35,7 @@ folder Model{
         Status: String
         Criacao: Data
         Autor: Pessoa
+        Membros Pessoa[]
         Tags: String[]
         Departamento: String
         Links: URL[]
