@@ -38,6 +38,7 @@ Professor -- AvalProp
 
 Gestor -- MantProj
 Gestor -- MantProf
+Gestor -- AvalProp
 
 SIGAA -up- MantTurm
 SIGAA -up- MantAlun
