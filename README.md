@@ -7,7 +7,12 @@
 
 ## Estrutura
 
-* `requisitos/`: Engenharia de Requisitos: elicitação, análise e validação.
+* `diagramas/`: Código-fonte dos arquivos PUML e os binários gerados por eles.
+* `documentos/`: Documentação, que reúne modelagem, requisitos e todos os
+  artefatos do processo de engenharia de software.
+* `reunioes/`: Anotações das reuniões com os professores, para futura
+  referência.
+* `dev/`: Desenvolvimento da aplicação: frontend, backend, SQL, entre outros.
 
 ## TODO
 
@@ -17,6 +22,12 @@ incentivada**.
 ### Urgente
 
 ### Necessário
+
+- Requisitos de manutenção de modelos (quantidade alocada):
+  - Turma (1 pessoa): 
+  - Aluno (2): Pedro, 
+  - Professor (2):
+  - Gestor (2):
 
 ### Seria legal
 
