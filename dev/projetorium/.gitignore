@@ -1,0 +1,5 @@
+# ignore cache do Python
+*__pycache__**
+
+# Arquivos de banco
+*.sqlite3
