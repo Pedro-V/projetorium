@@ -26,7 +26,7 @@ incentivada**.
 - Requisitos de manutenção de modelos (quantidade alocada):
   - Turma (1 pessoa): 
   - Aluno (2): Pedro, Jonas
-  - Professor (2): Max
+  - Professor (2): Max, Carlos
   - Gestor (2):
 
 ### Seria legal
