@@ -27,7 +27,7 @@ incentivada**.
   - Turma (1 pessoa): 
   - Aluno (2): Pedro, Jonas
   - Professor (2): Max, Carlos
-  - Gestor (2):
+  - Gestor (2): Pedro A
 
 ### Seria legal
 
