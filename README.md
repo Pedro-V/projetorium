@@ -24,7 +24,7 @@ incentivada**.
 ### Necessário
 
 - Requisitos de manutenção de modelos (quantidade alocada):
-  - Turma (1 pessoa): 
+  - Turma (1 pessoa): Rayan
   - Aluno (2): Pedro, Jonas
   - Professor (2): Max, Carlos
   - Gestor (2): Pedro A
@@ -32,7 +32,7 @@ incentivada**.
 ### Seria legal
 
 ## Membros
-
+* [Rayan Tavares](https://github.com/Rayan01261) - [rayantavaresjjba@academico.ufs.br](mailto:rayantavaresjjba@acadeimoc.ufs.br)
 * [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
 * [Max Antônio](https://github.com/Max-Antonio) - [antoniomax@academico.ufs.br](mailto:antoniomax@academico.ufs.br)
 * [Jonas Gabriel](https://github.com/jonasgabrieel) - [jonasgab@academico.ufs.br](mailto:jonasgab@academico.ufs.br)
