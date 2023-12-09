@@ -23,13 +23,17 @@ incentivada**.
 
 ### Necessário
 
-- Requisitos de manutenção de modelos (quantidade alocada):
+- Requisitos de manutenção de modelo (quantidade alocada):
   - Turma (1 pessoa): Rayan
   - Aluno (2): Pedro, Jonas
   - Professor (2): Max, Carlos
   - Gestor (2): Pedro A
+- Compilar entrega 1: Pedro
+- Adaptar diagrama ER: Max, Matheus
 
 ### Seria legal
+
+- Dar uma olhada em React (Todos)
 
 ## Membros
 * [Rayan Tavares](https://github.com/Rayan01261) - [rayantavaresjjba@academico.ufs.br](mailto:rayantavaresjjba@acadeimoc.ufs.br)

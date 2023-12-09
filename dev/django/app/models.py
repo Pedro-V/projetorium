@@ -24,7 +24,6 @@ class Professor(Pessoa):
     matriculaProfessor = models.CharField(primary_key=True, max_length=12)
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
-
 class Projeto(models.Model):
     id_projeto = models.CharField(max_length=10)
 
