@@ -22,7 +22,7 @@ class Pessoa(models.Model):
 
 class Professor(Pessoa):
     matriculaProfessor = models.CharField(primary_key=True, max_length=12)
-    cod_departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+    cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
 
 class Projeto(models.Model):
@@ -30,5 +30,5 @@ class Projeto(models.Model):
 
 class Proposta(models.Model):
     id_proposta = models.charField(10)
-    matriculaProfessor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    id_projeto = models.ForeignKey(Projeto, on_delete=models.CASCADE)
+    matriculaProfessor = models.ForeignKey(Professor, on_delete=) #
+    id_projeto = models.ForeignKey(Projeto, on_delete=)
