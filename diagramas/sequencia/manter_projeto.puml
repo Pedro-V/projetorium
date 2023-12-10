@@ -2,27 +2,22 @@
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-actor ":Professor" as Professor
 boundary ":TelaInicial" as TelaInicial
 boundary ":TelaProjeto" as TelaProjeto
 participant ":Projeto" as Projeto
 
-ref over Aluno, Professor : sdEfetuarLogin
+ref over Aluno : sdEfetuarLogin
 
 alt se for criar
     Professor -> TelaInicial : criarProjeto()
 else se for modificar
-    Professor -> TelaInicial : verProjeto()
     Aluno -> TelaInicial : verProjeto()
-    TelaInicial --> Professor : exibeTelaProjeto()
     TelaInicial --> Aluno : exibeTelaProjeto()
-    Professor -> TelaProjeto : mudarProjeto()
     Aluno -> TelaProjeto : mudarProjeto()
 end
-Professor -> TelaProjeto : informaDados()
+
 TelaProjeto -> Projeto : efetuarProjeto()
 Projeto -> Projeto : persisteMudanças()
 Projeto -\\ TelaProjeto : notificaMembros()
 TelaProjeto --> Aluno : notificaMudanca()
-TelaProjeto --> Professor : notificaMudanca()
 @enduml

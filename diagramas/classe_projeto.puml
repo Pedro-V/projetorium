@@ -1,122 +1,214 @@
 @startuml
-class Pessoa{
-    +Nome: String
-    +Idade: Int
-    +CEP: String
-    +Numero: String
-    +Complemento: String
-    +Telefone: String[]
-    inserirDados()
-    obterMatricula()
+class Pessoa <<entity>> {
+  nome: String
+  telefone: String[]
+  dataNasc: Date
+  matricula: String
 }
 
-class Professor <<entity>>{
-    +Matricula: String 
-    criarTurma()
-    excluirTurma()
-    editarTurma()
-    verProjeto()
-    mudarProjeto()
-    criarProjeto()
+class Departamento <<entity>> {
+  nome: String
 }
 
-class Aluno <<entity>>{
-    +Matricula: String
-    +DataDeEntrada: Data
-    escolherProjeto()
-    acessarTurma()
-    informarMembros()
-    proporProjeto()
+class Disciplina <<entity>> {
+  nome: String
+  codigo: String
 }
 
-class Gestor <<entity>>{
-    +Matricula: String
-    criarProfessor()
-    excluirProfessor()
-    avaliarProposta()
-    EditarProjeto()
+class Curso <<entity>> {
+  nome: String
 }
 
-class Projeto <<entity>>{
-    +Titulo: String
-    +Descrição: String
-    +Status: String
-    +Ano: Int
-    +Área: String
-    +Entrega: Data
-    +Autor: String
-    +Departamento: String
-    persisteMudancas()
-    notificaMembros()
-    registrarMembros()
+class Professor <<entity>> {
+  departamento: Departamento
 }
 
-class turma <<entity>>{
-    +codigo: String
-    +Disciplina: String
-    +Departamento: String
-    +Horario: String
-    +NumeroSala: Int
-    +Semestre: Data
-    adicionarProposta()
+class Aluno <<entity>> {
+  curso: Curso
 }
 
-class Proposta{
-    +Titulo: String
-    +Descrição: String
-    +Departamento: String
-    +DataEntrega: Data
-    +Origem: String
-    +Disciplina: String
-    +ProfessorResponsavel: String
-    +Participantes: String[]
-    aprovarProposta()
-    rejeitarProposta()
-
+class Grupo <<entity>> {
+  membros: Aluno[]
 }
 
-class Buscador <<control>> {
-buscarProjeto()
-selecionarProjeto()
-informarResultados()
+enum StatusProjeto <<enumeration>> {
+  aprovado
+  concluido
+  cancelado
+  rejeitado
+  aprovado
 }
 
-class InterfaceProjetorium <<boundary>>{
-    verificarCadastro()
-    informarSucesso()
-    exibeTelaProjeto()
-    exibeNotificacao()
-    efetuarProjeto()
-    exibeTelaEscolhaProjeto()
-    encontrarProjeto()
-    registrarProposta()
-}
-class ControladorDoProjetorium <<control>>{
-    informaValidez()
-    verificarValidez()
-    retornaProjeto()
-    adicionarProposta()
-    notificaMudanca()
-    notificaProfessor()
-    
+abstract class ProjetoAbstrato <<entity>> {
+  titulo: String
+  descricao: String
+  status: StatusProjeto
+  tags: String[]
+  autor: Pessoa
+  documentos: File[]
 }
 
+class Projeto <<entity>> {
+  dataCriado: Date
+}
+
+class Turma <<entity>> {
+  codigo: String
+  disciplina: Disciplina
+  periodo: Periodo
+}
+
+class Periodo <<entity>> {
+  ano: Int
+  numeroPeriodo: Int
+}
+
+class PropostaProjeto <<entity>> {
+  proponente: Grupo
+  dataProposto: Date
+}
+
+class Avaliacao <<entity>> {
+  status: StatusAvaliacao
+  mensagem: String
+}
+
+enum StatusAvaliacao <<enumeration>> {
+  aprovado
+  rejeitado
+  melhorias
+}
+
+Avaliacao "0..*" -- "1..1" StatusAvaliacao
+Avaliacao "0..*" -- "1..1" PropostaProjeto
 
 Pessoa <|-- Professor
 Pessoa <|-- Aluno
-Pessoa <|-- Gestor
-Buscador "1" <-- "1" Pessoa: Instanciar
-Pessoa "1" --> "1" ControladorDoProjetorium: Instanciar
-InterfaceProjetorium "1" <-- "1" ControladorDoProjetorium: Instanciar
 
-Aluno "1..* " -- "0..* " Proposta: Propoe >
-Gestor "1..*      "  -- "      0..*" Proposta : Avaliar >
-Professor "1" --  "1  " Proposta: Propoe/Avaliar >
+Aluno "1..*" --* "0..1" Grupo 
+Aluno "1..*" -- "0..*" Turma
+Aluno "1..*" -- "1..1" Curso
 
-Gestor  --  Projeto
-Professor  --  Projeto
+Professor "1..*" -- "1..1" Departamento
+Professor "1..*" -- "0..*" Turma
 
-turma "0..*" -- "1..* " Aluno : Frequenta
-turma "1   "-- "1..*" Professor: Leciona
+Departamento "1..1" -- "1..*" Disciplina
+Departamento "1..1" -- "1..*" Curso
+
+Turma "1..*" -- "1..1" Periodo
+Turma "0..*" -- "1..1" Disciplina
+
+ProjetoAbstrato <|-- Projeto
+ProjetoAbstrato <|-- PropostaProjeto
+
+ProjetoAbstrato "0..*" -- "1..1" StatusProjeto
+Projeto "0..*" -- "1..1" Turma
+
+class TelaInicialProfessor <<boundary>> {
+  acessarTurma()
+  verificarNotificacoes()
+}
+
+class TelaTurma <<boundary>> {
+  acessarProjeto()
+  verPropostas()
+}
+
+package "Manter Aluno" {
+  class TelaCriacaoAluno <<boundary>> {}
+  class CriadorAluno <<control>> {}
+  class InclusorAluno <<control>> {}
+
+  TelaCriacaoAluno -- CriadorAluno
+  InclusorAluno -- Turma
+  CriadorAluno -- Aluno
+  InclusorAluno -- CriadorAluno
+}
+
+package "Manter Projeto" {
+  class TelaAtualizarProjeto <<boundary>> {
+  }
+
+  class AtualizadorProjeto <<control>> {
+    adicionarArquivo()
+    adicionarMembro()
+    atualizarStatus()
+    notificaMembros()
+  }
+
+  AtualizadorProjeto -- Projeto
+  TelaAtualizarProjeto -- AtualizadorProjeto
+}
+
+package "Consultar Projeto" {
+  class TelaConsulta <<boundary>> {
+    coletarTermoBusca()
+    selecionarFiltros()
+    exibirFiltros()
+    preencherFiltros()
+    confirmarConsulta()
+  }
+  class TelaResultados <<boundary>> {
+    exibeResultados()
+  }
+  class Buscador <<control>> {
+    processarConsulta()
+    verificarVisibilidade()
+  }
+
+  class Filtrador <<control>> {
+    cumpreFiltro()
+    insereProjeto()
+    descartaProjeto()
+  }
+
+  class GeradorResultados <<control>> {
+    gerarResultados()
+    informarResultados()
+  }
+
+  Buscador -- Filtrador
+  Filtrador -- GeradorResultados
+  Buscador -- TelaConsulta
+  Buscador -- Projeto
+  GeradorResultados -- TelaResultados
+}
+
+package "Avaliar Proposta" {
+  class TelaRevisao <<boundary>> {
+    enviarAvaliacao()
+  }
+
+  class AvaliadorProposta <<control>> {
+    avaliarProposta()
+    informarAvaliacao()
+    adicionarProjeto()
+  }
+
+  class TelaNotificacaoAluno <<boundary>> {
+    notificarAvaliacao()
+  }
+
+  AvaliadorProposta -- TelaRevisao
+  AvaliadorProposta -- Turma
+  AvaliadorProposta -- Avaliacao
+  AvaliadorProposta -- TelaNotificacaoAluno
+}
+
+package "Efetuar Login" {
+  class TelaLogin <<boundary>> {
+    enviarCredenciais()
+    informarSucesso()
+    informarFalha()
+  }
+
+  class VerificadorLogin <<control>> {
+    efetuarLogin()
+    verificarValidez()
+    informarValidez()
+  }
+
+  ControleLogin -- TelaLogin
+}
+
 @enduml
-
