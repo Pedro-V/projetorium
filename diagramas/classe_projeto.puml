@@ -36,7 +36,6 @@ enum StatusProjeto <<enumeration>> {
   concluido
   cancelado
   rejeitado
-  aprovado
 }
 
 abstract class ProjetoAbstrato <<entity>> {
@@ -225,14 +224,34 @@ package "Ofertar projeto" {
 }
 
 package "Manter Aluno" {
-  class TelaCriacaoAluno <<boundary>> {}
-  class CriadorAluno <<control>> {}
-  class InclusorAluno <<control>> {}
+  class TelaCriacaoAluno <<boundary>> {
+    informarDados()
+    confirmarEnvio()
+  }
+  class ControleAluno <<control>> {
+    criarAluno()
+    editarAluno()
+  }
 
-  TelaCriacaoAluno -- CriadorAluno
-  InclusorAluno -- Turma
-  CriadorAluno -- Aluno
-  InclusorAluno -- CriadorAluno
+  TelaCriacaoAluno -- ControleAluno
+  ControleAluno -- Aluno
+}
+
+package "Manter Turma" {
+  class TelaTurmaInclusao <<boundary>> {
+    informarDadosIndividual()
+    informarDadosLote()
+    confirmarEnvio()
+  }
+  class ControleTurma <<control>> {
+    incluirAluno()
+    incluirAlunoEmLote()
+  }
+
+  TelaTurmaInclusao -- ControleTurma
+  TelaTurmaInclusao -- TelaTurmaProfessor
+  ControleTurma -- Aluno
+  ControleTurma -- Turma
 }
 
 package "Consultar Projeto" {
@@ -282,7 +301,9 @@ package "Efetuar Login" {
     informarValidez()
   }
 
-  ControleLogin -- TelaLogin
+  VerificadorLogin -- TelaLogin
+  VerificadorLogin -- Aluno
+  VerificadorLogin -- Professor
 }
 
 @enduml
