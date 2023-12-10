@@ -1,5 +1,5 @@
 @startuml
-class Pessoa <<entity>> {
+abstract class Pessoa <<entity>> {
   nome: String
   telefone: String[]
   dataNasc: Date
@@ -50,12 +50,16 @@ abstract class ProjetoAbstrato <<entity>> {
 
 class Projeto <<entity>> {
   dataCriado: Date
+  adicionarMembros()
+  persistirMudanças()
 }
 
 class Turma <<entity>> {
   codigo: String
   disciplina: Disciplina
   periodo: Periodo
+  adicionarProposta()
+  adicionarProjeto()
 }
 
 class Periodo <<entity>> {
@@ -104,14 +108,120 @@ ProjetoAbstrato <|-- PropostaProjeto
 ProjetoAbstrato "0..*" -- "1..1" StatusProjeto
 Projeto "0..*" -- "1..1" Turma
 
-class TelaInicialProfessor <<boundary>> {
-  acessarTurma()
-  verificarNotificacoes()
+class TelaNotificacao <<boundary>> {
+  notificarAvaliacao()
+  notificarMembros()
+  notificarProposta()
+  notificar()
 }
 
-class TelaTurma <<boundary>> {
-  acessarProjeto()
-  verPropostas()
+class TelaInicialAluno <<boundary>> {
+  acessarTurma()
+  exibirTelaTurma()
+}
+
+class TelaInicialProfessor <<boundary>> {
+  acessarTurma()
+  exibirTelaTurma()
+}
+
+class TelaTurmaAluno <<boundary>> {
+  exibirTelaEscolhaProjeto()
+  exibirTelaAtualizarProjeto()
+  exibirTelaProposta()
+}
+
+class TelaTurmaProfessor <<boundary>> {
+  exibirTelaAvaliacao()
+}
+
+TelaTurmaAluno -- TelaInicialAluno
+TelaTurmaProfessor -- TelaInicialProfessor
+
+package "Escolher projeto" {
+  class TelaEscolhaProjeto <<boundary>> {
+    exibirProjetos()
+    confirmarEscolha()
+    mostrarErro()
+  }
+
+  class ControleEscolhaProjeto <<control>> {
+    cadastrarGrupo()
+    adicionarMembros()
+  }
+
+  TelaTurmaAluno -- TelaEscolhaProjeto
+  TelaEscolhaProjeto -- ControleEscolhaProjeto
+  ControleEscolhaProjeto -- TelaNotificacao
+  ControleEscolhaProjeto -- Projeto
+}
+
+package "Propor projeto" {
+  class TelaProposta <<boundary>> {
+    informadosDados()
+    confirmarEnvio()
+  }
+
+  class ControladorProposta <<control>> {
+    registrarProposta()
+    notificarProfessor()
+  }
+
+  TelaProposta -- TelaTurmaAluno
+  TelaProposta -- ControladorProposta
+  ControladorProposta -- PropostaProjeto
+  ControladorProposta -- Turma
+}
+
+package "Manter projeto" {
+  class TelaAtualizarProjeto <<boundary>> {
+    informarDados()
+    confirmarEnvio()
+  }
+
+  class ManutencaoProjeto <<control>> {
+    efetuarMudancas()
+    notificarMembros()
+  }
+
+  ManutencaoProjeto -- Projeto
+  TelaAtualizarProjeto -- ManutencaoProjeto
+  TelaAtualizarProjeto -- TelaNotificacao
+  TelaAtualizarProjeto -- TelaTurmaAluno
+}
+
+package "Avaliar proposta" {
+  class TelaAvaliacao <<boundary>> {
+    confirmarAvaliacao()
+    enviarAvaliacao()
+  }
+
+  class ControladorAvaliacao <<control>> {
+    construirProjeto()
+    rejeitarProposta()
+  }
+
+  TelaAvaliacao -- TelaTurmaProfessor
+  ControladorAvaliacao -- TelaAvaliacao
+  ControladorAvaliacao -- Projeto
+  ControladorAvaliacao -- Avaliacao
+  ControladorAvaliacao -- TelaNotificacao
+}
+
+package "Ofertar projeto" {
+  class TelaOferta <<boundary>> {
+    informarDados()
+    confirmarEnvio()
+  }
+  
+  class ControladorOferta <<control>> {
+    criarOferta()
+    notificarTurma()
+  }
+
+  TelaOferta -- TelaTurmaProfessor
+  ControladorOferta -- TelaOferta
+  ControladorOferta -- Turma
 }
 
 package "Manter Aluno" {
@@ -123,21 +233,6 @@ package "Manter Aluno" {
   InclusorAluno -- Turma
   CriadorAluno -- Aluno
   InclusorAluno -- CriadorAluno
-}
-
-package "Manter Projeto" {
-  class TelaAtualizarProjeto <<boundary>> {
-  }
-
-  class AtualizadorProjeto <<control>> {
-    adicionarArquivo()
-    adicionarMembro()
-    atualizarStatus()
-    notificaMembros()
-  }
-
-  AtualizadorProjeto -- Projeto
-  TelaAtualizarProjeto -- AtualizadorProjeto
 }
 
 package "Consultar Projeto" {
@@ -172,27 +267,6 @@ package "Consultar Projeto" {
   Buscador -- TelaConsulta
   Buscador -- Projeto
   GeradorResultados -- TelaResultados
-}
-
-package "Avaliar Proposta" {
-  class TelaRevisao <<boundary>> {
-    enviarAvaliacao()
-  }
-
-  class AvaliadorProposta <<control>> {
-    avaliarProposta()
-    informarAvaliacao()
-    adicionarProjeto()
-  }
-
-  class TelaNotificacaoAluno <<boundary>> {
-    notificarAvaliacao()
-  }
-
-  AvaliadorProposta -- TelaRevisao
-  AvaliadorProposta -- Turma
-  AvaliadorProposta -- Avaliacao
-  AvaliadorProposta -- TelaNotificacaoAluno
 }
 
 package "Efetuar Login" {

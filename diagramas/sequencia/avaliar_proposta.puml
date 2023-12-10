@@ -3,30 +3,30 @@ skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
 actor ":Professor" as Professor
-boundary ":TelaInicial" as TelaInicial
-boundary ":TelaTurma" as TelaTurma
-boundary ":TelaRevisao" as TelaRevisao
-control ":ControladorProjeto" as ControladorProjeto
-participant ":Projeto" as Projeto
+boundary ":TelaInicialProfessor" as TelaInicialProfessor
+boundary ":TelaTurmaProfessor" as TelaTurmaProfessor
+boundary ":TelaAvaliacao" as TelaAvaliacao
+boundary ":TelaNotificacao" as TelaNotificacao
+control ":ControladorAvaliacao" as ControladorAvaliacao
+entity ":Projeto" as Projeto
 
 ref over Aluno, Professor : sdProporProjeto
 
-Professor -> TelaInicial ++: verificaNotificacoes()
-Professor -> TelaInicial : acessarProjeto()
-Professor -> TelaTurma  ++: verPropostas()
-TelaTurma --> Professor : exibirPropostas()
-Professor ->> TelaTurma : revisarProposta()
-destroy TelaTurma
-Professor -\\ TelaRevisao ++: enviarRevisao()
-TelaRevisao -> ControladorProjeto ++: tratarRevisao()
-TelaRevisao --> Professor --: confirmarEnvio()
-ControladorProjeto -\\ Projeto ++: informaRevisao()
+Professor -> TelaInicialProfessor ++: acessa o sistema
+TelaInicialProfessor --> Professor --: exibirTelaTurma()
+Professor -> TelaTurmaProfessor  ++: verPropostas()
+TelaTurmaProfessor --> Professor : exibirPropostas()
+Professor -> TelaTurmaProfessor : avaliarProposta()
+TelaTurmaProfessor --> Professor : exibirTelaAvaliacao()
+destroy TelaTurmaProfessor
+
+Professor -\\ TelaAvaliacao ++: confirmarAvaliacao()
+TelaAvaliacao -> ControladorAvaliacao --++: enviarAvaliacao()
 alt aprovado
-    Projeto -> Projeto : aprovarProposta()
+  ControladorAvaliacao ->> Projeto : construirProjeto()
 else não aprovado
-    Projeto -> Projeto : rejeitarProposta()
+  ControladorAvaliacao ->> ControladorAvaliacao : rejeitarProposta()
 end
-destroy Projeto
-ControladorProjeto -\\ TelaInicial --: notificaAluno()
-TelaInicial ->> Aluno --: exibeNotificacoes()
+ControladorAvaliacao -\\ TelaNotificacao --: notificarMembros()
+TelaNotificacao ->> Aluno --: exibeNotificacoes()
 @enduml

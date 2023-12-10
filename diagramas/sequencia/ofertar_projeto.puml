@@ -1,0 +1,24 @@
+@startuml
+skinparam sequenceParticipant underline
+
+actor ":Aluno" as Aluno
+actor ":Professor" as Professor
+boundary ":TelaInicialProfessor" as TelaInicialProfessor
+boundary ":TelaTurmaProfessor" as TelaTurmaProfessor
+boundary ":TelaOferta" as TelaOferta
+boundary ":TelaNotificacao" as TelaNotificacao
+control ":ControladorOferta" as ControladorOferta
+entity ":Turma" as Turma
+
+Professor -> TelaInicialProfessor ++: acessarTurma()
+TelaInicialProfessor --> Professor --: exibirTelaTurma()
+Professor -> TelaTurmaProfessor ++: ofertarProjeto()
+TelaTurmaProfessor --> Professor --: exibirTelaOferta()
+
+Professor ->> TelaOferta ++: informarDados()
+Professor -> TelaOferta : confirmarEnvio()
+TelaOferta ->> ControladorOferta --++: criarOferta()
+ControladorOferta ->> Turma : adicionarProjeto()
+ControladorOferta ->> TelaNotificacao --++: notificarTurma()
+TelaNotificacao ->> Aluno --: exibirNotificacao()
+@enduml

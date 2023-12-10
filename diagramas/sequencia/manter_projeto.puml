@@ -2,22 +2,24 @@
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-boundary ":TelaInicial" as TelaInicial
-boundary ":TelaProjeto" as TelaProjeto
-participant ":Projeto" as Projeto
+boundary ":TelaInicialAluno" as TelaInicialAluno
+boundary ":TelaTurmaAluno" as TelaTurmaAluno
+boundary ":TelaAtualizarProjeto" as TelaAtualizarProjeto
+boundary ":TelaNotificacao" as TelaNotificacao
+control ":ManutencaoProjeto" as ManutencaoProjeto
+entity ":Projeto" as Projeto
 
 ref over Aluno : sdEfetuarLogin
 
-alt se for criar
-    Professor -> TelaInicial : criarProjeto()
-else se for modificar
-    Aluno -> TelaInicial : verProjeto()
-    TelaInicial --> Aluno : exibeTelaProjeto()
-    Aluno -> TelaProjeto : mudarProjeto()
-end
+Aluno -> TelaInicialAluno : acessa o sistema
+TelaInicialAluno ->> TelaTurmaAluno : acessarTurma()
+TelaTurmaAluno --> Aluno : exibirTelaAtualizarProjeto()
+Aluno ->> TelaAtualizarProjeto : informarDados()
+Aluno -> TelaAtualizarProjeto : confirmarEnvio()
 
-TelaProjeto -> Projeto : efetuarProjeto()
-Projeto -> Projeto : persisteMudanças()
-Projeto -\\ TelaProjeto : notificaMembros()
-TelaProjeto --> Aluno : notificaMudanca()
+TelaAtualizarProjeto -> ManutencaoProjeto : efetuarMudancas()
+ManutencaoProjeto -> Projeto : persistirMudanças()
+Projeto --> ManutencaoProjeto : informa o resultado das mudanças
+ManutencaoProjeto ->> TelaNotificacao : notificarMembros()
+TelaNotificacao --> Aluno : notificarMembros()
 @enduml
