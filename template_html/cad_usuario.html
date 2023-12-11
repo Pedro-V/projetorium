@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Projetorium</title>
+    <link href="static/css/cad_usuario.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <h1 class="titulo">Projetorium</h1>
+        <div class="container">
+            <p>Cadastro de Usuário</p>
+            <form class="registration-form">
+                <div class="column">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+
+                <div class="column">
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="sobrenome" id="sobrenome" name="sobrenome" required>
+
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" id="matricula" name="matricula" required>
+                </div>
+
+                <div class="column">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+
+                    <label for="confirmaSenha">Confirme sua senha:</label>
+                    <input type="password" id="confirmaSenha" name="confirmaSenha" required>
+                </div>
+
+                <div class="column">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" name="cargo" required>
+                </div>
+
+                <input type="submit" value="Cadastrar">
+            </form>
+            <a href="">
+                <p style="text-align: center;">
+                    Já esta cadastrado? Entre em sua conta
+                </p>
+            </a>
+        </div>
+    </div>
+</body>
