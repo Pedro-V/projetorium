@@ -6,11 +6,11 @@ boundary ":TelaLogin" as TelaLogin
 control ":VerificadorLogin" as VerificadorLogin
 database Banco
 
-Pessoa -> TelaLogin ++: insereDados()
-TelaLogin -> VerificadorLogin ++: verificaCadastro()
+Pessoa -> TelaLogin ++: enviarCredenciais()
+TelaLogin -> VerificadorLogin ++: verificarValidez()
 VerificadorLogin -> Banco : verifica validez no banco
 Banco --> VerificadorLogin : informa resultado
-VerificadorLogin --> TelaLogin : informaValidez()
+VerificadorLogin --> TelaLogin : informarValidez()
 alt login válido
     TelaLogin --> Pessoa : informaSucesso()
 else login inválido

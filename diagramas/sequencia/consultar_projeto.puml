@@ -2,32 +2,38 @@
 skinparam sequenceParticipant underline
 
 actor ":Pessoa" as Pessoa
-boundary ":TelaBusca" as TelaBusca
-participant ":Buscador" as Buscador
-participant ":Projeto" as Projeto
+boundary ":TelaConsulta" as TelaConsulta
+boundary ":TelaResultados" as TelaResultados
+control ":Buscador" as Buscador
+control ":GeradorResultados" as GeradorResultados
+control ":Filtrador" as Filtrador
+database Banco
 
 opt login
 ref over Pessoa : sdEfetuarLogin
 end
-Pessoa -> TelaBusca ++: informarTermoBusca()
+Pessoa -> TelaConsulta ++: informarTermoConsulta()
 opt filtros
-    Pessoa -> TelaBusca : selecionarFiltros()
-    TelaBusca --> Pessoa : exibirFiltros()
-    Pessoa -> TelaBusca : preencherFiltro()
+    Pessoa -> TelaConsulta : selecionarFiltros()
+    TelaConsulta --> Pessoa : exibirFiltros()
+    Pessoa -> TelaConsulta : preencherFiltro()
 end
-Pessoa -> TelaBusca : confirmarBusca()
+Pessoa -> TelaConsulta : confirmarConsulta()
 
-TelaBusca -> Buscador ++: processarBusca()
-loop para cada Projeto
-    Buscador -> Projeto  ++: cumpreCriterios()
-    Projeto --> Buscador --: informa se cumpre
+TelaConsulta -> Buscador ++: processarConsulta()
+
+loop
+    Buscador -> Banco  ++: cumpreCriterios()
+    Banco --> Filtrador --: informa se cumpre
     alt se cumpre critérios e Pessoa tem direito de visibilidade
-        Buscador -> Buscador : insereProjetoNoResultado()
-    else não cumpre ou não tem direito de visibilidade
-        Buscador -> Buscador : descartaProjeto()
+        Filtrador -> GeradorResultados : insereProjeto()
+    else se não tem direito de visibilidade
+        Filtrador -> GeradorResultados : descartaProjeto()
     end
 end
-Buscador -> Buscador : gerarResultados()
-Buscador --> TelaBusca --: informaResultados()
-TelaBusca --> Pessoa --: exibeResultados()
+
+GeradorResultados -> GeradorResultados : gerarResultados()
+GeradorResultados -> Buscador : informaResultados()
+Buscador --> TelaConsulta --: informaResultados()
+TelaConsulta --> TelaResultados --: exibeResultados()
 @enduml

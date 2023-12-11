@@ -3,34 +3,34 @@ skinparam sequenceParticipant underline
 
 actor ":Professor"  as Professor
 boundary ":TelaLogin"   as TelaLogin
-boundary ":TelaCadastro"    as TelaCadastro
-control ":GerenciadorContas" as GerenciadorContas
+boundary ":TelaCadastroAluno"    as TelaCadastroAluno
+control ":ControleAluno" as ControleAluno
 entity "novoAluno:Aluno" as novoAluno
 actor "Sistema SIGAA" as SIGAA
 database Banco
 
 ref over Professor, TelaLogin : sdEfetuarLogin
 
-Professor -> TelaCadastro ++: insereDados()
-TelaCadastro -> GerenciadorContas ++: enviaDados()
+Professor -> TelaCadastroAluno ++: informarDados()
+TelaCadastroAluno -> ControleAluno ++: enviarDados()
 alt criação individual
-    GerenciadorContas -> novoAluno ++: criaAlunoIndividual()
+    ControleAluno -> novoAluno ++: criarAlunoIndividual()
     novoAluno -> Banco : registraBanco()
 else criação em lote
-    GerenciadorContas -> SIGAA ++: criarAlunoLote()
+    ControleAluno -> SIGAA ++: criarAlunoLote()
     loop enquanto houver aluno no lote
         SIGAA -> novoAluno : informa dados
         novoAluno -> Banco : registraBanco()
     end
 end
 Banco --> novoAluno : resultado da inserção
-novoAluno --> GerenciadorContas --: notificaResultado()
+novoAluno --> ControleAluno --: notificaResultado()
 destroy novoAluno
-GerenciadorContas --> TelaCadastro --: notificaResultado()
+ControleAluno --> TelaCadastroAluno --: notificaResultado()
 
 alt cadastro realizado
-    TelaCadastro --> Professor : informaSucesso()
+    TelaCadastroAluno --> Professor : informaSucesso()
 else erro de cadastro
-    TelaCadastro --> Professor : informaInsucesso()
+    TelaCadastroAluno --> Professor : informaFalha()
 end
 @enduml

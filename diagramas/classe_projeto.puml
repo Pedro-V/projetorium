@@ -224,16 +224,20 @@ package "Ofertar projeto" {
 }
 
 package "Manter Aluno" {
-  class TelaCriacaoAluno <<boundary>> {
+  class TelaCadastroAluno <<boundary>> {
     informarDados()
-    confirmarEnvio()
+    enviarDados()
+    informarSucesso()
+    informarFalha()
   }
   class ControleAluno <<control>> {
-    criarAluno()
-    editarAluno()
+    criarAlunoIndividual()
+    criarAlunoLote()
+    notificaResultado()
   }
 
-  TelaCriacaoAluno -- ControleAluno
+  TelaCadastroAluno -- ControleAluno
+  TelaCadastroAluno -- TelaInicialProfessor
   ControleAluno -- Aluno
 }
 
@@ -244,8 +248,10 @@ package "Manter Turma" {
     confirmarEnvio()
   }
   class ControleTurma <<control>> {
-    incluirAluno()
-    incluirAlunoEmLote()
+    criarTurma()
+    incluirAlunoIndividual()
+    incluirAlunoLote()
+    notificaResultado()
   }
 
   TelaTurmaInclusao -- ControleTurma
@@ -256,7 +262,7 @@ package "Manter Turma" {
 
 package "Consultar Projeto" {
   class TelaConsulta <<boundary>> {
-    coletarTermoBusca()
+    informarTermoConsulta()
     selecionarFiltros()
     exibirFiltros()
     preencherFiltros()
