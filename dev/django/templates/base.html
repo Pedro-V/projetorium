@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>{% block 'title' %}{% endblock %}</title>
+    {% block 'head' %}{% endblock %}
+</head>
+
+<body>
+    <div>
+        <h1 class="titulo">Projetorium</h1>
+        <div class="container">
+            {% block 'content' %}{% endblock %}
+        </div>
+    </div>
+</body>

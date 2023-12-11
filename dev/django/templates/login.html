@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+{% endblock %}
+
+{% block 'content' %}
+        <h2>Login</h2>
+            <form class="registration-form">
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="email" id="email" autofocus="true" placeholder="Digite seu Email" required>
+                </div>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" id="senha" class="pass-key" placeholder="Digite sua senha" required>
+                </div>
+                <div class="field space">
+                    <input type="submit" value="Entrar">
+                </div>
+            </form>
+            <a href="">
+                <p style="text-align: center;">
+                    Não tem login? Cadastre-se
+                </p>
+            </a>
+{% endblock %}
