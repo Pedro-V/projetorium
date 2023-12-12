@@ -3,7 +3,7 @@
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 
-[Protótipos de telas](https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455)
+[Protótipos de telas]([https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R))
 
 ## Estrutura
 
