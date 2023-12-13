@@ -1,0 +1,10 @@
+@startuml
+|Login|
+start
+:Efetuar Login;
+|Professor|
+:Criação de turma;
+:Enviar formulário com matrículas;
+:Cadastrar alunos;
+stop
+@enduml
