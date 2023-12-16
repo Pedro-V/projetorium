@@ -9,6 +9,13 @@ body {
     background-color: #2134AC;
   }
 
+.img-logo{
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .titulo{
     font-size: xx-large;
     text-align: center;
