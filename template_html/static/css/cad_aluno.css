@@ -9,6 +9,14 @@ body {
     background-color: #2134AC;
   }
 
+.img-logo{
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding-left: 60px;
+}
+
 .titulo{
     font-size: xx-large;
     text-align: center;
@@ -40,6 +48,13 @@ p{
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 40px;
+}
   
 .column {
     width: 45%;
@@ -61,7 +76,7 @@ textarea {
     border: 1px solid #ccc;
 }
   
-input[type="submit"] {
+.button {
     padding: 10px 20px;
     background-color: #A2B6FF;
     color: black;
@@ -70,6 +85,10 @@ input[type="submit"] {
     cursor: pointer;
 }
   
-input[type="submit"]:hover {
+.button:hover {
     background-color: #597dff;
+}
+
+.space{
+    margin-bottom: 150px;
 }
