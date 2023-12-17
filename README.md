@@ -31,8 +31,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - Turma: Rayan, Jonas
   - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
-- Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno
-  e escrever na [sintaxe do PlantUML](https://plantuml.com/ie-diagram): Matheus
+- Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno: Matheus
 - Tela para o professor adicionar alunos na turma: ???
 - Terminar esqueletos de telas via templates do Django:
   - Cadastro de projeto: Jonas
