@@ -1,0 +1,23 @@
+@startuml
+
+!includesub base.puml!Projeto
+!includesub base_telas.puml!TelaNotificacao
+!includesub base_telas.puml!TelaTurmaAluno
+
+class TelaAtualizarProjeto <<boundary>> {
+  informarDados()
+  confirmarEnvio()
+}
+
+class ManutencaoProjeto <<control>> {
+  efetuarMudancas()
+  notificarMembros()
+}
+
+ManutencaoProjeto -- Projeto
+TelaAtualizarProjeto -- ManutencaoProjeto
+TelaAtualizarProjeto -- TelaNotificacao
+TelaAtualizarProjeto -- TelaTurmaAluno
+
+@enduml
+

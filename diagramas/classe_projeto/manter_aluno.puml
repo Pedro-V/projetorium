@@ -1,0 +1,20 @@
+@startuml
+!includesub base.puml!Aluno
+!includesub base_telas.puml!TelaInicialProfessor
+
+class TelaCadastroAluno <<boundary>> {
+  informarDados()
+  enviarDados()
+  informarSucesso()
+  informarFalha()
+}
+class ControleAluno <<control>> {
+  criarAlunoIndividual()
+  criarAlunoLote()
+  notificaResultado()
+}
+
+TelaCadastroAluno -- ControleAluno
+TelaCadastroAluno -- TelaInicialProfessor
+ControleAluno -- Aluno
+@enduml

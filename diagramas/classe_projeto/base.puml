@@ -1,0 +1,142 @@
+@startuml 
+' Muitas dessas classes estão envoltas nos macros de start/endsub pois
+' queremos permitir include seletivo de classes em outros diagramas de classes
+' de alguns casos de uso.
+!startsub Pessoa
+abstract class Pessoa <<entity>> {
+  nome: String
+  telefone: String[]
+  dataNasc: Date
+  matricula: String
+}
+!endsub
+
+!startsub Departamento
+class Departamento <<entity>> {
+  nome: String
+}
+!endsub
+
+!startsub Disciplina
+class Disciplina <<entity>> {
+  nome: String
+  codigo: String
+}
+!endsub
+
+!startsub Curso
+class Curso <<entity>> {
+  nome: String
+}
+!endsub
+
+!startsub Professor
+class Professor <<entity>> {
+  departamento: Departamento
+}
+!endsub
+
+!startsub Aluno
+class Aluno <<entity>> {
+  curso: Curso
+}
+!endsub
+
+!startsub Grupo
+class Grupo <<entity>> {
+  membros: Aluno[]
+}
+!endsub
+
+!startsub StatusProjeto
+enum StatusProjeto <<enumeration>> {
+  aprovado
+  concluido
+  cancelado
+  rejeitado
+}
+!endsub
+
+!startsub ProjetoAbstrato
+abstract class ProjetoAbstrato <<entity>> {
+  titulo: String
+  descricao: String
+  status: StatusProjeto
+  tags: String[]
+  autor: Pessoa
+  documentos: File[]
+}
+!endsub
+
+!startsub Projeto
+class Projeto <<entity>> {
+  dataCriado: Date
+  adicionarMembros()
+  persistirMudanças()
+}
+!endsub
+
+!startsub Turma
+class Turma <<entity>> {
+  codigo: String
+  disciplina: Disciplina
+  periodo: Periodo
+  adicionarProposta()
+  adicionarProjeto()
+}
+!endsub
+
+!startsub Periodo
+class Periodo <<entity>> {
+  ano: Int
+  numeroPeriodo: Int
+}
+!endsub
+
+!startsub PropostaProjeto
+class PropostaProjeto <<entity>> {
+  proponente: Grupo
+  dataProposto: Date
+}
+!endsub
+
+!startsub Avaliacao
+class Avaliacao <<entity>> {
+  status: StatusAvaliacao
+  mensagem: String
+}
+!endsub
+
+!startsub StatusAvaliacao
+enum StatusAvaliacao <<enumeration>> {
+  aprovado
+  rejeitado
+  melhorias
+}
+!endsub
+
+Avaliacao "0..*" -- "1..1" StatusAvaliacao
+Avaliacao "0..*" -- "1..1" PropostaProjeto
+
+Pessoa <|-- Professor
+Pessoa <|-- Aluno
+
+Aluno "1..*" --* "0..1" Grupo 
+Aluno "0..*" -- "0..*" Turma
+Aluno "1..*" -- "1..1" Curso
+
+Professor "1..*" -- "1..1" Departamento
+Professor "1..*" -- "0..*" Turma
+
+Departamento "1..1" -- "1..*" Disciplina
+Departamento "1..1" -- "1..*" Curso
+
+Turma "1..*" -- "1..1" Periodo
+Turma "0..*" -- "1..1" Disciplina
+
+ProjetoAbstrato <|-- Projeto
+ProjetoAbstrato <|-- PropostaProjeto
+
+ProjetoAbstrato "0..*" -- "1..1" StatusProjeto
+Projeto "0..*" -- "1..1" Turma
+@enduml

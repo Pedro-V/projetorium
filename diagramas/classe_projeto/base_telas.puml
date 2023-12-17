@@ -1,0 +1,40 @@
+!startsub TelaNotificacao
+class TelaNotificacao <<boundary>> {
+  notificarAvaliacao()
+  notificarMembros()
+  notificarProposta()
+  notificar()
+}
+!endsub
+
+!startsub TelaInicialAluno
+class TelaInicialAluno <<boundary>> {
+  acessarTurma()
+  exibirTelaTurma()
+}
+!endsub
+
+!startsub TelaInicialProfessor
+class TelaInicialProfessor <<boundary>> {
+  acessarTurma()
+  exibirTelaTurma()
+}
+!endsub
+
+!startsub TelaTurmaAluno
+class TelaTurmaAluno <<boundary>> {
+  exibirTelaEscolhaProjeto()
+  exibirTelaAtualizarProjeto()
+  exibirTelaProposta()
+}
+!endsub
+
+!startsub TelaTurmaProfessor
+class TelaTurmaProfessor <<boundary>> {
+  exibirTelaAvaliacao()
+}
+!endsub
+
+TelaTurmaAluno -- TelaInicialAluno
+TelaTurmaProfessor -- TelaInicialProfessor
+

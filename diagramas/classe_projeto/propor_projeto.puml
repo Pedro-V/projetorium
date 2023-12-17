@@ -1,0 +1,22 @@
+@startuml
+
+!includesub base.puml!Turma
+!includesub base.puml!PropostaProjeto
+!includesub base_telas.puml!TelaTurmaAluno
+
+class TelaProposta <<boundary>> {
+  informadosDados()
+  confirmarEnvio()
+}
+
+class ControladorProposta <<control>> {
+  registrarProposta()
+  notificarProfessor()
+}
+
+TelaProposta -- TelaTurmaAluno
+TelaProposta -- ControladorProposta
+ControladorProposta -- PropostaProjeto
+ControladorProposta -- Turma
+
+@enduml

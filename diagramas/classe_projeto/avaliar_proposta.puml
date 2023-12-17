@@ -1,0 +1,24 @@
+@startuml
+
+!includesub base.puml!Projeto
+!includesub base.puml!Avaliacao
+!includesub base_telas.puml!TelaNotificacao
+!includesub base_telas.puml!TelaTurmaProfessor
+
+class TelaAvaliacao <<boundary>> {
+  confirmarAvaliacao()
+  enviarAvaliacao()
+}
+
+class ControladorAvaliacao <<control>> {
+  construirProjeto()
+  rejeitarProposta()
+}
+
+TelaAvaliacao -- TelaTurmaProfessor
+ControladorAvaliacao -- TelaAvaliacao
+ControladorAvaliacao -- Projeto
+ControladorAvaliacao -- Avaliacao
+ControladorAvaliacao -- TelaNotificacao
+
+@enduml

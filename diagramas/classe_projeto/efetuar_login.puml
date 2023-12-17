@@ -1,0 +1,20 @@
+@startuml
+!includesub base.puml!Aluno
+!includesub base.puml!Professor
+
+class TelaLogin <<boundary>> {
+  enviarCredenciais()
+  informarSucesso()
+  informarFalha()
+}
+
+class VerificadorLogin <<control>> {
+  efetuarLogin()
+  verificarValidez()
+  informarValidez()
+}
+
+VerificadorLogin -- TelaLogin
+VerificadorLogin -- Aluno
+VerificadorLogin -- Professor
+@enduml
