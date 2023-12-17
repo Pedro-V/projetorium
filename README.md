@@ -31,7 +31,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - Turma: Rayan, Jonas
   - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
-- Remover classes irrelevantes do ER (Endereço, etc) e atualizar cardinalidade de Turma-Aluno: Matheus
+- Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno
+  e escrever na [sintaxe do PlantUML](https://plantuml.com/ie-diagram): Matheus
 - Tela para o professor adicionar alunos na turma: ???
 - Terminar esqueletos de telas via templates do Django:
   - Cadastro de projeto: Jonas
@@ -41,7 +42,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 - Dar uma estudada no sistema de templates do Django para fazer telas,
   [aqui](https://docs.djangoproject.com/en/5.0/topics/templates/) e 
   [aqui](https://docs.djangoproject.com/en/5.0/ref/templates/): Todos
-- Senha do aluno vai ser por default a matricula, opcionalmente pode trocar. Isso é um RNF que vai entrar nos documentos: Pedro V
 
 ## Membros
 
