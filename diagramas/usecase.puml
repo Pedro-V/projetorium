@@ -4,7 +4,6 @@ left to right direction
 :Pessoa: as Pessoa
 :Aluno: as Aluno
 :Professor: as Professor
-:Sistema SIGAA: as SIGAA
 
 ' Extensões de atores
 Pessoa <|-- Aluno
@@ -36,7 +35,5 @@ Professor -- PropProj
 Professor -- AvalProp
 Professor -- OfertProj
 
-SIGAA -up- MantTurm
-SIGAA -up- MantAlun
 @enduml
 
