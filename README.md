@@ -22,8 +22,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
 - Remover fotos de perfil dos prototipos de tela: ???
-- Compilar documentos num pen-drive: Pedro V
 - Modularizar diagrama de classes de projeto: Pedro V e Max
+- Compilar documentos num pen-drive: Pedro V
 
 ### Necessário
 
