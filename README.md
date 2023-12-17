@@ -3,7 +3,7 @@
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 
-[Protótipos de telas]([https://www.figma.com/files/team/1262194734143804841/shardpegasus17's-team?fuid=1262194729814672455](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R))
+[Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
 
 ## Estrutura
 
@@ -21,6 +21,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Urgente
 
 - Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
+- Tela para o professor adicionar alunos na turma: ???
 - Remover fotos de perfil dos prototipos de tela: ???
 - Compilar documentos num pen-drive: Pedro V
 
@@ -31,7 +32,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
 - Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno: Matheus
-- Tela para o professor adicionar alunos na turma: ???
 - Terminar esqueletos de telas via templates do Django:
   - Cadastro de projeto: Jonas
 
