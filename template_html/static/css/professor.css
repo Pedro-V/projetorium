@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2134AC;
+  }
+
+.img-logo{
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding-left: 60px;
+}
+
+.titulo{
+    font-size: xx-large;
+    text-align: center;
+    color: #FCFEFD;
+}
+ 
+.container {
+    width: 900px;
+    background-color: #D1D3EC;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+  
+
+p{
+    margin-bottom: 20px;
+}
+
+.items{
+    width: 100%;
+    background-color: black;
+}
+  
+  
+.registration-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    max-height: 40px;
+}
+  
+.column {
+    width: 45%;
+    margin-bottom: 20px;
+}
+  
+label,
+input,
+textarea {
+    display: block;
+    margin-bottom: 8px;
+}
+  
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+  
+.button {
+    padding: 10px 20px;
+    background-color: #A2B6FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 45%;
+}
+
+#btn-sair{
+    background-color: #FFB4AA;
+    width: auto;
+}
+
+#btn-sair:hover{
+    background-color: #fd4f38;
+}
+
+.button:hover {
+    background-color: #597dff;
+}
+
+.space{
+    margin-bottom: 20px;
+}
