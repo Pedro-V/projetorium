@@ -1,3 +1,4 @@
+@startuml
 !startsub TelaNotificacao
 class TelaNotificacao <<boundary>> {
   notificarAvaliacao()
@@ -37,4 +38,4 @@ class TelaTurmaProfessor <<boundary>> {
 
 TelaTurmaAluno -- TelaInicialAluno
 TelaTurmaProfessor -- TelaInicialProfessor
-
+@enduml
