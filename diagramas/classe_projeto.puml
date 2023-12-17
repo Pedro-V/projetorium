@@ -89,7 +89,7 @@ Pessoa <|-- Professor
 Pessoa <|-- Aluno
 
 Aluno "1..*" --* "0..1" Grupo 
-Aluno "1..*" -- "0..*" Turma
+Aluno "0..*" -- "0..*" Turma
 Aluno "1..*" -- "1..1" Curso
 
 Professor "1..*" -- "1..1" Departamento
