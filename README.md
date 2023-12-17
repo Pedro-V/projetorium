@@ -28,8 +28,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Necessário
 
 - Requisitos de manutenção de modelo
-  - Turma: Rayan
-  - Aluno: Pedro V, Jonas
+  - Turma: Rayan, Jonas
+  - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
 - Remover classes irrelevantes do ER (Endereço, etc) e atualizar cardinalidade de Turma-Aluno: Matheus
 - Tela para o professor adicionar alunos na turma: ???
@@ -44,6 +44,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 - Senha do aluno vai ser por default a matricula, opcionalmente pode trocar. Isso é um RNF que vai entrar nos documentos: Pedro V
 
 ## Membros
+
 * [Carlos Eduardo](https://github.com/Eduardocesn) - 
 * [Rayan Tavares](https://github.com/Rayan01261) - [rayantavaresjjba@academico.ufs.br](mailto:rayantavaresjjba@acadeimoc.ufs.br)
 * [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
