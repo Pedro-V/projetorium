@@ -20,8 +20,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Inclusão por lote removida. Isso tem que ser refletido nas telas, nos documentos e nos diagramas: Pedro V e Max
-- Ajustar cardinalidade de Turma nos diagramas: Pedro V
+- Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
 - Remover fotos de perfil dos prototipos de tela: ???
 - Compilar documentos num pen-drive: Pedro V
 - Modularizar diagrama de classes de projeto: Pedro V e Max
