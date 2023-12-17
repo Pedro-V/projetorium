@@ -6,23 +6,14 @@ boundary ":TelaLogin"   as TelaLogin
 boundary ":TelaCadastroAluno"    as TelaCadastroAluno
 control ":ControleAluno" as ControleAluno
 entity "novoAluno:Aluno" as novoAluno
-actor "Sistema SIGAA" as SIGAA
 database Banco
 
 ref over Professor, TelaLogin : sdEfetuarLogin
 
 Professor -> TelaCadastroAluno ++: informarDados()
 TelaCadastroAluno -> ControleAluno ++: enviarDados()
-alt criação individual
-    ControleAluno -> novoAluno ++: criarAlunoIndividual()
-    novoAluno -> Banco : registraBanco()
-else criação em lote
-    ControleAluno -> SIGAA ++: criarAlunoLote()
-    loop enquanto houver aluno no lote
-        SIGAA -> novoAluno : informa dados
-        novoAluno -> Banco : registraBanco()
-    end
-end
+ControleAluno -> novoAluno ++: criarAlunoIndividual()
+novoAluno -> Banco : registraBanco()
 Banco --> novoAluno : resultado da inserção
 novoAluno --> ControleAluno --: notificaResultado()
 destroy novoAluno
