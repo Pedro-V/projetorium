@@ -21,7 +21,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Urgente
 
 - Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
-- Tela para o professor adicionar alunos na turma: ???
+- Tela para o professor adicionar alunos na turma: Max
 - Remover fotos de perfil dos prototipos de tela: ???
 - Compilar documentos num pen-drive: Pedro V
 
