@@ -22,7 +22,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
 - Tela para o professor adicionar alunos na turma: Max
-- Remover fotos de perfil dos prototipos de tela: ???
+- Remover fotos de perfil dos prototipos de tela: Jonas
 - Compilar documentos num pen-drive: Pedro V
 
 ### Necessário
