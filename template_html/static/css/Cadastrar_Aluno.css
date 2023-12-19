@@ -1,0 +1,143 @@
+hmtl {
+	
+    height: 100%;
+    width: 100%;
+  }
+ 
+  body{
+      display:flex;
+      height: 100vh;
+      justify-content: center;
+      align-items:center;
+      padding: 10px;
+      background-color:blue;
+      
+  }
+  .container{
+      max-width:600px ;
+      height: 40%;
+      width: 100%;
+      background:#d9d9d9;
+      padding: 25px 30px;
+      border-radius: 5px;
+      
+  }
+  .container .title{
+      font-size: 25px;
+      font-weight: 500;
+      position:relative;
+     
+      
+  }
+  .container .title::before{
+      content:'';
+      position: absolute;
+      left:0;
+      bottom:0;
+      height: 3px;
+      width: 200px;
+      background: rgb(14, 32, 110);
+      
+  }
+  .container form .usuarios-icon{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 30px 0 12px 0;
+  
+  }
+  form .usuarios-icon .input-box{
+    margin-bottom:15px ;
+    width: calc(100% / 2 - 20px);
+      
+  }
+  .usuarios-icon .input-box .icon{
+    display: block;
+    font-weight: 500;
+    margin-bottom:5px ;
+
+  }
+  .usuarios-icon .input-box input{
+    height: 30px;
+    width: 90%;
+    outline:none ;
+    border-radius: 5px;
+    border: 1px solid #0f27b3;
+    padding-left: 15px;
+    font-size:16px ;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+
+  }
+  .usuarios-icon .input-box input:focus,
+  .usuarios-icon .input-box input:valid{
+    border-color:rgb(36, 36, 160) ;
+
+  }  
+  form .opcoes .opcoes-title{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+
+  form .button{
+    height: 45px;
+    width: 595px;
+  } 
+  form .button1{     
+    height: 45px;     
+    width: 250px;   
+  }
+
+  form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color:#fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius:5px ;
+    letter-spacing: 1px;
+    background:blue ;
+    position: relative;
+    top: 80px;
+
+  }
+  form .button1 input{     
+    display: flex;     
+    height: 80%;     
+    width: 70%;     
+    outline: none;     
+    color:#fff;     
+    border: none;     
+    font-size: 14px;     
+    font-weight: 500;     
+    border-radius:5px ;     
+    letter-spacing: 1px;     
+    background:blue ;     
+    position: relative;     
+    align-items: center;     
+    top: -250px;     
+    left: 430px;      
+  }
+ 
+
+  @media(max-width: 548px){
+    .container{
+        max-width:100% ;
+        width: 100%;
+
+    }
+    form .usuarios-icon .input-box{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .container form .usuarios-icon{
+        max-height: 300px;
+        overflow-y:scroll ;
+    }
+    .usuarios-icon::-webkit-scrollbar{
+        width: 0;
+    }
+  }
