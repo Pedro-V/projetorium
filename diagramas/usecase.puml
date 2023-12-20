@@ -1,39 +1,36 @@
 @startuml
 left to right direction
 ' Atores
-:Pessoa: as Pessoa
 :Aluno: as Aluno
 :Professor: as Professor
-
-' Extensões de atores
-Pessoa <|-- Aluno
-Pessoa <|-- Professor
+:Interessado: as Interessado
 
 rectangle "Projetorium" {
     (Consultar projeto) as ConsProj
     (Propor projeto) as PropProj
     (Ofertar projeto) as OfertProj
     (Manter projeto) as MantProj
-    (Efetuar login) as EfetLog
     (Manter turma) as MantTurm
     (Manter aluno) as MantAlun
     (Avaliar proposta) as AvalProp
     (Escolher projeto) as EscProj
 }
 
-Pessoa -- ConsProj
-Pessoa -- EfetLog
-
 Aluno -- PropProj
 Aluno -- EscProj
 Aluno -- MantProj
+Aluno -- MantAlun
+Aluno -- ConsProj
 
-Professor -- MantAlun
-Professor -- MantTurm
-Professor -- MantProj
-Professor -- PropProj
-Professor -- AvalProp
-Professor -- OfertProj
+MantAlun  -- Professor 
+MantTurm  -- Professor 
+MantProj  -- Professor 
+PropProj  -- Professor 
+AvalProp  -- Professor 
+OfertProj -- Professor 
+ConsProj  -- Professor 
+
+ConsProj -- Interessado
 
 @enduml
 
