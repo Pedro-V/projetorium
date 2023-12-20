@@ -6,31 +6,35 @@ left to right direction
 :Interessado: as Interessado
 
 rectangle "Projetorium" {
-    (Consultar projeto) as ConsProj
-    (Propor projeto) as PropProj
+    (Alterar professor) as AltProf
+    (Alterar aluno) as AltAlun
+
+    (Criar turma) as CriTurm
+    (Adicionar aluno) as AddAluno
+
     (Ofertar projeto) as OfertProj
-    (Manter projeto) as MantProj
-    (Manter turma) as MantTurm
-    (Manter aluno) as MantAlun
-    (Avaliar proposta) as AvalProp
     (Escolher projeto) as EscProj
+    (Propor projeto) as PropProj
+    (Alterar projeto) as AltProj
+    (Avaliar proposta) as AvalProp
+
+    (Consultar projeto) as ConsProj
 }
 
 Aluno -- PropProj
 Aluno -- EscProj
-Aluno -- MantProj
-Aluno -- MantAlun
+Aluno -- AltAlun
 Aluno -- ConsProj
+Aluno -- AltProj
 
-MantAlun  -- Professor 
-MantTurm  -- Professor 
-MantProj  -- Professor 
+AltProf   -- Professor
+CriTurm   -- Professor
 PropProj  -- Professor 
 AvalProp  -- Professor 
 OfertProj -- Professor 
 ConsProj  -- Professor 
+AddAluno  -- Professor
 
 ConsProj -- Interessado
-
 @enduml
 
