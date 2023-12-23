@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #2134AC;
+    background-color: #0F29B0;
   }
 
 .img-logo{
@@ -54,7 +54,7 @@ p{
   
 .field input[type="submit"] {
     padding: 10px 20px;
-    background-color: #A2B6FF;
+    background-color: #A1B6FF;
     color: black;
     border: none;
     cursor: pointer;

@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #2134AC;
+    background-color: #0F29B0;
   }
 
 .img-logo{
@@ -95,7 +95,7 @@ tr{
 .button {
     padding: 10px 20px;
     max-height: 40px;
-    background-color: #A2B6FF;
+    background-color: #A1B6FF;
     color: black;
     border: none;
     border-radius: 4px;
