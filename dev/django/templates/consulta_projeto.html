@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/consulta_projeto.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Consulta de projeto</p>
+            <button class="button">Voltar para tela principal</button>
+        </div>
+        <hr class="space">
+        <form class="registration-form space" id="proj-form">
+            <div class="field">
+                <input type="text" id="nome-proj" autofocus="true" placeholder="Digite o nome do projeto" required>
+                <span class="fas fa-search"></span>
+            </div>
+        </form>
+        
+        <a href="" style="text-decoration: none;">
+            <div class="filtro">
+                <i class="fas fa-sliders-h" style="margin-top: 16px; margin-right: 10px;"></i>
+                <p>Filtros de pesquisa</p>
+            </div>
+        </a>
+
+        <div class="space"></div>
+        <div class="filtro">
+            <button id="find-button" type="submit" form="proj-form">Buscar</button>
+            <button id="find-button" >Cancelar</button>
+        </div>
+        <div style="margin-bottom: 150px;"></div>
+    </div>
+{% endblock %}

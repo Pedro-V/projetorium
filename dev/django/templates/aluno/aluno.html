@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/professor.css" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Tela principal do Aluno</p>
+            <button class="button" id="btn-sair">Sair</button>
+        </div>
+        <hr class="space">
+        
+        <div class="btn row space">
+            <button class="button">Consultar projeto</button>
+            <p style="margin-right: 40px;">{{aluno.nome}} {{aluno.matricula}}</p>
+        </div>
+        <div class="btn space">
+            <button class="button">Turmas</button>
+        </div>
+        <div class="btn space">
+            <button class="button">Projetos</button>
+        </div>
+        <div style="margin-bottom: 150px;"></div>
+    </div>
+{% endblock %}

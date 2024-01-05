@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/turmas.css" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Turmas</p>
+            <button class="button">Voltar para tela principal</button>
+        </div>
+        <hr class="space">
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="header">Disciplina</th>
+                    <th class="header">Período</th>
+                    <th class="header">Nº da turma</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll">
+            <table class="tabela">
+                {% for dic in disciplinas %}
+                    <tr>
+                        <td><input type="radio" name="rd-button">{{dic.codigo}}</td>
+                        <td>{{dic.periodo}}</td>
+                        <td>{{dic.num_turma}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="btn_center">
+            <button class="button">Ver turma</button>
+        </div>
+        
+    </div>
+{% endblock %}

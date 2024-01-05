@@ -3,3 +3,5 @@
 
 # Arquivos de banco
 *.sqlite3
+
+venv/

@@ -16,12 +16,6 @@ body {
     margin: auto;
     padding-left: 60px;
 }
-
-.titulo{
-    font-size: xx-large;
-    text-align: center;
-    color: #FCFEFD;
-}
  
 .container {
     max-width: 700px;
@@ -36,12 +30,6 @@ body {
 p{
     margin-bottom: 20px;
 }
-
-.items{
-    width: 100%;
-    background-color: black;
-}
-  
   
 .registration-form {
     display: flex;
