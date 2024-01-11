@@ -1,9 +1,22 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.utils.translation import gettext_lazy as _
 
 from .managers import UserManager
+
+class Pessoa(models.Model):
+    """
+    Uma pessoa, base para outros modelos.
+    """
+    nome = models.CharField(max_length=50)
+    sobrenome = models.CharField(max_length=50)
+    cpf = models.CharField(max_length=10, primary_key=True)
+    data_nascimento = models.DateField()
+
+    class Meta:
+        # Como queremos que NÃO seja criada uma tabela para essa classe, ela
+        # vira uma ABC.
+        abstract = True
 
 """
 class Departamento(models.Model):
@@ -25,23 +38,23 @@ class Proposta(models.Model):
 
 # User base model, used for authentication in the system
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=150, blank=True)
-    last_name = models.CharField(_('last name'), max_length=150, blank=True)
-    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    is_active = models.BooleanField(_('active'), default=True)
+    email = models.EmailField('email address', unique=True)
+    first_name = models.CharField('first name', max_length=150, blank=True)
+    last_name = models.CharField('last name', max_length=150, blank=True)
+    date_joined = models.DateTimeField('date joined', auto_now_add=True)
+    is_active = models.BooleanField('active', default=True)
     is_admin = models.BooleanField(
-        _('admin status'),
+        'admin status',
         default=False,
-        help_text=_('Designates whether the user can log into this admin site.'),
+        help_text='Designates whether the user can log into this admin site.',
     )
     is_student = models.BooleanField(
-        _('student'),
+        'student',
         default=False,
-        help_text=_('Designates whether the user is a student.')
+        help_text='Designates whether the user is a student.'
     )
     is_teacher = models.BooleanField(
-        _('teacher'),
+        'teacher',
         default=False,
         help_text=('Designates whether the user is a teacher.')
     )
@@ -52,8 +65,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
     def __str__(self):
         return self.email
