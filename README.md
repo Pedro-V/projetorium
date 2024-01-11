@@ -3,7 +3,8 @@
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 
-[Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
+* [Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
+* [Documento completo](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
 
 ## Estrutura
 
@@ -20,20 +21,13 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Inclusão por lote removida. Isso tem que ser refletido nas telas: Max
-- Tela para o professor adicionar alunos na turma: Max
-- Remover fotos de perfil dos prototipos de tela: Jonas
-- Compilar documentos num pen-drive: Pedro V
-
 ### Necessário
 
-- Requisitos de manutenção de modelo
+- Requisitos de manutenção de modelos
   - Turma: Rayan, Jonas
   - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
 - Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno: Matheus
-- Terminar esqueletos de telas via templates do Django:
-  - Cadastro de projeto: Jonas
 
 ### Seria legal
 
