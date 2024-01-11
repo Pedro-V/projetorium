@@ -5,27 +5,13 @@ from django.utils.translation import gettext_lazy as _
 
 from .managers import UserManager
 
-""" class Departamento(models.Model):
+"""
+class Departamento(models.Model):
     cod_departamento = models.CharField(max_length=10)
     nome = models.CharField(max_length=200)
 
-class Pessoa(models.Model):
-    """
-    #Uma pessoa, base para outros modelos.
-"""
-    nome = models.CharField(max_length=50)
-    sobrenome = models.CharField(max_length=50)
-    cpf = models.CharField(max_length=10, primary_key=True)
-    data_nascimento = models.DateField()
-
-    class Meta:
-        # Como queremos que NÃO seja criada uma tabela para essa classe, ela
-        # vira uma ABC.
-        abstract = True
-
-
 class Professor(Pessoa):
-    matriculaProfessor = models.CharField(primary_key=True, max_length=12)
+    matricula_professor = models.CharField(primary_key=True, max_length=12)
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
 class Projeto(models.Model):
@@ -33,8 +19,9 @@ class Projeto(models.Model):
 
 class Proposta(models.Model):
     id_proposta = models.charField(10)
-    matriculaProfessor = models.ForeignKey(Professor, on_delete=) #
-    id_projeto = models.ForeignKey(Projeto, on_delete=) """
+    matricula_professor = models.ForeignKey(Professor, on_delete=)
+    id_projeto = models.ForeignKey(Projeto, on_delete=)
+"""
 
 # User base model, used for authentication in the system
 class User(AbstractBaseUser, PermissionsMixin):
@@ -85,8 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         '''
         Returns the first_name plus the last_name, with a space in between.
         '''
-        full_name = '%s %s' % (self.first_name, self.last_name)
-        return full_name.strip()
+        return f'{self.first_name} {self.last_name}'
 
     def get_short_name(self):
         '''
