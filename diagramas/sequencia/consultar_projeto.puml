@@ -2,38 +2,12 @@
 skinparam sequenceParticipant underline
 
 actor ":Pessoa" as Pessoa
-boundary ":TelaConsulta" as TelaConsulta
-boundary ":TelaResultados" as TelaResultados
-control ":Buscador" as Buscador
-control ":GeradorResultados" as GeradorResultados
-control ":Filtrador" as Filtrador
-database Banco
+boundary ":TelaConsultarProjeto" as TelaConsultarProjeto
+control ":CtrConsultarProjeto" as CtrConsultarProjeto
+entity ":Projeto" as Projeto
 
-opt login
-ref over Pessoa : sdEfetuarLogin
-end
-Pessoa -> TelaConsulta ++: informarTermoConsulta()
-opt filtros
-    Pessoa -> TelaConsulta : selecionarFiltros()
-    TelaConsulta --> Pessoa : exibirFiltros()
-    Pessoa -> TelaConsulta : preencherFiltro()
-end
-Pessoa -> TelaConsulta : confirmarConsulta()
-
-TelaConsulta -> Buscador ++: processarConsulta()
-
-loop
-    Buscador -> Banco  ++: cumpreCriterios()
-    Banco --> Filtrador --: informa se cumpre
-    alt se cumpre critérios e Pessoa tem direito de visibilidade
-        Filtrador -> GeradorResultados : insereProjeto()
-    else se não tem direito de visibilidade
-        Filtrador -> GeradorResultados : descartaProjeto()
-    end
-end
-
-GeradorResultados -> GeradorResultados : gerarResultados()
-GeradorResultados -> Buscador : informaResultados()
-Buscador --> TelaConsulta --: informaResultados()
-TelaConsulta --> TelaResultados --: exibeResultados()
+Pessoa -> TelaConsultarProjeto : 1: informar dados
+TelaConsultarProjeto -> CtrConsultarProjeto : 2: processarConsulta(dados)
+CtrConsultarProjeto -> Projeto : 3: *verificarCumpreCriterios(dados)
+TelaConsultarProjeto <<-- CtrConsultarProjeto : 4: exibe os resultados
 @enduml

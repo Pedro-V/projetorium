@@ -2,32 +2,14 @@
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-boundary ":TelaInicialAluno" as TelaInicialTurma
-boundary ":TelaTurmaAluno" as TelaTurmaAluno
-boundary ":TelaEscolhaProjeto" as TelaEscolhaProjeto
-boundary ":TelaNotificacao" as TelaNotificacao
-control ":ControleEscolhaProjeto" as ControleEscolhaProjeto
+boundary ":TelaEscolherProjeto" as TelaEscolherProjeto
+control ":CtrEscolhaProjeto" as CtrEscolhaProjeto
+entity "grupo:Grupo" as Grupo
 entity ":Projeto" as Projeto
-database Banco
 
-ref over Aluno : sdEfetuarLogin
-
-Aluno -> TelaInicialTurma ++: acessarTurma()
-TelaInicialTurma --> Aluno --: exibirTelaTurma()
-Aluno -> TelaTurmaAluno ++: escolherProjeto()
-TelaTurmaAluno --> Aluno --: exibirTelaEscolhaProjeto()
-Aluno -> TelaEscolhaProjeto ++: confirmarEscolha()
-TelaEscolhaProjeto -> ControleEscolhaProjeto ++: cadastrarGrupo()
-ControleEscolhaProjeto -> Projeto ++: adicionarMembros()
-Projeto -> Banco : salva os dados no banco
-Banco --> Projeto : informa resultado
-alt sucesso na transação no banco
-  Projeto --> ControleEscolhaProjeto : adicionarMembros() retorna sucesso
-  ControleEscolhaProjeto -> TelaNotificacao : notificarMembros()
-  TelaNotificacao ->> Aluno : membros são notificados
-else insucesso na transação
-  Projeto --> ControleEscolhaProjeto --: adicionarMembros() retorna erro/exceção
-  ControleEscolhaProjeto -> TelaEscolhaProjeto --: mostrarErro()
-  TelaEscolhaProjeto --> Aluno : informa sobre a falha
-end
+Aluno -> TelaEscolherProjeto: : 1: informar escolha
+TelaEscolherProjeto -> CtrEscolhaProjeto : 2: escolherProjeto()
+CtrEscolhaProjeto ->> Grupo ** : <<create>>
+CtrEscolhaProjeto -> Projeto : 4: adicionarGrupo(grupo)
+TelaEscolherProjeto <<-- CtrEscolhaProjeto : 5: escolha efetivada
 @enduml
