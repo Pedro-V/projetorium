@@ -22,7 +22,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Urgente
 
 - Revisar diagramas de sequência (DS).
-  - Já revisados (3/9): AvaliarProposta, ConsultarProjeto, EscolherProjeto, 
+  - Já revisados (4/9): AvaliarProposta, ConsultarProjeto, EscolherProjeto,OfertarProjeto.
   - Não permitir comunicação  `Entidade->Controle`, e `Ator->Ator`
   - Numerar mensagens 
   - Quem sabe informações (incluido existência) sobre uma determinada entidade
