@@ -21,6 +21,18 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
+- Revisar diagramas de sequência (DS) 
+  - Não permitir comunicação  `Entidade->Controle`, e `Ator->Ator`
+  - Numerar mensagens 
+  - Quem sabe informações (incluido existência) sobre uma determinada entidade
+    são os próprios objetos daquela entidade.
+    Ex: É um objeto da classe Registro que sabe dizer se um registro existe no
+    sistema.
+  - Manter apenas aspectos de lógica de negocios, retirar noções de interface gráfica.
+  - A existência de um mêtodo no DS implica na existência desse método na
+    respectiva classe no diagrama de classes.
+  - A resposta final do diagrama pode ir direta à Tela.
+
 ### Necessário
 
 - Requisitos de manutenção de modelos
