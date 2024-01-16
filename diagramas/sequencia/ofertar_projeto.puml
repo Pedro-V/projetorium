@@ -1,24 +1,17 @@
-@startuml
+@startuml oferta
 skinparam sequenceParticipant underline
 
-actor ":Aluno" as Aluno
 actor ":Professor" as Professor
-boundary ":TelaInicialProfessor" as TelaInicialProfessor
-boundary ":TelaTurmaProfessor" as TelaTurmaProfessor
 boundary ":TelaOferta" as TelaOferta
-boundary ":TelaNotificacao" as TelaNotificacao
 control ":ControladorOferta" as ControladorOferta
+entity ":Oferta" as Oferta
 entity ":Turma" as Turma
 
-Professor -> TelaInicialProfessor ++: acessarTurma()
-TelaInicialProfessor --> Professor --: exibirTelaTurma()
-Professor -> TelaTurmaProfessor ++: ofertarProjeto()
-TelaTurmaProfessor --> Professor --: exibirTelaOferta()
+Professor -> TelaOferta :1: informarDados()
+TelaOferta -> ControladorOferta :2: regOferta()
+ControladorOferta -> Oferta :3: valOferta(Dados)
+Oferta -> Turma :4: pesquisarTurma()
+ControladorOferta -> Turma :5: registrarOferta(Oferta)
 
-Professor ->> TelaOferta ++: informarDados()
-Professor -> TelaOferta : confirmarEnvio()
-TelaOferta ->> ControladorOferta --++: criarOferta()
-ControladorOferta ->> Turma : adicionarProjeto()
-ControladorOferta ->> TelaNotificacao --++: notificarTurma()
-TelaNotificacao ->> Aluno --: exibirNotificacao()
+ControladorOferta -->> TelaOferta --:6: OfertaRegistrada
 @enduml
