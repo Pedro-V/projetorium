@@ -1,12 +1,12 @@
 @startuml
 skinparam sequenceParticipant underline
 
-actor ":Pessoa" as Pessoa
+actor ":Interessado" as Interessado
 boundary ":TelaConsultarProjeto" as TelaConsultarProjeto
 control ":CtrConsultarProjeto" as CtrConsultarProjeto
 entity ":Projeto" as Projeto
 
-Pessoa -> TelaConsultarProjeto : 1: informar dados
+Interessado -> TelaConsultarProjeto : 1: informar dados
 TelaConsultarProjeto -> CtrConsultarProjeto : 2: processarConsulta(dados)
 CtrConsultarProjeto -> Projeto : 3: *verificarCumpreCriterios(dados)
 TelaConsultarProjeto <<-- CtrConsultarProjeto : 4: exibe os resultados
