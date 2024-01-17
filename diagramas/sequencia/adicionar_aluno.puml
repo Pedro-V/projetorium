@@ -1,25 +1,16 @@
-@startuml
+@startuml adcionar_aluno
 skinparam sequenceParticipant underline
 
 actor ":Professor" as Professor
 boundary ":TelaCadastroAluno" as TelaCadastroAluno
-control ":CtrAluno" as CtrAluno
-entity "novoAluno:Aluno" as novoAluno
+control ":CtrCadastroAluno" as CtrCadastroAluno
+entity ":Turma" as Turma
+entity ":Cadastro" as Cadastro
 
-ref over Professor, TelaLogin : sdEfetuarLogin
+Professor -> TelaCadastroAluno : informarDados()
+TelaCadastroAluno -> CtrCadastroAluno : cadastrarDados()
+CtrCadastroAluno -> Turma : PesquisarAluno()
+CtrCadastroAluno -> Cadastro : criarAlunoIndividual(dados,turma)
+CtrCadastroAluno --> TelaCadastroAluno : AlunoCadastrado
 
-Professor -> TelaCadastroAluno ++: informarDados()
-TelaCadastroAluno -> CtrAluno ++: enviarDados()
-CtrAluno -> novoAluno ++: criarAlunoIndividual()
-novoAluno -> Banco : registraBanco()
-Banco --> novoAluno : resultado da inserção
-novoAluno --> CtrAluno --: notificaResultado()
-destroy novoAluno
-CtrAluno --> TelaCadastroAluno --: notificaResultado()
-
-alt cadastro realizado
-    TelaCadastroAluno --> Professor : informaSucesso()
-else erro de cadastro
-    TelaCadastroAluno --> Professor : informaFalha()
-end
 @enduml
