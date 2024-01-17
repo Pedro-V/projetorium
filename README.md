@@ -22,7 +22,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Urgente
 
 - Revisar diagramas de sequência (DS).
-  - Já revisados (5/9): AvaliarProposta, ConsultarProjeto, EscolherProjeto,OfertarProjeto, AdicionarAluno.
+  - Já revisados (5/9): AvaliarProposta, ConsultarProjeto, EscolherProjeto,OfertarProjeto, AdicionarAluno, AlterarAluno
   - Não permitir comunicação  `Entidade->Controle`, e `Ator->Ator`
   - Numerar mensagens 
   - Quem sabe informações (incluido existência) sobre uma determinada entidade
@@ -33,6 +33,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - A existência de um mêtodo no DS implica na existência desse método na
     respectiva classe no diagrama de classes.
   - A resposta final do diagrama pode ir direta à Tela.
+  - OBS: Criar um diagrama de sequencia para o caso de uso "AlterarProfessor"
 
 ### Necessário
 
