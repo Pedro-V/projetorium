@@ -1,25 +1,18 @@
-@startuml
+@startuml alterar_aluno
 skinparam sequenceParticipant underline
 
-actor ":Professor" as Professor
-boundary ":TelaCadastroAluno" as TelaCadastroAluno
+actor ":Aluno" as Aluno
+boundary ":TelaPerfilAluno" as TelaPerfilAluno
 control ":CtrAluno" as CtrAluno
-entity "novoAluno:Aluno" as novoAluno
+entity ":aluno" as aluno
 
-ref over Professor, TelaLogin : sdEfetuarLogin
 
-Professor -> TelaCadastroAluno ++: informarDados()
-TelaCadastroAluno -> CtrAluno ++: enviarDados()
-CtrAluno -> novoAluno ++: criarAlunoIndividual()
-novoAluno -> Banco : registraBanco()
-Banco --> novoAluno : resultado da inserção
-novoAluno --> CtrAluno --: notificaResultado()
-destroy novoAluno
-CtrAluno --> TelaCadastroAluno --: notificaResultado()
 
-alt cadastro realizado
-    TelaCadastroAluno --> Professor : informaSucesso()
-else erro de cadastro
-    TelaCadastroAluno --> Professor : informaFalha()
-end
+Aluno -> TelaPerfilAluno : informaDados()
+TelaPerfilAluno -> CtrAluno : enviaDados()
+CtrAluno -> aluno : PesquisaAluno(dados)
+aluno -> aluno : ModificaAluno(dados_novos)
+CtrAluno --> TelaPerfilAluno --: Sucesso na Alteração
+
+
 @enduml
