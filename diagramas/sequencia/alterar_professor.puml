@@ -1,0 +1,20 @@
+@startuml alterar_professor
+skinparam sequenceParticipant underline
+
+actor ":Professor" as Professor
+boundary ":TelaPerfilProfessor" as TelaPerfilProfessor
+control ":CtrProfessor" as CtrProfessor
+entity ":validacao" as validacao
+entity ":professor" as professor
+
+
+
+Professor -> TelaPerfilProfessor : acessarPerfil
+Professor -> TelaPerfilProfessor : alteraDados
+TelaPerfilProfessor -> CtrProfessor : enviaDados()
+CtrProfessor -> validacao: validaDados()
+CtrProfessor -> professor : modificaDados()
+CtrProfessor --> TelaPerfilProfessor --: Sucesso na Alteração
+
+
+@enduml 
