@@ -9,12 +9,12 @@ entity ":professor" as professor
 
 
 
-Professor -> TelaPerfilProfessor : acessarPerfil
-Professor -> TelaPerfilProfessor : alteraDados
-TelaPerfilProfessor -> CtrProfessor : enviaDados()
-CtrProfessor -> validacao: validaDados()
-CtrProfessor -> professor : modificaDados()
-CtrProfessor --> TelaPerfilProfessor --: Sucesso na Alteração
+Professor -> TelaPerfilProfessor : 1: acessarPerfil
+Professor -> TelaPerfilProfessor : 2: alteraDados
+TelaPerfilProfessor -> CtrProfessor : 3: enviaDados()
+CtrProfessor -> validacao: 4: validaDados()
+CtrProfessor -> professor : 5: modificaDados()
+CtrProfessor --> TelaPerfilProfessor --: 6: Sucesso na Alteração
 
 
 @enduml 
