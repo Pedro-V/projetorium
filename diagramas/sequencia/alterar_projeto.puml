@@ -1,25 +1,20 @@
-@startuml
+@startuml alterar_projeto
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-boundary ":TelaInicialAluno" as TelaInicialAluno
-boundary ":TelaTurmaAluno" as TelaTurmaAluno
+boundary ":TelaProjeto" as TelaProjeto
 boundary ":TelaAtualizarProjeto" as TelaAtualizarProjeto
-boundary ":TelaNotificacao" as TelaNotificacao
 control ":ManutencaoProjeto" as ManutencaoProjeto
+entity ":validacao" as validacao
 entity ":Projeto" as Projeto
 
-ref over Aluno : sdEfetuarLogin
 
-Aluno -> TelaInicialAluno : acessa o sistema
-TelaInicialAluno ->> TelaTurmaAluno : acessarTurma()
-TelaTurmaAluno --> Aluno : exibirTelaAtualizarProjeto()
-Aluno ->> TelaAtualizarProjeto : informarDados()
-Aluno -> TelaAtualizarProjeto : confirmarEnvio()
+Aluno -> TelaProjeto : acessarProjeto
+Aluno -> TelaAtualizarProjeto : alterarDados()
 
-TelaAtualizarProjeto -> ManutencaoProjeto : efetuarMudancas()
-ManutencaoProjeto -> Projeto : persistirMudanças()
-Projeto --> ManutencaoProjeto : informa o resultado das mudanças
-ManutencaoProjeto ->> TelaNotificacao : notificarMembros()
-TelaNotificacao --> Aluno : notificarMembros()
+TelaAtualizarProjeto -> ManutencaoProjeto : enviarDados()
+ManutencaoProjeto -> validacao: validaDados()
+ManutencaoProjeto -> Projeto : modificaDados()
+ManutencaoProjeto --> TelaProjeto: Sucesso na Alteração
+
 @enduml
