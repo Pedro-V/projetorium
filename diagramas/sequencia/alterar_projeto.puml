@@ -9,12 +9,12 @@ entity ":validacao" as validacao
 entity ":Projeto" as Projeto
 
 
-Aluno -> TelaProjeto : acessarProjeto
-Aluno -> TelaAtualizarProjeto : alterarDados()
+Aluno -> TelaProjeto : 1: acessarProjeto
+Aluno -> TelaAtualizarProjeto : 2: alterarDados()
 
-TelaAtualizarProjeto -> ManutencaoProjeto : enviarDados()
-ManutencaoProjeto -> validacao: validaDados()
-ManutencaoProjeto -> Projeto : modificaDados()
-ManutencaoProjeto --> TelaProjeto: Sucesso na Alteração
+TelaAtualizarProjeto -> ManutencaoProjeto : 3: enviarDados()
+ManutencaoProjeto -> validacao: 4: validaDados()
+ManutencaoProjeto -> Projeto : 5: modificaDados()
+ManutencaoProjeto --> TelaProjeto: 6: Sucesso na Alteração
 
 @enduml
