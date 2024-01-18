@@ -4,15 +4,17 @@ skinparam sequenceParticipant underline
 actor ":Aluno" as Aluno
 boundary ":TelaPerfilAluno" as TelaPerfilAluno
 control ":CtrAluno" as CtrAluno
+entity ":validacao" as validacao
 entity ":aluno" as aluno
 
 
 
-Aluno -> TelaPerfilAluno : informaDados()
+Aluno -> TelaPerfilAluno : acessarPerfil
+Aluno -> TelaPerfilAluno : alteraDados
 TelaPerfilAluno -> CtrAluno : enviaDados()
-CtrAluno -> aluno : PesquisaAluno(dados)
-aluno -> aluno : ModificaAluno(dados_novos)
+CtrAluno -> validacao: validaDados()
+CtrAluno -> aluno : modificaDados()
 CtrAluno --> TelaPerfilAluno --: Sucesso na Alteração
 
 
-@enduml
+@enduml 
