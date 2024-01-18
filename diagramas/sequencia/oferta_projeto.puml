@@ -1,0 +1,16 @@
+@startuml oferta_projeto
+skinparam sequenceParticipant underline
+
+actor ":Professor" as Professor
+boundary ":TelaOferta" as TelaOferta
+control ":ControladorOferta" as ControladorOferta
+entity ":PropostaProjeto" as PropostaProjeto
+entity ":Turma" as Turma
+
+Professor -> TelaOferta :1: Preencher Dados
+TelaOferta -> ControladorOferta :2: cadastrarOferta()
+ControladorOferta -> PropostaProjeto :3: validarOferta()
+ControladorOferta -> Turma : 4: adicionarOferta()
+
+ControladorOferta -->> TelaOferta --: 5: Oferta Registrada
+@enduml
