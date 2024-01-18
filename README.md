@@ -28,7 +28,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - EscolherProjeto
     - OfertarProjeto
     - AdicionarAluno (Finalizado)
-    - AlterarAluno
+    - AlterarAluno (Finalizado)
   - Não permitir comunicação  `Entidade->Controle`, e `Ator->Ator`
   - Numerar mensagens 
   - Quem sabe informações (incluido existência) sobre uma determinada entidade
