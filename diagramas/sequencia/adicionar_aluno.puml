@@ -8,10 +8,9 @@ control ":CtrCadastroAluno" as CtrCadastroAluno
 entity ":Turma" as Turma
 entity ":Cadastro" as Cadastro
 
-Professor -> TelaCadastroAluno : informarMatricula'  
-TelaCadastroAluno -> CtrCadastroAluno : cadastrarDados()
-CtrCadastroAluno -> Turma : pesquisarAluno()
-CtrCadastroAluno -> Cadastro : adicionarAluno()
-CtrCadastroAluno --> TelaCadastroAluno : alunoAdicionado
-Cadastro --> Aluno: Notificação de cadastro
-@enduml
+Professor -> TelaCadastroAluno : 1: informarMatricula 
+TelaCadastroAluno -> CtrCadastroAluno : 2: cadastrarDados()
+CtrCadastroAluno -> Turma : 3: pesquisarAluno()
+CtrCadastroAluno -> Cadastro : 4: adicionarAluno()
+CtrCadastroAluno --> TelaCadastroAluno : 5: alunoAdicionado
+Cadastro --> Aluno: 6: Notificação de cadastro
