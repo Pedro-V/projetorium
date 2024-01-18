@@ -26,7 +26,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - AvaliarProposta (Pedro)
     - ConsultarProjeto (Pedro)
     - EscolherProjeto (Pedro)
-    - OfertarProjeto (Feita)
+    - OfertarProjeto (Finalizado)
     - AdicionarAluno (Finalizado)
     - AlterarAluno (Finalizado)
     - AlterarProjeto (Finalizado)
