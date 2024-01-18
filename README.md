@@ -21,6 +21,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
+- Revisar diagramas de Atividades (DA).
+
 - Revisar diagramas de sequência (DS).
   - Já revisados (8/10):#Casos alternativos não foram feitos
     - AvaliarProposta (Pedro)
