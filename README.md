@@ -22,7 +22,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Urgente
 
 - Revisar diagramas de sequência (DS).
-  - Já revisados (8/10):
+  - Já revisados (8/10):#Casos alternativos não foram feitos
     - AvaliarProposta (Pedro)
     - ConsultarProjeto (Pedro)
     - EscolherProjeto (Pedro)
