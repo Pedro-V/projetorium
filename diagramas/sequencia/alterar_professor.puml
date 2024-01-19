@@ -14,10 +14,10 @@ TelaPerfilProfessor -> CtrProfessor : 2: enviaDados()
 
 alt Dados Válidos
     CtrProfessor -> professor : 3: modificaDados()
-    CtrProfessor --> TelaPerfilProfessor --: 4: Sucesso na Alteração
+    CtrProfessor -->> TelaPerfilProfessor --: 4: Sucesso na Alteração
 else Dados Invalidos
     CtrProfessor -> professor : 3: modificaDados()
-    CtrProfessor --> TelaPerfilProfessor --: 4: Insucesso na Alteração
+    CtrProfessor -->> TelaPerfilProfessor --: 4: Insucesso na Alteração
 end
 
 @enduml 

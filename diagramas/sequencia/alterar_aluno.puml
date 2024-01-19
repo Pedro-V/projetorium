@@ -13,10 +13,10 @@ TelaPerfilAluno -> ControladorAluno: 2: enviaDados()
 
 alt Dados Válidos
     ControladorAluno-> AlunoC: 3: modificaDados()
-    ControladorAluno--> TelaPerfilAluno --: 4: Sucesso na Alteração
+    ControladorAluno-->> TelaPerfilAluno --: 4: Sucesso na Alteração
 else Dados Invalidos
     ControladorAluno-> AlunoC: 3: modificaDados()
-    ControladorAluno--> TelaPerfilAluno --: 4: Insucesso na Alteração
+    ControladorAluno-->> TelaPerfilAluno --: 4: Insucesso na Alteração
 end
 
 @enduml
