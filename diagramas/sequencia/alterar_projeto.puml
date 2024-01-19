@@ -8,11 +8,18 @@ control ":ManutencaoProjeto" as ManutencaoProjeto
 entity ":Projeto" as Projeto
 
 
-Aluno -> TelaProjeto : 1: acessarProjeto
-Aluno -> TelaAtualizarProjeto : 2: alterarDados()
+Aluno ->> TelaProjeto : 1: acessar o projeto
+Aluno ->> TelaAtualizarProjeto : 2: acessar formulario de atualização
+Aluno -> TelaAtualizarProjeto : 3: alterarDados()
 
-TelaAtualizarProjeto -> ManutencaoProjeto : 3: enviarDados()
-ManutencaoProjeto -> Projeto : 4: modificaDados()
-ManutencaoProjeto --> TelaProjeto: 5: Sucesso na Alteração
+TelaAtualizarProjeto -> ManutencaoProjeto : 4: enviarDados()
+
+alt Dados Válidos
+    ManutencaoProjeto -> Projeto : 5: modificaDados()
+    ManutencaoProjeto -->> TelaProjeto --: 6: Sucesso na Alteração
+else Dados Invalidos
+    ManutencaoProjeto -> Projeto : 5: modificaDados()
+    ManutencaoProjeto -->> TelaProjeto --: 6: Insucesso na Alteração
+end
 
 @enduml
