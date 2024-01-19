@@ -4,17 +4,15 @@ skinparam sequenceParticipant underline
 actor ":Professor" as Professor
 boundary ":TelaPerfilProfessor" as TelaPerfilProfessor
 control ":CtrProfessor" as CtrProfessor
-entity ":validacao" as validacao
 entity ":professor" as professor
 
 
 
-Professor -> TelaPerfilProfessor : 1: acessarPerfil
-Professor -> TelaPerfilProfessor : 2: alteraDados
-TelaPerfilProfessor -> CtrProfessor : 3: enviaDados()
-CtrProfessor -> validacao: 4: validaDados()
-CtrProfessor -> professor : 5: modificaDados()
-CtrProfessor --> TelaPerfilProfessor --: 6: Sucesso na Alteração
+
+Professor -> TelaPerfilProfessor : 1: alteraDados
+TelaPerfilProfessor -> CtrProfessor : 2: enviaDados()
+CtrProfessor -> professor : 3: modificaDados()
+CtrProfessor --> TelaPerfilProfessor --: 4: Sucesso na Alteração
 
 
 @enduml 

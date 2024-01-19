@@ -3,30 +3,17 @@ skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
 actor ":Professor" as Professor
-boundary ":TelaInicialAluno" as TelaInicialAluno
-boundary ":TelaTurmaAluno" as TelaTurmaAluno
 boundary ":TelaProposta" as TelaProposta
-boundary ":TelaNotificacao" as TelaNotificacao
 control ":ControladorProposta" as ControladorProposta
 entity ":Turma" as Turma
 entity ":PropostaProjeto" as PropostaProjeto
 
-ref over Aluno : sdEfetuarLogin
-ref over Professor : sdEfetuarLogin
-ref over Professor : sdManterProjeto
+Aluno ->> TelaProposta ++: 1: informarDados
+TelaProposta -> ControladorProposta --++: 2: registrarProposta(dadosProposta, turma)
+ControladorProposta ->> PropostaProjeto : 3: criarProposta(dadosProposta)
+ControladorProposta -> Turma : 4: adicionarProposta(turma)
+ControladorProposta -> TelaProposta : 5: <proposta enviada>
 
-Aluno -> TelaInicialAluno ++: acessarTurma()
-TelaInicialAluno --> Aluno --: exibirTelaTurma()
-Aluno -> TelaTurmaAluno ++: exibirTelaProposta()
-TelaTurmaAluno --> Aluno --: exibirTelaProposta()
-Aluno ->> TelaProposta ++: informarDados()
-Aluno -> TelaProposta : confirmarEnvio()
 
-TelaProposta -> ControladorProposta --++: registrarProposta()
-ControladorProposta ->> PropostaProjeto : criarProposta()
-ControladorProposta -> Turma : adicionarProposta()
-ControladorProposta ->> TelaNotificacao --++: notificarProfessor()
-TelaNotificacao ->> Professor --: notificarProposta()
 
-ref over Professor, ControladorProposta : sdAvaliarProposta
 @enduml

@@ -1,20 +1,15 @@
-@startuml alterar_aluno
+@startuml
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
 boundary ":TelaPerfilAluno" as TelaPerfilAluno
-control ":CtrAluno" as CtrAluno
-entity ":validacao" as validacao
-entity ":aluno" as aluno
+control ":ControladorAluno" as ControladorAluno
+entity ":Aluno" as AlunoC
 
 
 
-Aluno -> TelaPerfilAluno : 1: acessarPerfil
-Aluno -> TelaPerfilAluno : 2: alteraDados
-TelaPerfilAluno -> CtrAluno : 3: enviaDados()
-CtrAluno -> validacao: 4: alidaDados()
-CtrAluno -> aluno : 5: modificaDados()
-CtrAluno --> TelaPerfilAluno --: 6: Sucesso na Alteração
-
-
+Aluno -> TelaPerfilAluno : 1: alteraDados
+TelaPerfilAluno -> ControladorAluno: 2: enviaDados()
+ControladorAluno-> AlunoC: 3: modificaDados()
+ControladorAluno--> TelaPerfilAluno --: 4: Sucesso na Alteração
 @enduml

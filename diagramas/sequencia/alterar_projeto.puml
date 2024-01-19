@@ -5,7 +5,6 @@ actor ":Aluno" as Aluno
 boundary ":TelaProjeto" as TelaProjeto
 boundary ":TelaAtualizarProjeto" as TelaAtualizarProjeto
 control ":ManutencaoProjeto" as ManutencaoProjeto
-entity ":validacao" as validacao
 entity ":Projeto" as Projeto
 
 
@@ -13,8 +12,7 @@ Aluno -> TelaProjeto : 1: acessarProjeto
 Aluno -> TelaAtualizarProjeto : 2: alterarDados()
 
 TelaAtualizarProjeto -> ManutencaoProjeto : 3: enviarDados()
-ManutencaoProjeto -> validacao: 4: validaDados()
-ManutencaoProjeto -> Projeto : 5: modificaDados()
-ManutencaoProjeto --> TelaProjeto: 6: Sucesso na Alteração
+ManutencaoProjeto -> Projeto : 4: modificaDados()
+ManutencaoProjeto --> TelaProjeto: 5: Sucesso na Alteração
 
 @enduml

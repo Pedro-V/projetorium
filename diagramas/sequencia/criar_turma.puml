@@ -2,26 +2,14 @@
 skinparam sequenceParticipant underline
 
 actor ":Professor"  as Professor
-boundary ":TelaLogin"   as TelaLogin
 boundary ":TelaCadastro"    as TelaCadastro
 control ":ControleTurma" as ControleTurma
 entity "novaTurma:Turma" as novaTurma
 database Banco
 
-ref over Professor, TelaLogin : sdEfetuarLogin
-Professor -> TelaCadastro ++: insereDados()
-TelaCadastro -> ControleTurma ++: enviaDados()
-ControleTurma -> novaTurma ++: criarTurma()
-ControleTurma -> novaTurma ++: incluirAlunoIndividual()()
-novaTurma -> Banco : registraBanco()
-Banco --> novaTurma : resultado da inserção
-novaTurma --> ControleTurma --: notificaResultado()
-destroy novaTurma
-ControleTurma --> TelaCadastro --: notificaResultado()
-
-alt cadastro realizado
-    TelaCadastro --> Professor : informaSucesso()
-else erro de cadastro
-    TelaCadastro --> Professor : informaInsucesso()
-end
+Professor -> TelaCadastro : 1: insereDados
+TelaCadastro -> ControleTurma : 2: enviaDados(dadosTurma)
+ControleTurma -> novaTurma **: 3: <<create>>
+novaTurma -> Banco : 4: registraBanco(dadosTurma)
+ControleTurma --> TelaCadastro : 5: turmaCriada
 @enduml

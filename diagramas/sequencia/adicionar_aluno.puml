@@ -1,7 +1,7 @@
 @startuml adicionar_aluno
 skinparam sequenceParticipant underline
 
-actor ":Aluno" as Aluno
+
 actor ":Professor" as Professor
 boundary ":TelaCadastroAluno" as TelaCadastroAluno
 control ":CtrCadastroAluno" as CtrCadastroAluno
@@ -13,4 +13,3 @@ TelaCadastroAluno -> CtrCadastroAluno : 2: cadastrarDados()
 CtrCadastroAluno -> Turma : 3: pesquisarAluno()
 CtrCadastroAluno -> Cadastro : 4: adicionarAluno()
 CtrCadastroAluno --> TelaCadastroAluno : 5: alunoAdicionado
-Cadastro --> Aluno: 6: Notificação de cadastro
