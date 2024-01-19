@@ -1,4 +1,4 @@
-@startuml
+@startuml alterar_aluno
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
@@ -10,6 +10,13 @@ entity ":Aluno" as AlunoC
 
 Aluno -> TelaPerfilAluno : 1: alteraDados
 TelaPerfilAluno -> ControladorAluno: 2: enviaDados()
-ControladorAluno-> AlunoC: 3: modificaDados()
-ControladorAluno--> TelaPerfilAluno --: 4: Sucesso na Alteração
+
+alt Dados Válidos
+    ControladorAluno-> AlunoC: 3: modificaDados()
+    ControladorAluno--> TelaPerfilAluno --: 4: Sucesso na Alteração
+else Dados Invalidos
+    ControladorAluno-> AlunoC: 3: modificaDados()
+    ControladorAluno--> TelaPerfilAluno --: 4: Insucesso na Alteração
+end
+
 @enduml
