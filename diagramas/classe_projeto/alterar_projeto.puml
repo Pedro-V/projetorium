@@ -5,12 +5,12 @@
 !includesub base_telas.puml!TelaTurmaAluno
 
 class TelaAtualizarProjeto <<boundary>> {
-  informarDados()
+  enviarDados()
   confirmarEnvio()
 }
 
 class ManutencaoProjeto <<control>> {
-  efetuarMudancas()
+  modificarDados()
   notificarMembros()
 }
 

@@ -12,6 +12,7 @@ class ControleAluno <<control>> {
   criarAlunoIndividual()
   criarAlunoLote()
   notificaResultado()
+  modificaDados()
 }
 
 TelaCadastroAluno -- ControleAluno

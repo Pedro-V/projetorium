@@ -12,7 +12,7 @@ class TelaAvaliacao <<boundary>> {
 
 class ControladorAvaliacao <<control>> {
   construirProjeto()
-  rejeitarProposta()
+  verificaProposta()
 }
 
 TelaAvaliacao -- TelaTurmaProfessor

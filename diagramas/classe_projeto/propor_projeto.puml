@@ -5,12 +5,13 @@
 !includesub base_telas.puml!TelaTurmaAluno
 
 class TelaProposta <<boundary>> {
-  informadosDados()
+  informarDados()
   confirmarEnvio()
 }
 
 class ControladorProposta <<control>> {
   registrarProposta()
+  adicionarProposta()
   notificarProfessor()
 }
 

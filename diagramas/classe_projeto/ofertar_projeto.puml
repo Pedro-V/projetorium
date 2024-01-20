@@ -4,12 +4,13 @@
 !includesub base_telas.puml!TelaTurmaProfessor
 
 class TelaOferta <<boundary>> {
-  informarDados()
   confirmarEnvio()
+  cadastrarOferta()
 }
 
 class ControladorOferta <<control>> {
   criarOferta()
+  validarOferta()
   notificarTurma()
 }
 

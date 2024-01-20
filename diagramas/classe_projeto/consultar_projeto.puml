@@ -11,9 +11,10 @@ class TelaConsulta <<boundary>> {
 class TelaResultados <<boundary>> {
   exibeResultados()
 }
-class Buscador <<control>> {
+class CtrConsultarProjeto <<control>> {
   processarConsulta()
   verificarVisibilidade()
+  verificarCriterios()
 }
 
 class Filtrador <<control>> {
@@ -27,9 +28,9 @@ class GeradorResultados <<control>> {
   informarResultados()
 }
 
-Buscador -- Filtrador
+CtrConsultarProjeto -- Filtrador
 Filtrador -- GeradorResultados
-Buscador -- TelaConsulta
-Buscador -- Projeto
+CtrConsultarProjeto -- TelaConsulta
+CtrConsultarProjeto -- Projeto
 GeradorResultados -- TelaResultados
 @enduml
