@@ -1,0 +1,22 @@
+@startuml propor_projeto
+|Aluno|
+start
+:Acessar turma;
+:Escolher propor projeto;
+:Preencher dados da proposta;
+:Enviar Proposta;
+|Professor|
+:Recebe proposta;
+:Avaliar proposta;
+if () then ([Proposta Aceita])
+ :Proposta é transformada em projeto;
+ :Grupo proponente é adicionado ao projeto;
+else ([Proposta Recusada])
+  :Notifica Alunos;
+  stop
+endif
+:Notifica Alunos;
+stop
+
+
+@enduml
