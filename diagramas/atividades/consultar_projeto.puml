@@ -1,0 +1,18 @@
+@startuml consultar_projeto
+start
+
+:Acessar tela de consultar projetos;
+:Informar dados;
+if()then([escolhe filtro])
+   :Informar filtro;
+   :Confirma Consulta;
+   :Sistema Processa Consulta;
+   :Mostrar resultados;
+   stop
+else([não escolhe filtro])
+   :Confirma Consulta;  
+   :Sistema Processa Consulta;
+   :Mostrar resultados;
+   stop
+
+@enduml
