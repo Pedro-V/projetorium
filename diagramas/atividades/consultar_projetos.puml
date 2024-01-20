@@ -1,15 +1,18 @@
-@startuml
+@startuml consultar_projetos
 start
-if (quer ver potenciais projetos privados?) then (sim)
-  :Efetuar Login;
-else (não)
-endif
-repeat
+
 :Acessar tela de consultar projetos;
 :Informar dados;
-:Informar filtros;
-:Mostrar resultados;
-repeat while (pesquisar novamente?) is (sim)
-->não;
-stop
+if()then([escolhe filtro])
+   :Informar filtro;
+   :Confirma Consulta;
+   :Sistema Processa Consulta;
+   :Mostrar resultados;
+   stop
+else([não escolhe filtro])
+   :Confirma Consulta;  
+   :Sistema Processa Consulta;
+   :Mostrar resultados;
+   stop
+
 @enduml
