@@ -2,12 +2,7 @@
 |Professor|
 start
 :Informar Matricula;
-|Sistema|
 :Pesquisar o aluno na Turma; 
-if () Then ([Aluno ja existe])
-    :Exibe mensagem de Erro;
-    stop
-else ([Aluno não existe])
 :Cadastrar dados do aluno;
 :Efetuar Cadastro;
 :Adicionar o aluno na Turma;
