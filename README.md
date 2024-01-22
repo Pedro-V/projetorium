@@ -71,4 +71,4 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 * [Max Antônio](https://github.com/Max-Antonio) - [antoniomax@academico.ufs.br](mailto:antoniomax@academico.ufs.br)
 * [Jonas Gabriel](https://github.com/jonasgabrieel) - [jonasgab@academico.ufs.br](mailto:jonasgab@academico.ufs.br)
 * [Matheus Fontes](https://github.com/Ultedad) - [matheusx123@academico.ufs.br](mailto:matheusx123@academico.ufs.br)
-* [Pedro Augusto](https://github.com/PedroAgsto) - 
+* [Pedro Augusto](https://github.com/PedroAgsto) - [pedroaugustoal@academico.ufs.br](mailto:pedroaugustoal@academico.ufs.br)
