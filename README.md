@@ -2,6 +2,7 @@
 
 * Universidade Federal de Sergipe - Departamento de Computação
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
+* COMP0439 - ENGENHARIA DE SOFTWARE II (2023.2 - T01)
 
 * [Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
 * [Documento completo](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
@@ -17,47 +18,14 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Revisar diagramas de Atividades (DA).
-  - AdicionarAluno (Feito)
-  - ConsultarProjeto (Feito)
-  - ProporProjeto (Feito)
-
-- Revisar diagramas de sequência (DS).
-  - Já revisados (8/10):#Casos alternativos não foram feitos
-    - AvaliarProposta (Pedro)
-    - ConsultarProjeto (Pedro)
-    - EscolherProjeto (Pedro)
-    - OfertarProjeto (Finalizado)
-    - AdicionarAluno (Finalizado)
-    - AlterarAluno (Finalizado)
-    - AlterarProjeto (Finalizado)
-    - AlterarProfessor (Finalizado)
-    - CriarTurma (Finalizado)
-    - ProporProjeto (Finalizado)
-  - Não permitir comunicação  `Entidade->Controle`, e `Ator->Ator`
-  - Numerar mensagens 
-  - Quem sabe informações (incluido existência) sobre uma determinada entidade
-    são os próprios objetos daquela entidade.
-    Ex: É um objeto da classe Registro que sabe dizer se um registro existe no
-    sistema.
-  - Manter apenas aspectos de lógica de negocios, retirar noções de interface gráfica.
-  - A existência de um mêtodo no DS implica na existência desse método na
-    respectiva classe no diagrama de classes.
-  - A resposta final do diagrama pode ir direta à Tela.
-
 ### Necessário
 
 - Requisitos de manutenção de modelos
   - Turma: Rayan, Jonas
   - Aluno: Pedro V, Pedro A
   - Professor: Max, Carlos
-- Remover classes irrelevantes do ER (Endereço, etc), atualizar cardinalidade de Turma-Aluno: Matheus
 
 ### Seria legal
-
-- Dar uma estudada no sistema de templates do Django para fazer telas,
-  [aqui](https://docs.djangoproject.com/en/5.0/topics/templates/) e 
-  [aqui](https://docs.djangoproject.com/en/5.0/ref/templates/): Todos
 
 ## Membros
 
