@@ -19,5 +19,4 @@ TelaProposta -- TelaTurmaAluno
 TelaProposta -- ControladorProposta
 ControladorProposta -- PropostaProjeto
 ControladorProposta -- Turma
-
 @enduml
