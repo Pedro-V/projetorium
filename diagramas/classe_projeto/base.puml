@@ -15,12 +15,6 @@ class Disciplina <<entity>> {
 }
 !endsub
 
-!startsub Curso
-class Curso <<entity>> {
-  nome: String
-}
-!endsub
-
 !startsub Professor
 class Professor <<entity>> {
   nome: String
@@ -34,6 +28,7 @@ class Aluno <<entity>> {
   nome: String
   dataNasc: Date
   matricula: String
+  curso: String
 }
 !endsub
 
@@ -102,18 +97,16 @@ Avaliacao "0..*" -- "1..1" StatusAvaliacao : possui >
 Avaliacao "1..1" -- "1..1" PropostaProjeto : recebe <
 
 Aluno "1..*" -- "0..1" Grupo : forma >
-Grupo "0..*" -- "1..1" Turma : pertence >
 Aluno "0..*" -- "0..*" Turma : estuda >
-Aluno "1..*" -- "1..1" Curso : cursa >
+
+Grupo "1..1" -- "1..1" Projeto : responsável >
 
 Professor "1..*" -- "1..1" Departamento : trabalha >
 Professor "1..*" -- "0..*" Turma : leciona >
 
 Departamento "1..1" -- "1..*" Disciplina : oferta >
-Departamento "1..1" -- "1..*" Curso : pertence <
 
-Turma "0..*" -- "1..1" Disciplina
+Turma "0..*" -- "1..1" Disciplina : instância de >
 
 Projeto "0..*" -- "1..1" StatusProjeto : possui >
-Projeto "0..*" -- "1..1" Turma : pertence >
 @enduml
