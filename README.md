@@ -9,10 +9,6 @@
 ## Estrutura
 
 * `diagramas/`: Código-fonte dos arquivos PUML e os binários gerados por eles.
-* `documentos/`: Documentação, que reúne modelagem, requisitos e todos os
-  artefatos do processo de engenharia de software.
-* `reunioes/`: Anotações das reuniões com os professores, para futura
-  referência.
 * `dev/`: Desenvolvimento da aplicação: frontend, backend, SQL, entre outros.
 
 ## TODO
