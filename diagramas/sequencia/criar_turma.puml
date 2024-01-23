@@ -1,15 +1,14 @@
-@startuml
+@startuml criar_Turma
 skinparam sequenceParticipant underline
 
 actor ":Professor"  as Professor
-boundary ":TelaCadastro"    as TelaCadastro
-control ":ControleTurma" as ControleTurma
+boundary ":TelaCriarTurma" as TelaCriarTurma
+control ":CtrCriarTurma" as CtrCriarTurma
 entity "novaTurma:Turma" as novaTurma
-database Banco
 
-Professor -> TelaCadastro : 1: insereDados
-TelaCadastro -> ControleTurma : 2: enviaDados(dadosTurma)
-ControleTurma -> novaTurma **: 3: <<create>>
-novaTurma -> Banco : 4: registraBanco(dadosTurma)
-ControleTurma --> TelaCadastro : 5: turmaCriada
+Professor -> TelaCriarTurma : 1: inserir dados
+TelaCriarTurma -> CtrCriarTurma : 2: criarTurma(dadosTurma)
+CtrCriarTurma -> novaTurma **: 3: <<create>>
+
+CtrCriarTurma --> TelaCriarTurma : 4: turma criada
 @enduml

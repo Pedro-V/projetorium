@@ -1,22 +1,21 @@
 @startuml adicionar_aluno
 skinparam sequenceParticipant underline
 
-
 actor ":Professor" as Professor
-boundary ":TelaCadastroAluno" as TelaCadastroAluno
-control ":CtrCadastroAluno" as CtrCadastroAluno
+boundary ":TelaAdicionarAluno" as TelaAdicionarAluno
+control ":CtrAdicionarAluno" as CtrAdicionarAluno
 entity ":Turma" as Turma
 
-Professor ->> TelaCadastroAluno : 1: informar Matricula do aluno
-TelaCadastroAluno -> CtrCadastroAluno : 2: cadastrarDados()
+Professor ->> TelaAdicionarAluno : 1: informar Matricula do aluno
+TelaAdicionarAluno -> CtrAdicionarAluno : 2: cadastrarDados()
 
 
 alt Aluno ja Existe
-    CtrCadastroAluno -> Turma : 3: pesquisarAluno()
-    CtrCadastroAluno -->> TelaCadastroAluno : 4: Aluno Existe na Turma
+    CtrAdicionarAluno -> Turma : 3: pesquisarAluno()
+    CtrAdicionarAluno -->> TelaAdicionarAluno : 4: Aluno Existe na Turma
 else Aluno Não Existe
-    CtrCadastroAluno -> Turma : 3: pesquisarAluno()
-    CtrCadastroAluno -> Turma : 4: adicionarAluno()
-    CtrCadastroAluno -->> TelaCadastroAluno : 5: alunoAdicionado
+    CtrAdicionarAluno -> Turma : 3: pesquisarAluno()
+    CtrAdicionarAluno -> Turma : 4: adicionarAluno()
+    CtrAdicionarAluno -->> TelaAdicionarAluno : 5: alunoAdicionado
 end
 @enduml

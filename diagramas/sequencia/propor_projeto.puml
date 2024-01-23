@@ -2,18 +2,14 @@
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-actor ":Professor" as Professor
-boundary ":TelaProposta" as TelaProposta
-control ":ControladorProposta" as ControladorProposta
+boundary ":TelaProporProjeto" as TelaProporProjeto
+control ":CtrProporProjeto" as CtrProporProjeto
 entity ":Turma" as Turma
 entity ":PropostaProjeto" as PropostaProjeto
 
-Aluno ->> TelaProposta ++: 1: informarDados
-TelaProposta -> ControladorProposta --++: 2: registrarProposta(dadosProposta, turma)
-ControladorProposta ->> PropostaProjeto : 3: criarProposta(dadosProposta)
-ControladorProposta -> Turma : 4: adicionarProposta(turma)
-ControladorProposta -> TelaProposta : 5: <proposta enviada>
-
-
-
+Aluno ->> TelaProporProjeto ++: 1: informarDados
+TelaProporProjeto -> CtrProporProjeto --++: 2: registrarProposta(dadosProposta, turma)
+CtrProporProjeto ->> PropostaProjeto : 3: criarProposta(dadosProposta)
+CtrProporProjeto -> Turma : 4: adicionarProposta(turma)
+CtrProporProjeto -> TelaProporProjeto : 5: <proposta enviada>
 @enduml

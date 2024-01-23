@@ -1,23 +1,19 @@
-@startuml alterar_professor
+@startuml
 skinparam sequenceParticipant underline
 
 actor ":Professor" as Professor
-boundary ":TelaPerfilProfessor" as TelaPerfilProfessor
-control ":CtrProfessor" as CtrProfessor
+boundary ":TelaAlterarProfessor" as TelaAlterarProfessor
+control ":CtrAlterarProfessor" as CtrAlterarProfessor
 entity ":Professor" as professor
 
-
-
-
-Professor -> TelaPerfilProfessor : 1: alteraDados
-TelaPerfilProfessor -> CtrProfessor : 2: enviaDados()
+Professor -> TelaAlterarProfessor : 1: alteraDados
+TelaAlterarProfessor -> CtrAlterarProfessor : 2: enviaDados()
 
 alt Dados Válidos
-    CtrProfessor -> professor : 3: modificaDados()
-    CtrProfessor -->> TelaPerfilProfessor --: 4: Sucesso na Alteração
+    CtrAlterarProfessor -> professor : 3: modificaDados()
+    CtrAlterarProfessor -->> TelaAlterarProfessor --: 4: Sucesso na Alteração
 else Dados Invalidos
-    CtrProfessor -> professor : 3: modificaDados()
-    CtrProfessor -->> TelaPerfilProfessor --: 4: Insucesso na Alteração
+    CtrAlterarProfessor -> professor : 3: modificaDados()
+    CtrAlterarProfessor -->> TelaAlterarProfessor --: 4: Insucesso na Alteração
 end
-
 @enduml 

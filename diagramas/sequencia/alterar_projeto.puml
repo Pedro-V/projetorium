@@ -1,25 +1,24 @@
-@startuml alterar_projeto
+@startuml
 skinparam sequenceParticipant underline
 
 actor ":Aluno" as Aluno
-boundary ":TelaProjeto" as TelaProjeto
-boundary ":TelaAtualizarProjeto" as TelaAtualizarProjeto
-control ":ManutencaoProjeto" as ManutencaoProjeto
+boundary ":TelaAlterarProjeto" as TelaAlterarProjeto
+control ":CtrAlterarProjeto" as CtrAlterarProjeto
 entity ":Projeto" as Projeto
 
 
 Aluno ->> TelaProjeto : 1: acessar o projeto
-Aluno ->> TelaAtualizarProjeto : 2: acessar formulario de atualização
-Aluno -> TelaAtualizarProjeto : 3: alterarDados()
+Aluno ->> TelaAlterarProjeto : 2: acessar formulario de atualização
+Aluno -> TelaAlterarProjeto : 3: alterarDados()
 
-TelaAtualizarProjeto -> ManutencaoProjeto : 4: enviarDados()
+TelaAlterarProjeto -> CtrAlterarProjeto : 4: enviarDados()
 
 alt Dados Válidos
-    ManutencaoProjeto -> Projeto : 5: modificaDados()
-    ManutencaoProjeto -->> TelaProjeto --: 6: Sucesso na Alteração
+    CtrAlterarProjeto -> Projeto : 5: modificaDados()
+    CtrAlterarProjeto -->> TelaProjeto --: 6: Sucesso na Alteração
 else Dados Invalidos
-    ManutencaoProjeto -> Projeto : 5: modificaDados()
-    ManutencaoProjeto -->> TelaProjeto --: 6: Insucesso na Alteração
+    CtrAlterarProjeto -> Projeto : 5: modificaDados()
+    CtrAlterarProjeto -->> TelaProjeto --: 6: Insucesso na Alteração
 end
 
 @enduml
