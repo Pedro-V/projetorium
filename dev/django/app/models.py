@@ -1,40 +1,97 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.postgres.fields import ArrayField
+from django import forms 
+from django.utils.translation import gettext_lazy as _
 
 from .managers import UserManager
 
-class Pessoa(models.Model):
-    """
-    Uma pessoa, base para outros modelos.
-    """
-    nome = models.CharField(max_length=50)
-    sobrenome = models.CharField(max_length=50)
-    cpf = models.CharField(max_length=10, primary_key=True)
-    data_nascimento = models.DateField()
-
-    class Meta:
-        # Como queremos que NÃO seja criada uma tabela para essa classe, ela
-        # vira uma ABC.
-        abstract = True
-
-"""
 class Departamento(models.Model):
     cod_departamento = models.CharField(max_length=10)
-    nome = models.CharField(max_length=200)
+    nome = models.CharField(max_length=300)
 
-class Professor(Pessoa):
-    matricula_professor = models.CharField(primary_key=True, max_length=12)
+class Disciplina(models.Model):
+    cod_disciplina = models.CharField(max_length=10)
+    nome = models.CharField(max_length=300)
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
-class Projeto(models.Model):
-    id_projeto = models.CharField(max_length=10)
+class Professor(models.Model):
+    matricula_professor = models.CharField(primary_key=True, max_length=12)
+    nome = models.CharField(max_length=300)
+    data_nascimento = models.DateField()
+    cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
-class Proposta(models.Model):
-    id_proposta = models.charField(10)
-    matricula_professor = models.ForeignKey(Professor, on_delete=)
-    id_projeto = models.ForeignKey(Projeto, on_delete=)
-"""
+class Grupo(models.Model):
+    cod_grupo = models.AutoField(primary_key=True)
+
+
+class Aluno(models.Model):
+    matricula_aluno = models.CharField(primary_key=True, max_length=12)
+    nome = models.CharField(max_length=300)
+    curso = models.CharField(max_length=300)
+    data_nascimento = models.DateField()
+    cod_grupo = models.ForeignKey(Grupo, null=True, on_delete=models.SET("Nao existe"))
+
+class Turma(models.Model):
+    cod_turma = models.CharField(primary_key=True, max_length=12)
+    cod_disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+
+class Turma_Professor(models.Model):
+    cod_turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    matricula_professor = models.ForeignKEY(Professor, on_delete=models.CASCADE)
+    class Meta:#para a chave primária composta
+        constraints = [
+            models.UniqueConstraint(
+                fields = ['cod_turma', 'matricula_professor'], name="cod_turma_professor"
+            )
+        ]
+
+class Turma_Aluno(models.Model):
+    cod_turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    class Meta:#para a chave primária composta
+        constraints = [
+            models.UniqueConstraint(
+                fields = ['cod_turma', 'matricula_aluno'], name="cod_turma_aluno"
+            )
+        ]
+
+class Projeto_Abstrato(models.Model, forms.Form):
+    cod_projeto_abstrato = models.CharField(primary_key=True, max_lenght=10)
+    titulo = models.CharField(max_lenght=300)
+    descricao = models.CharField(max_lenght=800)
+    tags = ArrayField(models.CharField(max_length=100), blank=True, null=True)
+    documentos = ArrayField(forms.FileField(), blank=True, null=True)
+
+class Projeto(Projeto_Abstrato):
+    data_criacao = models.DateField()
+    cod_grupo = models.OneToOneField(Grupo, on_delete=models.SET("Nao existe"))
+
+    class Status_Projeto(models.TextChoices):
+        CONCLUIDO = 'CO', _('Concluido')
+        CANCELADO = 'CA', _('Cancelado')
+        SUSPENSO = 'SU', _('Suspenso')
+        EM_PROGRESSO = 'EP', _('Em progresso')
+    
+    status_projeto = models.CharField(max_lenght=2, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
+
+class Proposta(Projeto_Abstrato):
+    data_proposta = models.DateField()
+
+class Avaliacao(models.Model):
+    cod_avaliacao = models.AutoField(primary_key=True)
+    mensagem = models.CharField(max_length=800)
+    cod_proposta = models.OneToOneField(Proposta, on_delete=models.SET("Nao existe"))
+
+    class Status_Avaliacao(models.TextChoices):
+            APROVADO = 'AP', _('Aprovado')
+            REJEITADO = 'RE', _('Rejeitado')
+            MELHORIAS = 'ME', _('Melhorias')
+    
+    status_avaliacao = models.CharField(max_lenght=2, choices=Status_Avaliacao.choices)
+
+
 
 # User base model, used for authentication in the system
 class User(AbstractBaseUser, PermissionsMixin):
