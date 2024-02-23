@@ -9,6 +9,11 @@
 {% block 'content' %}
     <div class="container">
         <h2>Login</h2>
+        <div class="message">
+            {% if form.errors %}
+                <p class="error_message">Email ou senha incorretos!</p>
+            {% endif %}
+        </div>
         <form action="." class="registration-form" method="POST">
             {% csrf_token %}
             <div class="field">
