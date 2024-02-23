@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/perfil.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+        <div class="container">
+            <div class="row">
+                <p>Tela principal do Aluno</p>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="button" id="btn-sair">Sair</button>
+                </form>
+            </div>
+            <hr class="space">
+            
+            <div class="btn row space">
+                <a class="button">Consultar projeto</a>
+                <p style="margin-right: 40px;">{{user.first_name}} {{user.last_name}}</p>
+            </div>
+            <div class="btn space">
+                <a class="button">Turmas</a>
+            </div>
+            <div class="btn space">
+                <a class="button">Projetos</a>
+            </div>
+            <div style="margin-bottom: 150px;"></div>
+        </div>
+{% endblock %}

@@ -37,6 +37,8 @@ div{
     border-radius: 4px;
     cursor: pointer;
     width: 30%;
+    text-align: center;
+    text-decoration: none;
 }
 
 #btn-sair{

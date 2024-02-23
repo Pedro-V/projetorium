@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="static/css/consulta_projeto.css" rel="stylesheet">
+    <link href="{% static 'css/consulta_projeto.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 {% endblock %}
 
@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <p>Consulta de projeto</p>
-            <button class="button">Voltar para tela principal</button>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <hr class="space">
         <form class="registration-form space" id="proj-form">

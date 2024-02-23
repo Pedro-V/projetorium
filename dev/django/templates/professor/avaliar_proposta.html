@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="static/css/avaliar_proposta.css" rel="stylesheet">
+    <link href="{% static 'css/avaliar_proposta.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block 'content' %}
     <div class="container">
         <div class="row">
             <p>Avaliação de Proposta</p>
-            <button class="button">Voltar para tela principal</button>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <hr class="space">
         

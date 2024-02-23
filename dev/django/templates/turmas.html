@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="static/css/turmas.css" rel="stylesheet">
+    <link href="{% static 'css/turmas.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block 'content' %}
     <div class="container">
         <div class="row">
             <p>Turmas</p>
-            <button class="button">Voltar para tela principal</button>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <hr class="space">
 
@@ -35,7 +35,7 @@
         </div>
 
         <div class="btn_center">
-            <button class="button">Ver turma</button>
+            <a class="button">Ver turma</a>
         </div>
         
     </div>

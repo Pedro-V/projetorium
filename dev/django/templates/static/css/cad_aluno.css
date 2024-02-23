@@ -52,8 +52,9 @@ textarea {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
 }
-  
+
 .button:hover {
     background-color: #597dff;
 }
