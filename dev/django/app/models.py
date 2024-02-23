@@ -92,7 +92,7 @@ class Grupo(models.Model):
 
 
 class Aluno(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)    #Talvez isso precise ser unique
     matricula_aluno = models.CharField(primary_key=True, max_length=12)
     nome = models.CharField(max_length=300)
     curso = models.CharField(max_length=300)

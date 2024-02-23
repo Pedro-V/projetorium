@@ -53,3 +53,9 @@ def cadastrar_turma(request):
 
     if request.method == 'GET':
         return render(request, template_name)
+
+def projetos(request):
+    template_name = 'aluno/projetos.html'
+
+    if request.method == 'GET':
+        return render(request, template_name)

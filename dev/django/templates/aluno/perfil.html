@@ -16,15 +16,17 @@
             </div>
             <hr class="space">
             
-            <div class="btn row space">
-                <a class="button">Consultar projeto</a>
+            <div class="row space">
+                <div class="btn">
+                    <a class="button" href="{% url 'consulta_projeto' %}">Consultar projeto</a>
+                </div>
                 <p style="margin-right: 40px;">{{user.first_name}} {{user.last_name}}</p>
             </div>
             <div class="btn space">
-                <a class="button">Turmas</a>
+                <a class="button" href="{% url 'turmas' %}">Turmas</a>
             </div>
             <div class="btn space">
-                <a class="button">Projetos</a>
+                <a class="button" href="{% url 'projetos' %}">Projetos</a>
             </div>
             <div style="margin-bottom: 150px;"></div>
         </div>
