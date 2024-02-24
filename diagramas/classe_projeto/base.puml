@@ -20,6 +20,7 @@ class Professor <<entity>> {
   nome: String
   dataNasc: Date
   matricula: String
+  modificaDados()
 }
 !endsub
 
@@ -29,6 +30,7 @@ class Aluno <<entity>> {
   dataNasc: Date
   matricula: String
   curso: String
+  modificaDados()
 }
 !endsub
 
@@ -57,28 +59,34 @@ abstract class ProjetoAbstrato <<entity>> {
 !startsub Projeto
 class Projeto <<entity>> {
   dataCriado: Date
-  adicionarMembros()
-  persistirMudanças()
+  modificaDados()
+  verificarCumpreCriterios()
+  adicionarGrupo()
+  validarOferta()
 }
 !endsub
 
 !startsub Turma
 class Turma <<entity>> {
   codigo: String
+  pesquisarAluno()
+  adicionarAluno()
+  adicionarOferta()
   adicionarProposta()
-  adicionarProjeto()
 }
 !endsub
 
 !startsub PropostaProjeto
 class PropostaProjeto <<entity>> {
   dataProposto: Date
+  validarOferta()
 }
 !endsub
 
 !startsub Avaliacao
 class Avaliacao <<entity>> {
   mensagem: String
+  verificaProposta()
 }
 !endsub
 

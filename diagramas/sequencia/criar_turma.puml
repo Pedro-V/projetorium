@@ -1,4 +1,4 @@
-@startuml criar_Turma
+@startuml
 skinparam sequenceParticipant underline
 
 actor ":Professor"  as Professor

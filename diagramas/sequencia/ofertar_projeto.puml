@@ -1,20 +1,20 @@
-@startuml oferta_projeto
+@startuml
 skinparam sequenceParticipant underline
 
 actor ":Professor" as Professor
 boundary ":TelaOfertarProjeto" as TelaOfertarProjeto
 control ":CtrOfertarProjeto" as CtrOfertarProjeto
-entity ":PropostaProjeto" as PropostaProjeto
+entity ":Projeto" as Projeto
 entity ":Turma" as Turma
 
 Professor ->> TelaOfertarProjeto :1: Preencher Dados
 TelaOfertarProjeto -> CtrOfertarProjeto :2: cadastrarOferta()
 
 alt Existe Oferta Semelhante
-    CtrOfertarProjeto -> PropostaProjeto :3: validarOferta()
+    CtrOfertarProjeto -> Projeto :3: validarOferta()
     CtrOfertarProjeto -->> TelaOfertarProjeto --: 5: Oferta Não Registrada
 else Não Existe Oferta Semelhante
-    CtrOfertarProjeto -> PropostaProjeto :3: validarOferta()
+    CtrOfertarProjeto -> Projeto :3: validarOferta()
     CtrOfertarProjeto -> Turma : 4: adicionarOferta()
     CtrOfertarProjeto -->> TelaOfertarProjeto --: 5: Oferta Registrada
 end

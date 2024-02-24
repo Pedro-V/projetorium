@@ -5,17 +5,18 @@ actor ":Professor" as Professor
 boundary ":TelaAdicionarAluno" as TelaAdicionarAluno
 control ":CtrAdicionarAluno" as CtrAdicionarAluno
 entity ":Turma" as Turma
+entity "aluno:Aluno" as Aluno
 
 Professor ->> TelaAdicionarAluno : 1: informar Matricula do aluno
 TelaAdicionarAluno -> CtrAdicionarAluno : 2: cadastrarDados()
-
 
 alt Aluno ja Existe
     CtrAdicionarAluno -> Turma : 3: pesquisarAluno()
     CtrAdicionarAluno -->> TelaAdicionarAluno : 4: Aluno Existe na Turma
 else Aluno Não Existe
     CtrAdicionarAluno -> Turma : 3: pesquisarAluno()
-    CtrAdicionarAluno -> Turma : 4: adicionarAluno()
-    CtrAdicionarAluno -->> TelaAdicionarAluno : 5: alunoAdicionado
+    CtrAdicionarAluno ->> Aluno **: 4: <<create>>
+    CtrAdicionarAluno -> Turma : 3: adicionarAluno(aluno)
+    CtrAdicionarAluno -->> TelaAdicionarAluno : 5: aluno adicionado
 end
 @enduml

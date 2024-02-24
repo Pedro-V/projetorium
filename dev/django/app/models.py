@@ -106,7 +106,7 @@ class Turma(models.Model):
 class Turma_Professor(models.Model):
     cod_turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     matricula_professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    class Meta:#para a chave primária composta
+    class Meta: # para a chave primária composta.
         constraints = [
             models.UniqueConstraint(
                 fields = ['cod_turma', 'matricula_professor'], name="cod_turma_professor"
