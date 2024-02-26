@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/resultado_projeto.css" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Participantes da turma {{turma.nome}}</p>
+            <button class="button">Voltar para turma</button>
+        </div>
+        <hr class="space">
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="header">Nome</th>
+                    <th class="header">Matrícula</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll">
+            <table class="tabela">
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>{{aluno.nome}}</td>
+                        <td>{{aluno.matricula}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>        
+    </div>
+{% endblock %}

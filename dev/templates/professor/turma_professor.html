@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="static/css/turma.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row" id="header">
+            <p>{{turma.nome}}</p>
+            <p>{{turma.professor}}</p>
+            <button class="button">Voltar para tela principal</button>
+        </div>
+        <div class="row space">
+            <p>{{turma.disciplina}}</p>
+            <p style="margin-right: 510px;">{{tuma.departamento}}</p>
+        </div>
+        
+        <div class="row space">
+            <button class="button">Criar projeto</button>
+            <button class="button">Incluir aluno</button>
+        </div>
+        <div class="space">
+            <button class="button">Participantes</button>
+        </div>
+        
+        <div style="margin-bottom: 50px;"></div>
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Projetos da turma</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll">
+            <table class="tabela">
+                <tr>
+                    <th class="header">Nome</th>
+                    <th class="header">Status</th>
+                </tr>
+                {% for proj in turma.projetos %}
+                    <tr>
+                        <td><a href="">{{proj.nome}}</a></td>
+                        <td>{{proj.fase_projeto}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

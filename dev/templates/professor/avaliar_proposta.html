@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/avaliar_proposta.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Avaliação de Proposta</p>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
+        </div>
+        <hr class="space">
+        
+        <div class="content">
+            <div class="column">
+                <div>Nome</div>
+                <div>{{ proposta.nome }}</div>
+                <div>Departamento</div>
+                <div>{{ proposta.departamento }}</div>
+                <div>Disciplina</div>
+                <div>{{ proposta.disciplina }}</div>
+                <div>Ano</div>
+                <div>{{ proposta.ano }}</div>
+                <div>Período</div>
+                <div>{{ proposta.periodo }}</div>
+            </div>
+
+            <div class="column">
+                <div>Fase do Projeto</div>
+                <div>{{ proposta.fase_projeto }}</div>
+                <div>Entrega prevista</div>
+                <div>{{ proposta.entrega }}</div>
+                <div>Descrição</div>
+                <div>{{ proposta.descricao }}</div>
+                <div>Professor</div>
+                <div>{{ proposta.professor }}</div>
+                <a href="">Documentos</a>
+            </div>
+        </div>
+        <div class="row">
+            <button class="button" id="btn-sair">Negar</button>
+            <button class="button">Aprovar</button>
+        </div>
+    </div>
+{% endblock %}
