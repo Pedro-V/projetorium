@@ -20,11 +20,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Necessário
 
-- Requisitos de manutenção de modelos
-  - Turma: Rayan, Jonas
-  - Aluno: Pedro V, Pedro A
-  - Professor: Max, Carlos
-
 ### Seria legal
 
 ## Membros
