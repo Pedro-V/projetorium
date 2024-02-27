@@ -121,12 +121,13 @@ class Turma_Aluno(models.Model):
                 fields = ['cod_turma', 'matricula_aluno'], name="cod_turma_aluno"
             )
         ]
-""""
-class Projeto_Abstrato(models.Model, forms.Form):
-    cod_projeto_abstrato = models.CharField(primary_key=True, max_lenght=10)
-    titulo = models.CharField(max_lenght=300)
-    descricao = models.CharField(max_lenght=800)
-    documentos = ArrayField(forms.FileField(), blank=True, null=True)
+
+
+class Projeto_Abstrato(models.Model):
+    cod_projeto_abstrato = models.CharField(primary_key=True, max_length=10)
+    titulo = models.CharField(max_length=300)
+    descricao = models.CharField(max_length=800)
+
 
 class Projeto(Projeto_Abstrato):
     data_criacao = models.DateField()
@@ -138,7 +139,7 @@ class Projeto(Projeto_Abstrato):
         SUSPENSO = 'SU', _('Suspenso')
         EM_PROGRESSO = 'EP', _('Em progresso')
     
-    status_projeto = models.CharField(max_lenght=2, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
+    status_projeto = models.CharField(max_length=2, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
 
 class Proposta(Projeto_Abstrato):
     data_proposta = models.DateField()
@@ -153,5 +154,5 @@ class Avaliacao(models.Model):
             REJEITADO = 'RE', _('Rejeitado')
             MELHORIAS = 'ME', _('Melhorias')
     
-    status_avaliacao = models.CharField(max_lenght=2, choices=Status_Avaliacao.choices)
-"""
+    status_avaliacao = models.CharField(max_length=2, choices=Status_Avaliacao.choices)
+
