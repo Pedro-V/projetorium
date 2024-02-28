@@ -69,13 +69,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Departamento(models.Model):
-    cod_departamento = models.CharField(max_length=10)
-    nome = models.CharField(max_length=300)
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
 
 class Disciplina(models.Model):
-    cod_disciplina = models.CharField(max_length=10)
-    nome = models.CharField(max_length=300)
-    cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
+    codigo = models.CharField(max_length=10, primary_key=True)
+    nome = models.CharField(max_length=100)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome
 
 class Turma(models.Model):
     cod_turma = models.CharField(primary_key=True, max_length=12)
@@ -84,55 +89,72 @@ class Turma(models.Model):
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula_professor = models.CharField(primary_key=True, max_length=12)
-    nome = models.CharField(max_length=300)
+    nome = models.CharField(max_length=100)
     data_nascimento = models.DateField()
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
     turmas = models.ManyToManyField(Turma)
 
 class Grupo(models.Model):
     cod_grupo = models.AutoField(primary_key=True)
+    def __str__(self):
+        return self.nome
 
 class Aluno(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)    #Talvez isso precise ser unique
-    matricula_aluno = models.CharField(primary_key=True, max_length=12)
-    nome = models.CharField(max_length=300)
-    curso = models.CharField(max_length=300)
+    matricula = models.CharField(primary_key=True, max_length=12)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    curso = models.CharField(max_length=50)
     data_nascimento = models.DateField()
-    cod_grupo = models.ForeignKey(Grupo, null=True, on_delete=models.SET("Nao existe"))
-    turmas = models.ManyToManyField(Turma)
+
+    def __str__(self):
+        return f'{self.nome}: {self.matricula}'
+
+class Grupo(models.Model):
+    alunos = models.ManyToManyField(Aluno)
+
+class Turma(models.Model):
+    cod_turma = models.CharField(primary_key=True, max_length=12)
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+    professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
+    alunos = models.ManyToManyField(Aluno)
+
+    def __str__(self):
+        return f'{self.disciplina}: {self.cod_turma}'
 
 class Projeto(models.Model):
-    cod_projeto = models.CharField(primary_key=True, max_length=10)
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
     data_criacao = models.DateField()
     cod_grupo = models.OneToOneField(Grupo, on_delete=models.SET("Nao existe"))
 
-    class Status_Projeto(models.TextChoices):
-        CONCLUIDO = 'Concluido'
-        CANCELADO = 'Cancelado'
-        SUSPENSO = 'Suspenso'
-        EM_PROGRESSO = 'Em progresso'
+    class StatusProjeto(models.TextChoices):
+        CONCLUIDO    = ('CO', 'Concluido')
+        CANCELADO    = ('CA', 'Cancelado')
+        SUSPENSO     = ('SU', 'Suspenso')
+        EM_PROGRESSO = ('EP', 'Em progresso')
     
-    status_projeto = models.CharField(max_length=20, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
+    status_projeto = models.CharField(
+        max_length=2,
+        choices=StatusProjeto.choices,
+        default=StatusProjeto.EM_PROGRESSO
+    )
+
+    def __str__(self):
+        return self.titulo
 
 class Proposta(models.Model):
-    cod_proposta = models.CharField(primary_key=True, max_length=10)
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
     data_proposta = models.DateField()
     matricula_aluno = models.ForeignKey(Aluno, on_delete=models.SET("Naao existe"))
 
 class Avaliacao(models.Model):
-    cod_avaliacao = models.AutoField(primary_key=True)
     mensagem = models.CharField(max_length=800)
-    cod_proposta = models.OneToOneField(Proposta, on_delete=models.SET("Nao existe"))
-    matricula_professor = models.ForeignKey(Professor, on_delete=models.SET("Nao existe"))
+    proposta = models.OneToOneField(Proposta, on_delete=models.CASCADE)
 
-    class Status_Avaliacao(models.TextChoices):
-            APROVADO = 'Aprovado'
-            REJEITADO = 'Rejeitado'
-            MELHORIAS = 'Melhorias'
+    class StatusAvaliacao(models.TextChoices):
+        APROVADO  = ('AP', 'Aprovado')
+        REJEITADO = ('RE', 'Rejeitado')
+        MELHORIAS = ('ME', 'Melhorias')
     
-    status_avaliacao = models.CharField(max_length=20, choices=Status_Avaliacao.choices)
-
+    status_avaliacao = models.CharField(max_length=2, choices=StatusAvaliacao.choices)
