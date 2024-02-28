@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django import forms 
-from django.utils.translation import gettext_lazy as _
 
 from .managers import UserManager
 
@@ -79,16 +77,20 @@ class Disciplina(models.Model):
     nome = models.CharField(max_length=300)
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
+class Turma(models.Model):
+    cod_turma = models.CharField(primary_key=True, max_length=12)
+    cod_disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula_professor = models.CharField(primary_key=True, max_length=12)
     nome = models.CharField(max_length=300)
     data_nascimento = models.DateField()
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
+    turmas = models.ManyToManyField(Turma)
 
 class Grupo(models.Model):
     cod_grupo = models.AutoField(primary_key=True)
-
 
 class Aluno(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)    #Talvez isso precise ser unique
@@ -97,62 +99,40 @@ class Aluno(models.Model):
     curso = models.CharField(max_length=300)
     data_nascimento = models.DateField()
     cod_grupo = models.ForeignKey(Grupo, null=True, on_delete=models.SET("Nao existe"))
+    turmas = models.ManyToManyField(Turma)
 
-class Turma(models.Model):
-    cod_turma = models.CharField(primary_key=True, max_length=12)
-    cod_disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
-
-class Turma_Professor(models.Model):
-    cod_turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-    matricula_professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    class Meta: # para a chave primária composta.
-        constraints = [
-            models.UniqueConstraint(
-                fields = ['cod_turma', 'matricula_professor'], name="cod_turma_professor"
-            )
-        ]
-
-class Turma_Aluno(models.Model):
-    cod_turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    class Meta:#para a chave primária composta
-        constraints = [
-            models.UniqueConstraint(
-                fields = ['cod_turma', 'matricula_aluno'], name="cod_turma_aluno"
-            )
-        ]
-
-
-class Projeto_Abstrato(models.Model):
-    cod_projeto_abstrato = models.CharField(primary_key=True, max_length=10)
+class Projeto(models.Model):
+    cod_projeto = models.CharField(primary_key=True, max_length=10)
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
-
-
-class Projeto(Projeto_Abstrato):
     data_criacao = models.DateField()
     cod_grupo = models.OneToOneField(Grupo, on_delete=models.SET("Nao existe"))
 
     class Status_Projeto(models.TextChoices):
-        CONCLUIDO = 'CO', _('Concluido')
-        CANCELADO = 'CA', _('Cancelado')
-        SUSPENSO = 'SU', _('Suspenso')
-        EM_PROGRESSO = 'EP', _('Em progresso')
+        CONCLUIDO = 'Concluido'
+        CANCELADO = 'Cancelado'
+        SUSPENSO = 'Suspenso'
+        EM_PROGRESSO = 'Em progresso'
     
-    status_projeto = models.CharField(max_length=2, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
+    status_projeto = models.CharField(max_length=20, choices=Status_Projeto.choices, default=Status_Projeto.EM_PROGRESSO)
 
-class Proposta(Projeto_Abstrato):
+class Proposta(models.Model):
+    cod_proposta = models.CharField(primary_key=True, max_length=10)
+    titulo = models.CharField(max_length=300)
+    descricao = models.CharField(max_length=800)
     data_proposta = models.DateField()
+    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.SET("Naao existe"))
 
 class Avaliacao(models.Model):
     cod_avaliacao = models.AutoField(primary_key=True)
     mensagem = models.CharField(max_length=800)
     cod_proposta = models.OneToOneField(Proposta, on_delete=models.SET("Nao existe"))
+    matricula_professor = models.ForeignKey(Professor, on_delete=models.SET("Nao existe"))
 
     class Status_Avaliacao(models.TextChoices):
-            APROVADO = 'AP', _('Aprovado')
-            REJEITADO = 'RE', _('Rejeitado')
-            MELHORIAS = 'ME', _('Melhorias')
+            APROVADO = 'Aprovado'
+            REJEITADO = 'Rejeitado'
+            MELHORIAS = 'Melhorias'
     
-    status_avaliacao = models.CharField(max_length=2, choices=Status_Avaliacao.choices)
+    status_avaliacao = models.CharField(max_length=20, choices=Status_Avaliacao.choices)
 
