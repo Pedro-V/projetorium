@@ -6,14 +6,14 @@ boundary ":TelaAvaliarProposta" as TelaAvaliarProposta
 control ":CtrAvaliarProposta" as CtrAvaliarProposta
 entity ":Projeto" as Projeto
 entity ":Avaliacao" as Avaliacao
-entity ":PropostaProjeto" as PropostaProjeto
+entity ":Proposta" as Proposta
 
 Professor -> TelaAvaliarProposta : 1: informar avaliacao
 TelaAvaliarProposta -> CtrAvaliarProposta : 2: avaliarProposta()
 CtrAvaliarProposta -> Avaliacao : 3: aprovado := verificaProposta()
 alt aprovado
   CtrAvaliarProposta ->> Projeto ** : 4: <<create>>
-  CtrAvaliarProposta ->> PropostaProjeto !! : 5: <<destroy>>
+  CtrAvaliarProposta ->> Proposta !! : 5: <<destroy>>
 else não aprovado
   CtrAvaliarProposta ->> CtrAvaliarProposta : 4: rejeitarProposta()
 end

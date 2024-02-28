@@ -44,6 +44,7 @@ enum StatusProjeto <<enumeration>> {
   concluido
   cancelado
   suspenso
+  emProgresso
 }
 !endsub
 
@@ -60,8 +61,8 @@ class Projeto <<entity>> {
 }
 !endsub
 
-!startsub PropostaProjeto
-class PropostaProjeto <<entity>> {
+!startsub Proposta
+class Proposta <<entity>> {
   titulo: String
   descricao: String
   dataProposto: Date
@@ -90,24 +91,24 @@ class Avaliacao <<entity>> {
 enum StatusAvaliacao <<enumeration>> {
   aprovado
   rejeitado
-  emProgresso
   concluido
 }
 !endsub
 
 Avaliacao "0..*" -- "1..1" StatusAvaliacao : possui >
-Avaliacao "1..1" -- "1..1" PropostaProjeto : recebe <
+Avaliacao "1..1" -- "1..1" Proposta : recebe <
 
-PropostaProjeto "1..1" -- "1..1" Projeto : promovida >
+Proposta "1..1" -- "1..1" Projeto : promovida >
 
 Aluno "1..*" -- "0..1" Grupo : forma >
 Aluno "0..*" -- "0..*" Turma : estuda >
+Aluno "1..1" -- "0..*" Proposta : propõe >
 
 Grupo "1..1" -- "1..1" Projeto : responsável >
 
 Professor "1..*" -- "1..1" Departamento : trabalha >
 Professor "1..*" -- "0..*" Turma : leciona >
-Professor "0..*" -- "1..1" Avaliacao : realiza >
+Professor "1..1" -- "0..*" Avaliacao : realiza >
 
 Departamento "1..1" -- "1..*" Disciplina : oferta >
 

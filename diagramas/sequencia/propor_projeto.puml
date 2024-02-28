@@ -5,11 +5,11 @@ actor ":Aluno" as Aluno
 boundary ":TelaProporProjeto" as TelaProporProjeto
 control ":CtrProporProjeto" as CtrProporProjeto
 entity ":Turma" as Turma
-entity "prop:PropostaProjeto" as PropostaProjeto
+entity "prop:Proposta" as Proposta
 
 Aluno ->> TelaProporProjeto ++: 1: informarDados
 TelaProporProjeto -> CtrProporProjeto --++: 2: registrarProposta(dadosProposta, turma)
-CtrProporProjeto ->> PropostaProjeto **: 3: <<create>>
+CtrProporProjeto ->> Proposta **: 3: <<create>>
 CtrProporProjeto -> Turma : 4: adicionarProposta(prop)
 CtrProporProjeto -> TelaProporProjeto : 5: proposta enviada
 @enduml
