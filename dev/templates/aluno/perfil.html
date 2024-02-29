@@ -8,7 +8,7 @@
 {% block 'content' %}
         <div class="container">
             <div class="row">
-                <p>Tela principal do Aluno</p>
+                <p>Tela principal - Aluno - {{ usuario.nome }}</p>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="button" id="btn-sair">Sair</button>

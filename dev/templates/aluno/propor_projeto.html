@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static '/css/cad_aluno.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Propor projeto</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+        </div>
+
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="column space">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" required>
+
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" required>
+            </div>
+
+            <div class="column">
+                <label for="Tags">Tags (separadas por espaço)</label>
+                <input type="text" name="tags" required>
+            </div>
+            <input class="button" type="submit" value="Propor projeto">
+        </form>
+    </div>
+{% endblock %}

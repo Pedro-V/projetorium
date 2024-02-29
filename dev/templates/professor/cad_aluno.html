@@ -11,23 +11,25 @@
             <p>Cadastro de Aluno</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
-        <form class="registration-form">
-            <div class="column space">
-                <label for="nome">Primeiro nome:</label>
-                <input type="text" id="nome" name="nome" required>
+        <form class="registration-form" method="post">
+            {% csrf_token %}
 
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
-            </div>
+            <label for="aluno">Selecione o aluno que quer adicionar:</label>
+            <select name="aluno" required>
+              {% for aluno in alunos %}
+                <option value="{{ aluno.matricula }}">{{ aluno.nome }} - {{ aluno.matricula }}</option>
+              {% endfor %}
+            </select>
+            <br>
 
-            <div class="column">
-                <label for="sobrenome">Sobrenome:</label>
-                <input type="sobrenome" id="sobrenome" name="sobrenome" required>
+            <label for="turma">Selecione a turma:</label>
+            <select name="turma" required>
+              {% for turma in turmas %}
+                <option value="{{ turma.id }}">{{ turma }}</option>
+              {% endfor %}
+            </select>
 
-                <label for="matricula">Matrícula:</label>
-                <input type="text" id="matricula" name="matricula" required>
-            </div>
-            <input class="button" type="submit" value="Cadastrar">
+            <button type="submit">Cadastrar</button>
         </form>
     </div>
 {% endblock %}

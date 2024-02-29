@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static '/css/cad_aluno.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Escolha um projeto disponível</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+        </div>
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="header">Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for proj in projetos_turma %}
+              <tr>
+                <td>{{ proj.nome }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

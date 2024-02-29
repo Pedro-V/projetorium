@@ -11,27 +11,22 @@
             <p>Cadastro de Turma</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
-        <form class="registration-form">
+        <form class="registration-form" method="post">
+            {% csrf_token %}
             <div class="column space">
-                <label for="nome">Profesor(es):</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <label for="disciplina">Disciplina:</label>
-                <input type="text" id="disciplina" name="disciplina" required>
+                <label for="disciplina">Código da disciplina:</label>
+                <input type="text" name="disciplina" required>
 
                 <label for="ano">Ano:</label>
-                <input type="number" id="ano" name="ano" required>
+                <input type="number" name="ano" required>
             </div>
 
             <div class="column">
-                <label for="departamento">Departamento:</label>
-                <input type="text" id="departamento" name="departamento" required>
-
-                <label for="num_turma">Nº da Turma:</label>
-                <input type="number" id="num_turma" name="num_turma" required>
+                <label for="num_turma">Codigo da Turma:</label>
+                <input type="text" name="codigo" required>
 
                 <label for="periodo">Período:</label>
-                <input type="text" id="periodo" name="periodo" required>
+                <input type="text" name="periodo" required>
             </div>
             <input class="button" type="submit" value="Cadastrar">
         </form>

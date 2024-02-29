@@ -8,7 +8,7 @@
 {% block 'content' %}
         <div class="container">
             <div class="row">
-                <p>Tela principal do Professor</p>
+              <p>Tela principal - Professor - {{ usuario.nome }}</p>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="button" id="btn-sair">Sair</button>
@@ -31,9 +31,6 @@
             <div class="row space">
                 <div class="btn">
                     <a class="button" href="{% url 'cadastrar_turma' %}">Cadastrar turma</a></div>
-                    {% for usuario in usuarios %}
-                        <p>{{usuario.nome}} {{usario.matricula_professor}}</p>
-                    {%endfor%}
             </div>
             <div class="btn">
                 <a class="button" href="{% url 'propostas' %}">Avaliar proposta de projeto</a>

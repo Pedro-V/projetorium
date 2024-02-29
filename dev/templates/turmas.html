@@ -16,27 +16,22 @@
         <table class="tabela">
             <thead>
                 <tr>
+                    <th class="header">Codigo da turma</th>
                     <th class="header">Disciplina</th>
                     <th class="header">Período</th>
-                    <th class="header">Nº da turma</th>
                 </tr>
             </thead>
+            <tbody>
+            {% for turma in turmas %}
+              <tr>
+                <td>
+                  <a href="{% url 'detalhe_turma' turma.id %}">{{ turma.codigo }}</a>
+                </td>
+                <td>{{ turma.disciplina }}</td>
+                <td>{{ turma.ano }} - {{ turma.periodo }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
         </table>
-        <div class="scroll">
-            <table class="tabela">
-                {% for dic in disciplinas %}
-                    <tr>
-                        <td><input type="radio" name="rd-button">{{dic.codigo}}</td>
-                        <td>{{dic.periodo}}</td>
-                        <td>{{dic.num_turma}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="btn_center">
-            <a class="button">Ver turma</a>
-        </div>
-        
     </div>
 {% endblock %}
