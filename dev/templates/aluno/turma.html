@@ -9,15 +9,18 @@
     <div class="container">
         <div class="row">
           <p>{{ turma }}</p>
-          <!-- TODO: Provavelmente o CSS tá mal feito e isso não tá centralizado. -->
           <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
-        <p>Professor: {{ turma.professor }}</p>
-        <hr class="space">
         
+        <div class="row">
+            <p>Professor: {{ turma.professor }}</p>
+        </div>
+
+        <hr class="space">
+
         <div class="row space">
-            <a class="button" href="{% url 'escolher_projeto' turma.id %}">Escolher projeto</button>
-            <a class="button" href="{% url 'propor_projeto' turma.id %}">Propor projeto</button>
+            <a class="button" href="{% url 'escolher_projeto' turma.id %}">Escolher projeto</a>
+            <a class="button" href="{% url 'propor_projeto' turma.id %}">Propor projeto</a>
         </div>
     </div>
 {% endblock %}
