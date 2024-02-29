@@ -84,20 +84,13 @@ class Disciplina(models.Model):
     def __str__(self):
         return f'{self.departamento}{self.codigo}: {self.nome}'
 
-class Turma(models.Model):
-    cod_turma = models.CharField(primary_key=True, max_length=12)
-    cod_disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
-
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula= models.CharField(primary_key=True, max_length=12)
     nome = models.CharField(max_length=100)
     data_nascimento = models.DateField()
-    cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
-    turmas = models.ManyToManyField(Turma)
+    departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
 
-class Grupo(models.Model):
-    cod_grupo = models.AutoField(primary_key=True)
     def __str__(self):
         return self.nome
 
@@ -151,7 +144,7 @@ class Proposta(models.Model):
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
     data_proposta = models.DateField()
-    matricula_aluno = models.ForeignKey(Aluno, on_delete=models.SET("Naao existe"))
+    proponente = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 
 class Avaliacao(models.Model):
     mensagem = models.CharField(max_length=800)
