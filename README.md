@@ -26,6 +26,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - RF: 04-23. (???)
   - Permitir alteração de dados de aluno/professor. (???)
   - Tela de cadastro de aluno/professor. (Carlos)
+- Sincronizar métodos no Diagrama de Classes com métodos da implementação. Fazer
+  após implementação. (???)
 
 ### Seria legal
 
