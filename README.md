@@ -18,7 +18,14 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
+- Adicionar parte de Arquitetura no documento. (???)
+
 ### Necessário
+
+- Requisitos a serem implementados (veja o documento para ver suas descrições):
+  - RF: 04-23. (???)
+  - Permitir alteração de dados de aluno/professor. (???)
+  - Tela de cadastro de aluno/professor. (Carlos)
 
 ### Seria legal
 
