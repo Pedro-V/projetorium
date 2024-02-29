@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -80,7 +82,7 @@ class Disciplina(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nome
+        return f'{self.departamento}{self.codigo}: {self.nome}'
 
 class Turma(models.Model):
     cod_turma = models.CharField(primary_key=True, max_length=12)
@@ -88,7 +90,7 @@ class Turma(models.Model):
 
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    matricula_professor = models.CharField(primary_key=True, max_length=12)
+    matricula= models.CharField(primary_key=True, max_length=12)
     nome = models.CharField(max_length=100)
     data_nascimento = models.DateField()
     cod_departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
@@ -113,13 +115,16 @@ class Grupo(models.Model):
     alunos = models.ManyToManyField(Aluno)
 
 class Turma(models.Model):
-    cod_turma = models.CharField(primary_key=True, max_length=12)
+    codigo = models.CharField(max_length=12)
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
     alunos = models.ManyToManyField(Aluno)
 
+    ano = models.IntegerField(default=datetime.now().year)
+    periodo = models.IntegerField(default=1)
+
     def __str__(self):
-        return f'{self.disciplina}: {self.cod_turma}'
+        return f'{self.disciplina} -  T{self.codigo}'
 
 class Projeto(models.Model):
     titulo = models.CharField(max_length=300)
