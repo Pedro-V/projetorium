@@ -27,7 +27,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 04-05 (Pedro V)
     - 06-23 (???)
   - Permitir alteração de dados de aluno/professor. (???)
-  - Tela de cadastro de aluno/professor. (Carlos)
+  - Sistema de cadastro de aluno/professor finalizado. Talvez seja preciso melhorar as telas no futuro. (Carlos)
 - Sincronizar métodos no Diagrama de Classes com métodos da implementação. Fazer
   após implementação. (???)
 
@@ -35,7 +35,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ## Membros
 
-* [Carlos Eduardo](https://github.com/Eduardocesn) - 
+* [Carlos Eduardo](https://github.com/Eduardocesn) - [carlos.nascimento@dcomp.ufs.br](mailto:carlos.nascimento@dcomp.ufs.br)
 * [Rayan Tavares](https://github.com/Rayan01261) - [rayantavaresjjba@academico.ufs.br](mailto:rayantavaresjjba@acadeimoc.ufs.br)
 * [Pedro Vinícius](https://github.com/Pedro-V) - [pedrov2003@academico.ufs.br](mailto:pedrov2003@acadeimoc.ufs.br)
 * [Max Antônio](https://github.com/Max-Antonio) - [antoniomax@academico.ufs.br](mailto:antoniomax@academico.ufs.br)
