@@ -1,9 +1,7 @@
 from django.urls import path, include
-from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
 urlpatterns = [
-    path("", include('django.contrib.auth.urls')),
     path("perfil/", views.perfil, name='perfil'),
     path('cadastro/', views.cadastro_aluno, name='cadastro_aluno'),
     path('turmas/', views.turmas, name='turmas'),

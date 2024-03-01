@@ -36,6 +36,7 @@ LOGOUT_REDIRECT_URL = 'login'
 
 INSTALLED_APPS = [
     'app',
+    'accounts',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -89,7 +90,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'app.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
