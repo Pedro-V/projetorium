@@ -28,10 +28,27 @@
                 <input type="submit" value="Entrar">
             </div>
         </form>
+
+        <div class="row">
         <a href="">
-            <p style="text-align: center;">
+            <p>
                 Esqueceu a senha? Clique aqui
             </p>
         </a>
+        </div>
+
+        <div class="row">
+        <p>Não possui cadastro? Cadastre-se</p>
+        </div>
+        <div class="row">
+            <a href="{% url 'cadastrar_aluno' %}">
+                <p>Aluno</p>
+            </a>
+            <div style="width: 45px;"></div>
+            <a href="{% url 'cadastrar_professor' %}">
+                <p>Professor</p>
+            </a>
+        </div>
+
     </div>
 {% endblock %}

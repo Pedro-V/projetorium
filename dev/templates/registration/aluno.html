@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/cad_aluno.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Cadastre-se</p>
+            <a href="{% url 'login' %}" class="button">Voltar para tela de login</a>
+        </div>
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="column space">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" required>
+            </div>
+
+            <div class="column">
+                <label for="nasc">Data nascimento:</label>
+                <input type="date" name="nasc" required>
+
+                <label for="curso">Curso:</label>
+                <input type="text" name="curso" required>
+
+                <label for="matricula">Matrícula:</label>
+                <input type="text" name="matricula" required>
+            </div>
+            <input class="button" type="submit" value="Cadastrar">
+        </form>
+    </div>
+{% endblock %}

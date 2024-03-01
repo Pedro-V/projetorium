@@ -23,10 +23,10 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
     #Creates and saves a teacher User.
-    def create_user_teacher(self, email, password=None, **extra_fields):
+    def create_user_teacher(self, email, password, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_teacher', True)
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(self=self, email=email, password=password, **extra_fields)
 
     #Creates and saves a SuperUser.
     def create_superuser(self, email, password, **extra_fields):
