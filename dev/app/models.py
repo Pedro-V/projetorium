@@ -3,11 +3,13 @@ from datetime import datetime
 
 from accounts.models import User
 
+
 class Departamento(models.Model):
     nome = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nome
+
 
 class Disciplina(models.Model):
     codigo = models.CharField(max_length=10, primary_key=True)
@@ -16,6 +18,7 @@ class Disciplina(models.Model):
 
     def __str__(self):
         return f'{self.departamento}{self.codigo}: {self.nome}'
+
 
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
@@ -51,8 +54,10 @@ class Aluno(models.Model):
         """
         return self.turma_set.all()
 
+
 class Grupo(models.Model):
     alunos = models.ManyToManyField(Aluno)
+
 
 class Turma(models.Model):
     codigo = models.CharField(max_length=12)
@@ -65,6 +70,7 @@ class Turma(models.Model):
 
     def __str__(self):
         return f'{self.disciplina} -  T{self.codigo}'
+
 
 class Projeto(models.Model):
     titulo = models.CharField(max_length=300)
@@ -87,11 +93,13 @@ class Projeto(models.Model):
     def __str__(self):
         return self.titulo
 
+
 class Proposta(models.Model):
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
-    data_proposta = models.DateField()
-    proponente = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    tags = models.CharField(max_length=800)
+    data_proposta = models.DateField(auto_now_add=True)
+    autor = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 
 class Avaliacao(models.Model):
     mensagem = models.CharField(max_length=800)
