@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/avaliar_proposta.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Avaliação de Proposta</p>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
+        </div>
+        <hr class="space">
+        
+        <div class="content">
+            <div class="column">
+              <p>Titulo: {{ proposta.titulo }}</p>
+              <p>Descricao: {{ proposta.descricao }}</p>
+              <p>Autor: {{ proposta.autor }}</p>
+              {% if avaliacao %}
+                <p>Status: {% if avaliacao.aprovado %} Aprovado {% else %} Rejeitado {% endif %}</p>
+
+                {% if avaliacao.mensagem %}
+                <p>Mensagem do professor: {{ avaliacao.mensagem }}</p>
+                {% endif %}
+
+              {% endif %}
+            </div>
+        </div>
+
+        {% if not avaliacao and user.is_teacher %}
+        <hr class="space">
+        
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- TODO: alinhar estilo dos campos com outros forms -->
+              <label for="aprovado">Aprova a proposta?</label>
+              <select name="aprovado">
+                <option value="sim">Sim</option>
+                <option value="">Não</option>
+              </select>
+
+              <br>
+              <label for="mensagem">(Opcional) Justificativa:<br></label>
+              <textarea name="mensagem" rows="4" cols="50"></textarea>
+
+              <input class="button" type="submit" value="Cadastrar">
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

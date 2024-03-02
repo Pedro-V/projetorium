@@ -59,6 +59,17 @@ textarea {
     background-color: #597dff;
 }
 
+.error_message{
+    background-color: rgba(255, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message{
+    display: flex;
+    justify-content: center;
+}
+
 .space{
     margin-bottom: 150px;
 }

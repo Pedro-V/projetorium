@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -32,7 +33,7 @@ def consulta_projeto(request):
         return render(request, template_name)
 
 
-class ListarTurmas(View):
+class ListaTurmas(View):
     template_name = 'turmas.html'
 
     def get(self, request):
@@ -77,43 +78,81 @@ class CadastroAlunoTurma(View):
         return redirect('cadastro_aluno_turma')
 
 
-class CadastrarTurma(View):
+class CadastroTurma(View):
     """
     Um professor cadastra uma nova turma.
     """
     template_name = 'professor/cad_turma.html'
 
-    def get(self, request):
+    def get(self, request, error_msg=None):
         disciplinas = Disciplina.objects.all()
+        context = {
+            "disciplinas": disciplinas,
+            "error_msg": error_msg,
+        }
         
-        return render(request, self.template_name, { "disciplinas": disciplinas })
+        return render(request, self.template_name, context)
 
     def post(self, request):
         prof = get_user(request.user)
         disc = Disciplina.objects.get(pk=request.POST['disciplina'])
 
-        Turma.objects.create(
-            disciplina=disc,
-            professor=prof,
-            ano=request.POST['ano'],
-            periodo=request.POST['periodo'],
-            codigo=request.POST['codigo'],
-        )
+        try:
+            Turma.objects.create(
+                disciplina=disc,
+                professor=prof,
+                ano=request.POST['ano'],
+                periodo=request.POST['periodo'],
+                codigo=request.POST['codigo'],
+            )
+        except IntegrityError:
+            return self.get(request, "Uma turma com esses dados já existe!")
 
         return redirect('cadastro_turma')
 
 
-def propostas(request):
+class ListarPropostas(View):
     template_name = 'professor/propostas.html'
 
-    if request.method == 'GET':
-        return render(request, template_name)
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        propostas = Proposta.objects.filter(turma=turma)
+
+        context = {
+            "propostas": propostas,
+            "id_turma": id_turma,
+        }
         
-def avaliar_proposta(request):
-    template_name = 'professor/avaliar_proposta.html'
+        return render(request, self.template_name, context)
+
+
+class DetalheProposta(View):
+    template_name = 'detalhe_proposta.html'
     
-    if request.method == "GET":
-        return render(request, template_name)
+    def get(self, request, id_turma, id_proposta):
+        proposta = Proposta.objects.get(pk=id_proposta)
+        avaliacao = proposta.avaliacao if hasattr(proposta, 'avaliacao') else None
+
+        context = {
+            'proposta': proposta,
+            'avaliacao': avaliacao,
+        }
+
+        return render(request, self.template_name, context)
+
+    def post(self, request, id_turma, id_proposta):
+        proposta = Proposta.objects.get(pk=id_proposta)
+
+        avaliacao = Avaliacao.objects.create(
+            proposta=proposta,
+            aprovado=bool(request.POST['aprovado']),
+            mensagem=request.POST['mensagem'],
+        )
+
+        if avaliacao.aprovado:
+            proposta.promover()
+
+        return redirect('detalhe_proposta', id_turma, id_proposta)
 
 def escolher_projeto(request, id_turma):
     template_name = 'aluno/escolher_projeto.html'
@@ -133,12 +172,16 @@ class ProporProjeto(View):
 
     def post(self, request, id_turma):
         aluno = get_user(request.user)
+        turma = Turma.objects.get(pk=id_turma)
+
         Proposta.objects.create(
             titulo=request.POST['titulo'],
             descricao=request.POST['descricao'],
             tags=request.POST['tags'],
             autor=aluno,
+            turma=turma,
         )
+
         return redirect('detalhe_turma', id_turma)
 
 def projetos(request):

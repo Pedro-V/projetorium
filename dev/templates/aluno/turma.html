@@ -22,5 +22,10 @@
             <a class="button" href="{% url 'escolher_projeto' turma.id %}">Escolher projeto</a>
             <a class="button" href="{% url 'propor_projeto' turma.id %}">Propor projeto</a>
         </div>
+
+        <div class="row space">
+          <button class="button">Participantes</button>
+          <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
+        </div>
     </div>
 {% endblock %}

@@ -22,32 +22,9 @@
             <button class="button">Criar projeto</button>
             <button class="button">Incluir aluno</button>
         </div>
-        <div class="space">
+        <div class="row space">
             <button class="button">Participantes</button>
-        </div>
-        
-        <div style="margin-bottom: 50px;"></div>
-
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Projetos da turma</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="scroll">
-            <table class="tabela">
-                <tr>
-                    <th class="header">Nome</th>
-                    <th class="header">Status</th>
-                </tr>
-                {% for proj in turma.projetos %}
-                    <tr>
-                        <td><a href="">{{proj.nome}}</a></td>
-                        <td>{{proj.fase_projeto}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+            <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
         </div>
     </div>
 {% endblock %}

@@ -56,7 +56,10 @@ class Aluno(models.Model):
 
 
 class Grupo(models.Model):
-    alunos = models.ManyToManyField(Aluno)
+    membros = models.ManyToManyField(Aluno)
+
+    def add_membro(self, aluno):
+        self.membros.add(aluno)
 
 
 class Turma(models.Model):
@@ -64,9 +67,19 @@ class Turma(models.Model):
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
     alunos = models.ManyToManyField(Aluno)
-
     ano = models.IntegerField(default=datetime.now().year)
     periodo = models.IntegerField(default=1)
+    
+
+    class Meta:
+        constraints = [
+            # Uma turma é identificada unicamente por essaas 4 informações.
+            models.UniqueConstraint(
+                fields=['codigo', 'disciplina', 'ano', 'periodo'],
+                name='unique_turma',
+            )
+        ]
+
 
     def __str__(self):
         return f'{self.disciplina} -  T{self.codigo}'
@@ -75,19 +88,21 @@ class Turma(models.Model):
 class Projeto(models.Model):
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
-    data_criacao = models.DateField()
-    cod_grupo = models.OneToOneField(Grupo, on_delete=models.SET("Nao existe"))
+    data_criacao = models.DateField(auto_now_add=True)
+    tags = models.CharField(max_length=800, default="")
+    grupo = models.OneToOneField(Grupo, null=True, on_delete=models.SET_NULL)
+    publico = models.BooleanField(default=False)
 
-    class StatusProjeto(models.TextChoices):
+    class Status(models.TextChoices):
         CONCLUIDO    = ('CO', 'Concluido')
         CANCELADO    = ('CA', 'Cancelado')
         SUSPENSO     = ('SU', 'Suspenso')
         EM_PROGRESSO = ('EP', 'Em progresso')
     
-    status_projeto = models.CharField(
+    status = models.CharField(
         max_length=2,
-        choices=StatusProjeto.choices,
-        default=StatusProjeto.EM_PROGRESSO
+        choices=Status.choices,
+        default=Status.EM_PROGRESSO
     )
 
     def __str__(self):
@@ -97,17 +112,24 @@ class Projeto(models.Model):
 class Proposta(models.Model):
     titulo = models.CharField(max_length=300)
     descricao = models.CharField(max_length=800)
-    tags = models.CharField(max_length=800)
+    tags = models.CharField(max_length=800, default="")
     data_proposta = models.DateField(auto_now_add=True)
     autor = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+
+    def promover(self):
+        grupo = Grupo.objects.create()
+        grupo.add_membro(self.autor)
+
+        Projeto.objects.create(
+            titulo=self.titulo,
+            descricao=self.descricao,
+            tags=self.tags,
+            grupo=grupo,
+            status=Projeto.Status.EM_PROGRESSO,
+        )
 
 class Avaliacao(models.Model):
     mensagem = models.CharField(max_length=800)
     proposta = models.OneToOneField(Proposta, on_delete=models.CASCADE)
-
-    class StatusAvaliacao(models.TextChoices):
-        APROVADO  = ('AP', 'Aprovado')
-        REJEITADO = ('RE', 'Rejeitado')
-        MELHORIAS = ('ME', 'Melhorias')
-    
-    status_avaliacao = models.CharField(max_length=2, choices=StatusAvaliacao.choices)
+    aprovado = models.BooleanField(default=False)
