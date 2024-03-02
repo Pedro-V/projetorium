@@ -1,22 +1,27 @@
 from django.shortcuts import render, redirect
+from django.views import View
 from django.contrib.auth.decorators import login_required
 from .models import Professor, User, Aluno, Turma, Disciplina
 
-def get_user_obj(user):
+
+def get_user(user, template_name=None):
     """
-    Retorna o objeto que especifica o papel de user.
+    Retorna o objeto que especifica o papel de user, e a versão específica 
     Nesse caso, o objeto será um Professor ou Aluno.
     """
-    if user.is_teacher:
-        return Professor.objects.get(user=user)
-    elif user.is_student:
-        return Aluno.objects.get(user=user)
+    UserClass = Professor if user.is_teacher else Aluno
+    specific_user = UserClass.objects.get(user=user)
+    class_name = UserClass.__name__.lower()
+    if template_name:
+        return (specific_user, f'{class_name}/{template_name}')
+    else:
+        return specific_user
 
+    
 @login_required
 def perfil(request):
     if request.method == 'GET':
-        user = get_user_obj(request.user)
-        template_name = type(user).__name__.lower() + "/perfil.html"
+        user, template_name = get_user(request.user, 'perfil.html')
         return render(request, template_name, { 'usuario': user })
 
 def consulta_projeto(request):
@@ -24,44 +29,56 @@ def consulta_projeto(request):
 
     if request.method == "GET":
         return render(request, template_name)
-    
-def turmas(request):
+
+
+class ListarTurmas(View):
     template_name = 'turmas.html'
-    if request.method == "GET":
+
+    def get(self, request):
         if request.user.is_student:
-            turmas = turmas_aluno(request.user)
+            turmas = self.turmas_aluno(request.user)
         else:
-            turmas = turmas_professor(request.user)
-        return render(request, template_name, { 'turmas': turmas })
+            turmas = self.turmas_professor(request.user)
+        return render(request, self.template_name, { 'turmas': turmas })
 
-def turmas_professor(user):
-    """
-    Retorna as turmas que um professor leciona.
-    """
-    prof = Professor.objects.get(user=user)
-    turmas = Turma.objects.filter(professor=prof)
-    return turmas
+    def turmas_professor(self, user):
+        """
+        Retorna as turmas que um professor leciona.
+        """
+        prof = Professor.objects.get(user=user)
+        turmas = Turma.objects.filter(professor=prof)
+        return turmas
 
-def turmas_aluno(user):
-    """
-    Retorna as turmas de um determinado aluno.
-    """
-    aluno = Aluno.objects.get(user=user)
-    turmas = aluno.turma_set.all()
-    return turmas
+    def turmas_aluno(self, user):
+        """
+        Retorna as turmas de um determinado aluno.
+        """
+        aluno = Aluno.objects.get(user=user)
+        turmas = aluno.turma_set.all()
+        return turmas
 
-def turma_detalhe(request, id_turma):
-    user = get_user_obj(request.user)
-    template_name = type(user).__name__.lower() + "/turma.html"
 
-    turma = Turma.objects.get(id=id_turma)
-    return render(request, template_name, { 'turma': turma })
+class DetalheTurma(View):
+    def get(self, request, id_turma):
+        _, template_name = get_user(request.user, 'turma/html')
+        turma = Turma.objects.get(id=id_turma)
+        return render(request, template_name, { 'turma': turma })
 
-def cadastro_aluno(request):
+
+class CadastroAlunoTurma(View):
     """
     Um professor cadastra um aluno numa turma.
     """
-    if request.method == 'POST':
+    template_name = 'professor/cad_aluno.html'
+
+    def get(request):
+        turmas = turmas_professor(request.user)
+        alunos = Aluno.objects.all()
+        context = { "turmas": turmas, "alunos": alunos }
+
+        return render(request, template_name, context)
+
+    def post(request):
         id_turma = request.POST['turma']
         matricula = request.POST['aluno']
 
@@ -71,13 +88,31 @@ def cadastro_aluno(request):
         turma.alunos.add(aluno)
 
         return redirect('cadastro_aluno')
-    elif request.method == 'GET':
-        turmas = turmas_professor(request.user)
-        alunos = Aluno.objects.all()
-        context = { "turmas": turmas, "alunos": alunos }
 
-        template_name = 'professor/cad_aluno.html'
-        return render(request, template_name, context)
+
+class CadastrarTurma(View):
+    """
+    Um professor cadastra uma nova turma.
+    """
+    template_name = 'professor/cad_turma.html'
+
+    def get(request):
+        return render(request, template_name)
+
+    def post(request):
+        prof = Professor.objects.get(user=request.user)
+        disc = Disciplina.objects.get(codigo=request.POST['disciplina'])
+
+        Turma.objects.create(
+            disciplina=disc,
+            professor=prof,
+            ano=request.POST['ano'],
+            periodo=request.POST['periodo'],
+            codigo=request.POST['codigo'],
+        )
+
+        return redirect('cadastrar_turma')
+
 
 def propostas(request):
     template_name = 'professor/propostas.html'
@@ -97,29 +132,16 @@ def escolher_projeto(request, id_turma):
     if request.method == 'GET':
         return render(request, template_name)
 
-def propor_projeto(request, id_turma):
+
+class ProporProjeto(View):
+    """
+    Um aluno propõem um projeto para o professor da turma.
+    """
     template_name = 'aluno/propor_projeto.html'
 
-    if request.method == 'GET':
+    def get(request, id_turma):
         return render(request, template_name)
 
-def cadastrar_turma(request):
-    if request.method == "POST":
-        prof = Professor.objects.get(user=request.user)
-        disc = Disciplina.objects.get(codigo=request.POST['disciplina'])
-
-        Turma.objects.create(
-            disciplina=disc,
-            professor=prof,
-            ano=request.POST['ano'],
-            periodo=request.POST['periodo'],
-            codigo=request.POST['codigo'],
-        )
-
-        return redirect('cadastrar_turma')
-    elif request.method == 'GET':
-        template_name = 'professor/cad_turma.html'
-        return render(request, template_name)
 
 def projetos(request):
     template_name = 'aluno/projetos.html'

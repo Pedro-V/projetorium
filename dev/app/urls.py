@@ -1,16 +1,16 @@
 from django.urls import path, include
-from . import views
+from app.views import *
 
 urlpatterns = [
-    path("perfil/", views.perfil, name='perfil'),
-    path('cadastro/', views.cadastro_aluno, name='cadastro_aluno'),
-    path('turmas/', views.turmas, name='turmas'),
-    path('turma/<int:id_turma>/', views.turma_detalhe, name='detalhe_turma'),
-    path('turma/<int:id_turma>/escolher_projeto', views.escolher_projeto, name='escolher_projeto'),
-    path('turma/<int:id_turma>/propor_projeto', views.propor_projeto, name='propor_projeto'),
-    path('consulta_projeto/', views.consulta_projeto, name='consulta_projeto'),
-    path('proposta/', views.avaliar_proposta, name='avaliar_proposta'),
-    path('cadastrar_turma', views.cadastrar_turma, name='cadastrar_turma'),
-    path('propostas/', views.propostas, name='propostas'),
-    path('projetos/', views.projetos, name='projetos'),
+    path("perfil/", perfil, name='perfil'),
+    path('cadastro_aluno_turma/', CadastroAlunoTurma.as_view(), name='cadastro_aluno_turma'),
+    path('cadastro_turma', CadastrarTurma.as_view(), name='cadastro_turma'),
+    path('turmas/', ListarTurmas.as_view(), name='turmas'),
+    path('turma/<int:id_turma>/', DetalheTurma.as_view(), name='detalhe_turma'),
+    path('turma/<int:id_turma>/escolher_projeto', escolher_projeto, name='escolher_projeto'),
+    path('turma/<int:id_turma>/propor_projeto', ProporProjeto.as_view(), name='propor_projeto'),
+    path('consulta_projeto/', consulta_projeto, name='consulta_projeto'),
+    path('proposta/', avaliar_proposta, name='avaliar_proposta'),
+    path('propostas/', propostas, name='propostas'),
+    path('projetos/', projetos, name='projetos'),
 ]
