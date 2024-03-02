@@ -14,8 +14,13 @@
         <form class="registration-form" method="post">
             {% csrf_token %}
             <div class="column space">
-                <label for="disciplina">Código da disciplina:</label>
-                <input type="text" name="disciplina" required>
+
+                <label for="disciplina">Selecione a disciplina:</label>
+                <select name="disciplina" required>
+                {% for disc in disciplinas %}
+                  <option value="{{ disc.pk }}">{{ disc }}</option>
+                {% endfor %}
+                </select>
 
                 <label for="ano">Ano:</label>
                 <input type="number" name="ano" required>
