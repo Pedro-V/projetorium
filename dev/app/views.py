@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
-from .models import Professor, User, Aluno, Turma, Disciplina
+
+from app.models import *
 
 
 def get_user(user, template_name=None):
@@ -73,7 +74,7 @@ class CadastroAlunoTurma(View):
 
         turma.alunos.add(aluno)
 
-        return redirect('cadastro_aluno')
+        return redirect('cadastro_aluno_turma')
 
 
 class CadastrarTurma(View):
@@ -88,7 +89,7 @@ class CadastrarTurma(View):
         return render(request, self.template_name, { "disciplinas": disciplinas })
 
     def post(self, request):
-        prof = Professor.objects.get(user=request.user)
+        prof = get_user(request.user)
         disc = Disciplina.objects.get(pk=request.POST['disciplina'])
 
         Turma.objects.create(
@@ -127,9 +128,18 @@ class ProporProjeto(View):
     """
     template_name = 'aluno/propor_projeto.html'
 
-    def get(request, id_turma):
-        return render(request, template_name)
+    def get(self, request, id_turma):
+        return render(request, self.template_name)
 
+    def post(self, request, id_turma):
+        aluno = get_user(request.user)
+        Proposta.objects.create(
+            titulo=request.POST['titulo'],
+            descricao=request.POST['descricao'],
+            tags=request.POST['tags'],
+            autor=aluno,
+        )
+        return redirect('detalhe_turma', id_turma)
 
 def projetos(request):
     template_name = 'aluno/projetos.html'
