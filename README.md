@@ -18,7 +18,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Adicionar parte de Arquitetura no documento. (???)
+- Adicionar parte de Arquitetura no documento. (Matheus e Jonas)
 
 ### Necessário
 
