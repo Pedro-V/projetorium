@@ -59,6 +59,7 @@ tr{
     border-radius: 4px;
     cursor: pointer;
     width: 35%;
+    text-align: center;
 }
 
 .button:hover {

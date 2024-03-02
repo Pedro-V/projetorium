@@ -11,7 +11,7 @@
         <div class="row" id="header">
             <p>{{turma.nome}}</p>
             <p>{{turma.professor}}</p>
-            <button class="button">Voltar para tela principal</button>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
         <div class="row space">
             <p>{{turma.disciplina}}</p>
