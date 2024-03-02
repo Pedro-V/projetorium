@@ -27,6 +27,14 @@ class Professor(models.Model):
     def __str__(self):
         return self.nome
 
+    def turmas(self):
+        """
+        Retorna as turmas que um professor leciona.
+        """
+        turmas = Turma.objects.filter(professor=self)
+        return turmas
+
+
 class Aluno(models.Model):
     matricula = models.CharField(primary_key=True, max_length=12)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
@@ -36,6 +44,12 @@ class Aluno(models.Model):
 
     def __str__(self):
         return f'{self.nome}: {self.matricula}'
+
+    def turmas(self):
+        """
+        Retorna as turmas de um determinado aluno.
+        """
+        return self.turma_set.all()
 
 class Grupo(models.Model):
     alunos = models.ManyToManyField(Aluno)
