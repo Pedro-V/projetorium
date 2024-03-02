@@ -35,32 +35,13 @@ class ListarTurmas(View):
     template_name = 'turmas.html'
 
     def get(self, request):
-        if request.user.is_student:
-            turmas = self.turmas_aluno(request.user)
-        else:
-            turmas = self.turmas_professor(request.user)
-        return render(request, self.template_name, { 'turmas': turmas })
-
-    def turmas_professor(self, user):
-        """
-        Retorna as turmas que um professor leciona.
-        """
-        prof = Professor.objects.get(user=user)
-        turmas = Turma.objects.filter(professor=prof)
-        return turmas
-
-    def turmas_aluno(self, user):
-        """
-        Retorna as turmas de um determinado aluno.
-        """
-        aluno = Aluno.objects.get(user=user)
-        turmas = aluno.turma_set.all()
-        return turmas
+        user = get_user(request.user)
+        return render(request, self.template_name, { 'turmas': user.turmas() })
 
 
 class DetalheTurma(View):
     def get(self, request, id_turma):
-        _, template_name = get_user(request.user, 'turma/html')
+        _, template_name = get_user(request.user, 'turma.html')
         turma = Turma.objects.get(id=id_turma)
         return render(request, template_name, { 'turma': turma })
 
@@ -71,14 +52,19 @@ class CadastroAlunoTurma(View):
     """
     template_name = 'professor/cad_aluno.html'
 
-    def get(request):
-        turmas = turmas_professor(request.user)
+    def get(self, request):
+        prof = get_user(request.user)
+        turmas = prof.turmas();
         alunos = Aluno.objects.all()
-        context = { "turmas": turmas, "alunos": alunos }
 
-        return render(request, template_name, context)
+        context = {
+            "turmas": turmas,
+            "alunos": alunos,
+        }
 
-    def post(request):
+        return render(request, self.template_name, context)
+
+    def post(self, request):
         id_turma = request.POST['turma']
         matricula = request.POST['aluno']
 
@@ -96,12 +82,14 @@ class CadastrarTurma(View):
     """
     template_name = 'professor/cad_turma.html'
 
-    def get(request):
-        return render(request, template_name)
+    def get(self, request):
+        disciplinas = Disciplina.objects.all()
+        
+        return render(request, self.template_name, { "disciplinas": disciplinas })
 
-    def post(request):
+    def post(self, request):
         prof = Professor.objects.get(user=request.user)
-        disc = Disciplina.objects.get(codigo=request.POST['disciplina'])
+        disc = Disciplina.objects.get(pk=request.POST['disciplina'])
 
         Turma.objects.create(
             disciplina=disc,
@@ -111,7 +99,7 @@ class CadastrarTurma(View):
             codigo=request.POST['codigo'],
         )
 
-        return redirect('cadastrar_turma')
+        return redirect('cadastro_turma')
 
 
 def propostas(request):
