@@ -11,6 +11,14 @@ class Departamento(models.Model):
         return self.nome
 
 
+class Curso(models.Model):
+    nome = models.CharField(max_length=50)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nome
+
+
 class Disciplina(models.Model):
     codigo = models.CharField(max_length=10, primary_key=True)
     nome = models.CharField(max_length=100)
@@ -25,7 +33,7 @@ class Professor(models.Model):
     matricula= models.CharField(primary_key=True, max_length=12)
     nome = models.CharField(max_length=100)
     data_nascimento = models.DateField()
-    departamento = models.ForeignKey(Departamento, on_delete=models.SET("Nao existe"))
+    departamento = models.ForeignKey(Departamento, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.nome
@@ -42,7 +50,7 @@ class Aluno(models.Model):
     matricula = models.CharField(primary_key=True, max_length=12)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     nome = models.CharField(max_length=100)
-    curso = models.CharField(max_length=50)
+    curso = models.ForeignKey(Curso, null=True, on_delete=models.SET_NULL)
     data_nascimento = models.DateField()
 
     def __str__(self):
@@ -128,6 +136,7 @@ class Proposta(models.Model):
             grupo=grupo,
             status=Projeto.Status.EM_PROGRESSO,
         )
+
 
 class Avaliacao(models.Model):
     mensagem = models.CharField(max_length=800)
