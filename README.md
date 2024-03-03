@@ -27,7 +27,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 01-03 (Max) 
     - 04-05 (Pedro V)
     - 06 e 12 (Carlos)
-    - 13-17 (Matheus)
+    - 13-17 (Matheus/Jonas)
     - 18-23 (Pedro A.)
     - 07-11 (pendente*)
   - Permitir alteração de dados de aluno/professor. (???)
