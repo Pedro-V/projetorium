@@ -28,7 +28,8 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 04-05 (Pedro V)
     - 06 e 12 (Carlos)
     - 13-17 (Matheus)
-    - 07-23 (???)
+    - 18-23 (Pedro A.)
+    - 07-11 (pendente*)
   - Permitir alteração de dados de aluno/professor. (???)
   - Sistema de cadastro de aluno/professor finalizado. Talvez seja preciso melhorar as telas no futuro. (Carlos)
 - Sincronizar métodos no Diagrama de Classes com métodos da implementação. Fazer
