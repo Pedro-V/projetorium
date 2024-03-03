@@ -89,7 +89,7 @@ Avaliacao "1..1" -- "1..1" Proposta : recebe <
 
 Grupo "1..1" -- "1..1" Projeto : responsável >
 
-Professor "1..*" -- "0..*" Turma : leciona >
+Professor "1..1" -- "0..*" Turma : leciona >
 Professor "1..1" -- "0..*" Avaliacao : realiza >
 
 Turma "0..*" -- "1..1" Disciplina : instância de >
