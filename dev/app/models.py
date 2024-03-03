@@ -20,12 +20,21 @@ class Curso(models.Model):
 
 
 class Disciplina(models.Model):
-    codigo = models.CharField(max_length=10, primary_key=True)
+    codigo = models.CharField(max_length=10)
     nome = models.CharField(max_length=100)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.departamento}{self.codigo}: {self.nome}'
+
+    class Meta:
+        constraints = [
+            # Uma disciplina é identificada unicamente por essas informações.
+            models.UniqueConstraint(
+                fields=['codigo', 'departamento'],
+                name='unique_disciplina',
+            )
+        ]
 
 
 class Professor(models.Model):
@@ -81,7 +90,7 @@ class Turma(models.Model):
 
     class Meta:
         constraints = [
-            # Uma turma é identificada unicamente por essaas 4 informações.
+            # Uma turma é identificada unicamente por essas informações.
             models.UniqueConstraint(
                 fields=['codigo', 'disciplina', 'ano', 'periodo'],
                 name='unique_turma',
