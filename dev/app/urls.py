@@ -10,8 +10,8 @@ urlpatterns = [
     path('turma/<int:id_turma>/escolher_projeto', escolher_projeto, name='escolher_projeto'),
     path('turma/<int:id_turma>/propor_projeto', ProporProjeto.as_view(), name='propor_projeto'),
     path('turma/<int:id_turma>/propostas', ListarPropostas.as_view(), name='propostas'),
-    path('turma/<int:id_turma>/propostas/<int:id_proposta>',
-         DetalheProposta.as_view(), name='detalhe_proposta'),
-    path('consulta_projeto/', consulta_projeto, name='consulta_projeto'),
+    path('turma/<int:id_turma>/propostas/<int:id_proposta>', DetalheProposta.as_view(), name='detalhe_proposta'),
+    path('consulta/', ConsultaProjeto.as_view(), name='consulta_projeto'),
+    path('consulta/?nome=<str:nome>', ResultadoProjeto.as_view(), name='resultado_projeto'),
     path('projetos/', projetos, name='projetos'),
 ]

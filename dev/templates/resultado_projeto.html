@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="static/css/resultado_projeto.css" rel="stylesheet">
+    <link href="{% static 'css/resultado_projeto.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block 'content' %}
@@ -27,8 +27,8 @@
             <table class="tabela">
                 {% for proj in projetos %}
                     <tr>
-                        <td><input type="radio" name="rd-button">{{proj.nome}}</td>
-                        <td>{{proj.fase_projeto}}</td>
+                        <td><input type="radio" name="rd-button">{{proj.titulo}}</td>
+                        <td>{{proj.status}}</td>
                         <td>{{proj.periodo}}</td>
                         <td>{{proj.disciplina}}</td>
                     </tr>

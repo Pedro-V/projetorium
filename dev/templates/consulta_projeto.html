@@ -13,9 +13,9 @@
             <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <hr class="space">
-        <form class="registration-form space" id="proj-form">
+        <form class="registration-form space" id="proj-form" method="post"> {% csrf_token %}
             <div class="field">
-                <input type="text" id="nome-proj" autofocus="true" placeholder="Digite o nome do projeto" required>
+                <input name="nome_proj" type="text" id="nome-proj" autofocus="true" placeholder="Digite o nome do projeto" required>
                 <span class="fas fa-search"></span>
             </div>
         </form>

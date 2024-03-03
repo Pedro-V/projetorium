@@ -26,12 +26,22 @@ def perfil(request):
         user, template_name = get_user(request.user, 'perfil.html')
         return render(request, template_name, { 'usuario': user })
 
-def consulta_projeto(request):
+class ConsultaProjeto(View):
     template_name = 'consulta_projeto.html'
 
-    if request.method == "GET":
-        return render(request, template_name)
+    def get(self, request):
+        return render(request, self.template_name)
 
+    def post(self, request):
+        nome_filtro = request.POST['nome_proj']
+        return redirect('resultado_projeto', nome=nome_filtro)
+
+class ResultadoProjeto(View):
+    template_name = 'resultado_projeto.html'
+
+    def get(self, request, nome):
+        projetos = Projeto.objects.filter(titulo__icontains=nome)
+        return render(request, self.template_name, {'projetos': projetos})
 
 class ListaTurmas(View):
     template_name = 'turmas.html'
