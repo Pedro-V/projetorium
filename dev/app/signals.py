@@ -13,8 +13,10 @@ def initialize_basic_data():
     departamentos = [
         {
             'nome': 'DCOMP',
-            'nome': 'DEL',
         },
+        {
+            'nome': 'DEL',
+        }
     ]
     for dep in departamentos:
         Departamento.objects.create(**dep)
