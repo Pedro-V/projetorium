@@ -29,7 +29,11 @@
                 <input type="date" name="nasc" required>
 
                 <label for="dept">Departamento:</label>
-                <input type="text" name="dept" required>
+                <select name="dept" required>
+                  {% for dept in departamentos %}
+                    <option value="{{ dept.pk }}">{{ dept }}</option>
+                  {% endfor %}
+                </select>
 
                 <label for="matricula">Matrícula:</label>
                 <input type="text" name="matricula" required>

@@ -13,6 +13,7 @@ def initialize_basic_data():
     departamentos = [
         {
             'nome': 'DCOMP',
+            'nome': 'DEL',
         },
     ]
     for dep in departamentos:

@@ -3,14 +3,16 @@ from django.views import View
 from django.contrib.auth import login
 
 from accounts.models import User
-from app.models import Aluno, Professor, Departamento
+from app.models import Aluno, Professor, Departamento, Curso
 
 # Create your views here.
 class CadastrarAluno(View):
     template_name = 'registration/aluno.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        cursos = Curso.objects.all()
+
+        return render(request, self.template_name, { 'cursos': cursos })
 
     def post(self, request):
         user = User(
@@ -19,13 +21,15 @@ class CadastrarAluno(View):
         )
         user.set_password(request.POST['senha'])
         user.save()
+
+        curso = Curso.objects.get(pk=request.POST['curso'])
         
         Aluno.objects.create(
             user=user,
             matricula=request.POST['matricula'],
             nome=request.POST['nome'],
             data_nascimento=request.POST['nasc'],
-            curso=request.POST['curso'],
+            curso=curso,
         )
 
         login(request, user)
@@ -36,7 +40,9 @@ class CadastrarProfessor(View):
     template_name = 'registration/professor.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        departamentos = Departamento.objects.all()
+
+        return render(request, self.template_name, { 'departamentos': departamentos })
 
     def post(self, request):
         user = User(
@@ -46,7 +52,7 @@ class CadastrarProfessor(View):
         user.set_password(request.POST['senha'])
         user.save()
         
-        dept = Departamento.objects.get(nome=request.POST['dept'])
+        dept = Departamento.objects.get(pk=request.POST['dept'])
 
         Professor.objects.create(
             user=user,
