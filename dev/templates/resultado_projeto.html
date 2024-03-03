@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <p>Resultados da consulta</p>
-            <button class="button">Voltar para tela de consulta</button>
+            <a class="button" href="{% url 'consulta_projeto' %}">Voltar para tela de consulta</a>
         </div>
         <hr class="space">
 
@@ -27,18 +27,13 @@
             <table class="tabela">
                 {% for proj in projetos %}
                     <tr>
-                        <td><input type="radio" name="rd-button">{{proj.titulo}}</td>
+                        <td><a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a></td>
                         <td>{{proj.status}}</td>
                         <td>{{proj.periodo}}</td>
                         <td>{{proj.disciplina}}</td>
                     </tr>
                 {% endfor %}
             </table>
-        </div>
-
-        <div class="btn_center">
-            <button class="button">Ver projeto</button>
-        </div>
-        
+        </div>        
     </div>
 {% endblock %}

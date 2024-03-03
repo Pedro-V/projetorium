@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="static/css/projeto.css" rel="stylesheet">
+    <link href="{% static 'css/projeto.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 {% endblock %}
 
 {% block 'content' %}
     <div class="container">
         <div class="row">
-            <h2 style="color: white;">{{projeto.nome}}</h2>
-            <button class="button">Voltar para tela principal</button>
+            <h2 style="color: white;">{{projeto.titulo}}</h2>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <div class="content">
             <div class="column">
@@ -19,7 +19,7 @@
                 <p>{{projeto.disciplina}}</p>
             </div>
             <div class="column">
-                <p>{{projeto.fase_projeto}}</p>
+                <p>{{projeto.status}}</p>
                 <p>Entrega prevista: {{projeto.entrega}}</p>
                 <p>{{projeto.professor}}</p>
             </div>
@@ -68,10 +68,10 @@
             </table>
             <div class="scroll">
                 <table class="tabela">
-                    {% for aluno in projeto.equipe %}
+                    {% for aluno in projeto.grupo.all %}
                         <tr>
                             <td>{{aluno.nome}}</td>
-                            <td>{{aluno.email}}</td>
+                            <td>{{aluno.user.email}}</td>
                             <td>{{aluno.matricula}}</td>
                         </tr>
                     {% endfor %}

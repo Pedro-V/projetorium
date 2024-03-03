@@ -14,4 +14,5 @@ urlpatterns = [
     path('consulta/', ConsultaProjeto.as_view(), name='consulta_projeto'),
     path('consulta/?nome=<str:nome>', ResultadoProjeto.as_view(), name='resultado_projeto'),
     path('projetos/', projetos, name='projetos'),
+    path('projeto/<int:id>/', ProjetoDetalhe.as_view(), name='projeto'),
 ]

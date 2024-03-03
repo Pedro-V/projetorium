@@ -1,5 +1,5 @@
 from django.db import IntegrityError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.decorators import login_required
 
@@ -199,3 +199,10 @@ def projetos(request):
 
     if request.method == 'GET':
         return render(request, template_name)
+
+class ProjetoDetalhe(View):
+    template_name = 'projeto.html'
+
+    def get(self, request, id):
+        projeto = get_object_or_404(Projeto, pk=id)
+        return render(request, self.template_name, {'projeto': projeto})
