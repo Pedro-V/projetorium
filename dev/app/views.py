@@ -2,7 +2,10 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import student_required, teacher_required
+from django.utils.decorators import method_decorator
 
+from app.signals import *
 from app.models import *
 
 

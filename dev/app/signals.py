@@ -99,7 +99,7 @@ def initialize_user_data():
         },
     ]
     for prof in professors:
-        Professor.objects.create(**professors)
+        Professor.objects.create(**prof)
 
     alunos = [
         {
@@ -110,7 +110,7 @@ def initialize_user_data():
             'data_nascimento': '2003-04-23',
         },
         {
-            'user': User.objects.get(email='tiago@academico.ufs.br'),
+            'user': User.objects.get(email='tiago@dcomp.ufs.br'),
             'matricula': '202200011816',
             'nome': 'Tiago',
             'curso': Curso.objects.get(nome='Engenharia da Computação'),
