@@ -1,15 +1,14 @@
 # Projetorium Web
 
-Aplicação web do Projetorium, escrito em Django.
+Aplicação Web do Projetorium, escrito em Django.
 
-## Autenticação
+# Executando
 
-* Implementado o sistema de Login/Logout. (Seguindo as instruções contidas [nesse site](https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html) para realizar a autenticação foi criado um novo modelo chamado User).
-
-## Perfil do professor
-
-* Adicionado principais urls para o perfil do professor, além da linkagem entre os botões e a troca de urls.
-
-## Modelos
-
-* Adicionado os principais modelos para o banco sqlite. Obs: os modelos que envolvem a parte de projeto/proposta ainda não estão funcionando.
+```sh
+# Primeiro, garanta que o estado da aplicação é o inicial:
+$ rm -f db.sqlite3
+# Execute as migrações de banco e execute a aplicação em localhost:8000.
+# A migração inicial sempre cria dados fundamentais (departamentos, cursos, etc).
+$ python manage.py migrate
+$ python manage.py runserver
+```
