@@ -28,7 +28,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 06 e 12 (Carlos)
     - 13-17 (Matheus/Jonas)
     - 18-23 (Pedro A.)
-    - 7-9 (Max)
+    - 3 e 7-9 (Max)
     - 10-11 (pendente*)
   - Permitir alteração de dados de aluno/professor. (???)
   - Sistema de cadastro de aluno/professor finalizado. Talvez seja preciso melhorar as telas no futuro. (Carlos)
