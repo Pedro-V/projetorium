@@ -30,6 +30,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 10-11 (???)
   - Permitir alteração de dados de aluno/professor. (???)
   - Permitir reavaliação de uma proposta (Pedro V.)
+- Alinhas estilo de form de avaliação de projeto com resto da aplicação (???)
 - Sincronizar métodos no Diagrama de Classes com métodos da implementação. Fazer
   após implementação. (???)
 
