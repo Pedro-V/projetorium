@@ -24,6 +24,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
   - RFs
+    - 01-03 (Max) 
     - 04-05 (Pedro V)
     - 06 e 12 (Carlos)
     - 13-17 (Matheus)
