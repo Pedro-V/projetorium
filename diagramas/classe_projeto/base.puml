@@ -80,11 +80,11 @@ Departamento "1..1" -- "1..*" Curso : responsável >
 Aluno "1..*" -- "1..1" Curso : cursa >
 Professor "1..*" -- "1..1" Departamento : trabalha >
 
-Proposta "1..1" -- "1..1" Projeto : promovida >
+Proposta "1..1" -- "0..1" Projeto : promovida >
 
 Aluno "1..*" -- "0..1" Grupo : forma >
 Aluno "0..*" -- "0..*" Turma : estuda >
-Aluno "1..1" -- "0..*" Proposta : propõe >
+Aluno "1..1" -- "0..*" Proposta : é autor >
 Avaliacao "1..1" -- "1..1" Proposta : recebe <
 
 Grupo "1..1" -- "1..1" Projeto : responsável >

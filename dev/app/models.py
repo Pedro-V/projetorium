@@ -133,6 +133,7 @@ class Proposta(models.Model):
     data_proposta = models.DateField(auto_now_add=True)
     autor = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    projeto_promovido = models.ForeignKey(Projeto, null=True, on_delete=models.SET_NULL)
 
     def promover(self):
         grupo = Grupo.objects.create()
