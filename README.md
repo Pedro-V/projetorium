@@ -24,14 +24,12 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
   - RFs
-    - 04-05 (Pedro V)
-    - 06 e 12 (Carlos)
+    - 03, 06-09 e 12 (Carlos/Max)
     - 13-17 (Matheus/Jonas)
-    - 18-23 (Pedro A.)
-    - 3 e 7-9 (Max)
-    - 10-11 (pendente*)
+    - 18-23 (Pedro A./Rayan)
+    - 10-11 (???)
   - Permitir alteração de dados de aluno/professor. (???)
-  - Sistema de cadastro de aluno/professor finalizado. Talvez seja preciso melhorar as telas no futuro. (Carlos)
+  - Permitir reavaliação de uma proposta (Pedro V.)
 - Sincronizar métodos no Diagrama de Classes com métodos da implementação. Fazer
   após implementação. (???)
 
