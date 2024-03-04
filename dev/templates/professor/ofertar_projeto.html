@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static '/css/ofertar_projeto.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Ofertar projeto</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+        </div>
+
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="column space">
+                <label for="nome">Titulo</label>
+                <input type="text" name="titulo" required>
+
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" required>
+            </div>
+
+            <div class="column">
+                <label for="Tags">Tags (separadas por espaço)</label>
+                <input type="text" name="tags" required>
+            </div>
+            <input class="button" type="submit" value="Ofertar projeto">
+        </form>
+    </div>
+{% endblock %}

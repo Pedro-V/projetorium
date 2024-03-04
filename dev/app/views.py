@@ -124,6 +124,29 @@ class CadastroTurma(View):
         return redirect('cadastro_turma')
 
 
+class OfertarProjeto(View):
+    """
+    Um professor oferta projetos a uma turma específica
+    """
+    template_name = 'professor/ofertar_projeto.html'
+
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        return render(request, self.template_name)
+    
+    def post(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        Projeto.objects.create(
+            titulo=request.POST['titulo'],
+            descricao=request.POST['descricao'],
+            tags=request.POST['tags'],
+            turma=turma,
+            status=Projeto.Status.EM_PROGRESSO
+        )
+
+        return redirect('ofertar_projeto', id_turma)
+
+
 class ListarPropostas(View):
     template_name = 'professor/propostas.html'
 

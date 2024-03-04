@@ -107,6 +107,7 @@ class Projeto(models.Model):
     descricao = models.CharField(max_length=800)
     data_criacao = models.DateField(auto_now_add=True)
     tags = models.CharField(max_length=800, default="")
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     grupo = models.OneToOneField(Grupo, null=True, on_delete=models.SET_NULL)
     publico = models.BooleanField(default=False)
 

@@ -11,6 +11,7 @@ urlpatterns = [
     path('turma/<int:id_turma>/propor_projeto', ProporProjeto.as_view(), name='propor_projeto'),
     path('turma/<int:id_turma>/propostas', ListarPropostas.as_view(), name='propostas'),
     path('turma/<int:id_turma>/propostas/<int:id_proposta>', DetalheProposta.as_view(), name='detalhe_proposta'),
+    path('turma/<int:id_turma>/ofertar_projeto', OfertarProjeto.as_view(), name='ofertar_projeto'),
     path('consulta/', ConsultaProjeto.as_view(), name='consulta_projeto'),
     path('consulta/?nome=<str:nome>', ResultadoProjeto.as_view(), name='resultado_projeto'),
     path('projetos/', projetos, name='projetos'),
