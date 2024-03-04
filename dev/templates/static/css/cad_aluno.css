@@ -73,3 +73,12 @@ textarea {
 .space{
     margin-bottom: 150px;
 }
+
+select {
+    border: none;
+    padding: 7px;
+    margin-bottom: 8px;
+    width: 100%;
+    border-radius: 4px;
+    text-align: left;
+}

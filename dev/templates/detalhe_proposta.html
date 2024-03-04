@@ -19,10 +19,16 @@
               <p>Descricao: {{ proposta.descricao }}</p>
               <p>Autor: {{ proposta.autor }}</p>
               {% if avaliacao %}
-                <p>Status: {% if avaliacao.aprovado %} Aprovado {% else %} Rejeitado {% endif %}</p>
+                <p>Status: 
+                    {% if avaliacao.aprovado %} 
+                        Aprovado 
+                    {% else %} 
+                        Rejeitado 
+                    {% endif %}
+                </p>
 
                 {% if avaliacao.mensagem %}
-                <p>Mensagem do professor: {{ avaliacao.mensagem }}</p>
+                    <p>Mensagem do professor: {{ avaliacao.mensagem }}</p>
                 {% endif %}
 
               {% endif %}
@@ -30,23 +36,34 @@
         </div>
 
         {% if not avaliacao and user.is_teacher %}
-        <hr class="space">
+            <hr class="space">
         
-        <form method="post">
-            {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
 
-            <!-- TODO: alinhar estilo dos campos com outros forms -->
-              <label for="aprovado">Aprova a proposta?</label>
-              <select name="aprovado">
-                <option value="sim">Sim</option>
-                <option value="">Não</option>
-              </select>
+                <!-- TODO: alinhar estilo dos campos com outros forms -->
+                <div class="row">
+                    <div class="column">
+                        <div class="item-row">
+                            <label for="aprovado" style="margin-right: 20px;">Aprova a proposta?</label>
+                            <select name="aprovado">
+                                <option value="sim">Sim</option>
+                                <option value="">Não</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div class="column">
+                        <div class="item-row">
+                        <label for="mensagem" style="margin-bottom: 10px;">(Opcional) Justificativa:<br></label>
+                        <textarea name="mensagem" rows="4" cols="50"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-              <br>
-              <label for="mensagem">(Opcional) Justificativa:<br></label>
-              <textarea name="mensagem" rows="4" cols="50"></textarea>
-
-              <input class="button" type="submit" value="Cadastrar">
+                <div class="item-row" style="margin-top: 60px;">
+                    <input class="button" type="submit" value="Cadastrar">
+                </div>
         </form>
         {% endif %}
     </div>

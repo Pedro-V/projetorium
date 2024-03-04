@@ -20,7 +20,7 @@
 }
 
 .column {
-    width: 45%;
+    width: 50%;
     margin-bottom: 20px;
 }
 
@@ -55,4 +55,22 @@ div{
 
 .space{
     margin-bottom: 20px;
+}
+
+.item-row{
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    border: none;
+    padding: 7px 10px;
+    width: 30%;
+    border-radius: 4px;
+    text-align: left;
+}
+
+textarea {
+    border: none;
+    border-radius: 4px;
 }
