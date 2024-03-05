@@ -18,13 +18,15 @@
                     <th class="header">Nome</th>
                 </tr>
             </thead>
-            <tbody>
-            {% for proj in projetos_turma %}
-              <tr>
-                <td>{{ proj.nome }}</td>
-              </tr>
-            {% endfor %}
-            </tbody>
         </table>
+        <div class="scroll">
+            <table class="tabela">
+                {% for proj in projetos %}
+                    <tr>
+                        <td><a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>    
     </div>
 {% endblock %}

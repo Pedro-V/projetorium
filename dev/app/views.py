@@ -141,7 +141,6 @@ class OfertarProjeto(View):
             descricao=request.POST['descricao'],
             tags=request.POST['tags'],
             turma=turma,
-            status=Projeto.Status.EM_PROGRESSO
         )
 
         return redirect('ofertar_projeto', id_turma)
@@ -190,11 +189,13 @@ class DetalheProposta(View):
 
         return redirect('detalhe_proposta', id_turma, id_proposta)
 
-def escolher_projeto(request, id_turma):
+class Escolher_projeto(View):
     template_name = 'aluno/escolher_projeto.html'
 
-    if request.method == 'GET':
-        return render(request, template_name)
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        projetos = Projeto.objects.filter(turma=turma)
+        return render(request, self.template_name, {'projetos': projetos})
 
 
 class ProporProjeto(View):
