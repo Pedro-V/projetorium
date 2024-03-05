@@ -140,6 +140,7 @@ class OfertarProjeto(View):
             titulo=request.POST['titulo'],
             descricao=request.POST['descricao'],
             tags=request.POST['tags'],
+            disponivel=request.POST[True],
             turma=turma,
         )
 

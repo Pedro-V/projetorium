@@ -110,6 +110,7 @@ class Projeto(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     grupo = models.OneToOneField(Grupo, null=True, on_delete=models.SET_NULL)
     publico = models.BooleanField(default=False)
+    disponivel = models.BooleanField(default=True)
 
     class Status(models.TextChoices):
         CONCLUIDO    = ('CO', 'Concluido')
