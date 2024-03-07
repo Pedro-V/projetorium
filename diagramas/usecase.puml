@@ -3,7 +3,6 @@ left to right direction
 ' Atores
 :Aluno: as Aluno
 :Professor: as Professor
-:Interessado: as Interessado
 
 rectangle "Projetorium" {
     (Alterar professor) as AltProf
@@ -34,7 +33,5 @@ AvalProp  -- Professor
 OfertProj -- Professor 
 ConsProj  -- Professor 
 AddAluno  -- Professor
-
-ConsProj -- Interessado
 @enduml
 
