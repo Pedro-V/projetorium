@@ -73,7 +73,7 @@ class Aluno(models.Model):
 
 
 class Grupo(models.Model):
-    membros = models.ManyToManyField(Aluno)
+    membros = models.ManyToManyField(Aluno, db_table="app_forma")
 
     def add_membro(self, aluno):
         self.membros.add(aluno)
@@ -83,7 +83,7 @@ class Turma(models.Model):
     codigo = models.CharField(max_length=12)
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
-    alunos = models.ManyToManyField(Aluno)
+    alunos = models.ManyToManyField(Aluno, db_table="app_estuda")
     ano = models.IntegerField(default=datetime.now().year)
     periodo = models.IntegerField(default=1)
     
@@ -147,6 +147,7 @@ class Proposta(models.Model):
             tags=self.tags,
             grupo=grupo,
             status=Projeto.Status.EM_PROGRESSO,
+            turma=self.turma,
         )
 
 
