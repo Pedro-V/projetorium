@@ -82,7 +82,7 @@ Professor "1..*" -- "1..1" Departamento : trabalha >
 
 Proposta "1..1" -- "0..1" Projeto : promovida >
 
-Aluno "1..*" -- "0..1" Grupo : forma >
+Aluno "1..*" -- "0..*" Grupo : forma >
 Aluno "0..*" -- "0..*" Turma : estuda >
 Aluno "1..1" -- "0..*" Proposta : é autor >
 Avaliacao "1..1" -- "1..1" Proposta : recebe <
