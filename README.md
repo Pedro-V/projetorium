@@ -5,7 +5,8 @@
 * COMP0439 - ENGENHARIA DE SOFTWARE II (2023.2 - T01)
 
 * [Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
-* [Documento completo](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
+* [Documento Inicial](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
+* [Documento Final](https://docs.google.com/document/d/1KWhU55doeSM8PALuLFXCkBpOdmWq39lkzJLJ5kxgTK4/edit?usp=sharing)
 
 ## Estrutura
 
