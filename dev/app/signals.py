@@ -87,7 +87,8 @@ def initialize_user_data():
         },
     ]
     for user in users:
-        User.objects.create(**user)
+        obj = User.objects.create(**user)
+        obj.set_password(user['password'])
 
     professors = [
         {
@@ -126,5 +127,5 @@ def initialize_data():
 @receiver(post_migrate)
 def initialize_data_after_migrate(sender, **kwargs):
     # Só inicializa se dados não existirem.
-    if sender.name == 'app' and not Professor.objects.all():
+    if sender.name == 'app' and not Departamento.objects.all():
         initialize_data()
