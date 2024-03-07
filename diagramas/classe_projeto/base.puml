@@ -88,6 +88,7 @@ Aluno "1..1" -- "0..*" Proposta : é autor >
 Avaliacao "1..1" -- "1..1" Proposta : recebe <
 
 Grupo "1..1" -- "1..1" Projeto : responsável >
+Projeto "0..*" -- "1..1" Turma : pertence >
 
 Professor "1..1" -- "0..*" Turma : leciona >
 Professor "1..1" -- "0..*" Avaliacao : realiza >
