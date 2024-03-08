@@ -31,11 +31,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
     - 10-11 (???)
   - Permitir alteração de dados de aluno/professor. (???)
   - Permitir reavaliação de uma proposta (Pedro V.)
-- Corrigir estilo de algumas telas, especialmente em relação a dropdown list. (Carlos)
-  - Cadastro de aluno e professor
-  - Cadastro de aluno em turma
-  - Detalhe de proposta/avaliação
-  - Cadastro de turma
 
 ### Seria legal
 
