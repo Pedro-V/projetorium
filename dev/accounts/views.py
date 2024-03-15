@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login
+from django.contrib.messages import constants
+from django.contrib import messages
 
 from accounts.models import User
 from app.models import Aluno, Professor, Departamento, Curso
@@ -11,12 +13,17 @@ class CadastrarAluno(View):
 
     def get(self, request):
         cursos = Curso.objects.all()
-
         return render(request, self.template_name, { 'cursos': cursos })
 
     def post(self, request):
+        email = request.POST['email']
+        matricula = request.POST['matricula']
+        
+        if checar_credenciais(request, email, matricula):
+            return redirect('cadastrar_aluno')
+
         user = User(
-            email=request.POST['email'],
+            email=email,
             is_student=True,
         )
         user.set_password(request.POST['senha'])
@@ -26,7 +33,7 @@ class CadastrarAluno(View):
         
         Aluno.objects.create(
             user=user,
-            matricula=request.POST['matricula'],
+            matricula=matricula,
             nome=request.POST['nome'],
             data_nascimento=request.POST['nasc'],
             curso=curso,
@@ -45,8 +52,14 @@ class CadastrarProfessor(View):
         return render(request, self.template_name, { 'departamentos': departamentos })
 
     def post(self, request):
+        email = request.POST['email']
+        matricula = request.POST['matricula']
+
+        if checar_credenciais(request, email, matricula):
+            return redirect('cadastrar_professor')
+
         user = User(
-            email=request.POST['email'],
+            email=email,
             is_teacher=True,
         )
         user.set_password(request.POST['senha'])
@@ -56,7 +69,7 @@ class CadastrarProfessor(View):
 
         Professor.objects.create(
             user=user,
-            matricula=request.POST['matricula'],
+            matricula=matricula,
             nome=request.POST['nome'],
             data_nascimento=request.POST['nasc'],
             departamento=dept,
@@ -65,3 +78,20 @@ class CadastrarProfessor(View):
         login(request, user)
         return redirect('perfil')
 
+
+def checar_credenciais(request, email, matricula):
+    """
+        Checa se já existe um usuário cadastrado com o email
+        e matrícula digitados
+    """
+    user = User.objects.filter(email=email)
+    if user.exists():
+        messages.add_message(request, constants.ERROR, "Email já cadastrado!")
+        return True
+        
+    aluno = Aluno.objects.filter(matricula=matricula)
+    prof = Professor.objects.filter(matricula=matricula)
+    if aluno.exists() or prof.exists():
+        messages.add_message(request, constants.ERROR, "Matrícula já cadastrada!")
+        return True
+    return False

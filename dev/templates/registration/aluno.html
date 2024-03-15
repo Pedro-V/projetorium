@@ -11,6 +11,15 @@
             <p>Cadastre-se</p>
             <a href="{% url 'login' %}" class="button">Voltar para tela de login</a>
         </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <form class="registration-form" method="post">
             {% csrf_token %}
             <div class="column space">
