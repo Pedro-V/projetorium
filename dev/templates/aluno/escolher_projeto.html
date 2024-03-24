@@ -25,7 +25,10 @@
             <table class="tabela">
                 {% for proj in projetos %}
                     <tr>
-                        <td><a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a></td>
+                        <td>
+                            <input type="checkbox" name="projeto_checkbox" value="{{ proj.id }}"onclick="handleCheckbox(this)">
+                            <a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a>
+                        </td>
                         <td>{{proj.disponível}}</td>
                     </tr>
                 {% endfor %}
@@ -33,7 +36,24 @@
         </div>    
 
         <div class="btn_center">
-            <button class="button">Escolher projeto</button>
+            <button class="button"onclick=Projeto.>Escolher projeto</button>
         </div>
+
+        <script>
+            function handleCheckbox(checkbox) {
+                var checkboxes = document.getElementsByName("projeto_checkbox");
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i] !== checkbox) {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
+        </script>
+
+        <script>
+            function mudaDisponibilidade() {
+
+            }
+        </script>
     </div>
 {% endblock %}

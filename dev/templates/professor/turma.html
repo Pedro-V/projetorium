@@ -1,30 +1,27 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block 'head' %}
+<link href="{% static 'css/turma.css' %}" rel="stylesheet" />
+{% endblock %} {% block 'content' %}
+<div class="container">
+  <div class="row">
+    <p>{{ turma }}</p>
+    <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+  </div>
 
-{% block 'head' %}
-    <link href="{% static 'css/turma.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-{% endblock %}
+  <div class="row">
+    <p>Professor: {{ turma.professor }}</p>
+  </div>
 
-{% block 'content' %}
-    <div class="container">
-        <div class="row" id="header">
-            <p>{{turma.nome}}</p>
-            <p>{{turma.professor}}</p>
-            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
-        </div>
-        <div class="row space">
-            <p>{{turma.disciplina}}</p>
-            <p style="margin-right: 510px;">{{turma.departamento}}</p>
-        </div>
-        
-        <div class="row space">
-            <a class="button" href="{% url 'ofertar_projeto' turma.id%}">Ofertar projeto</a>
-            <button class="button">Incluir aluno</button>
-        </div>
-        <div class="row space">
-            <button class="button">Participantes</button>
-            <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
-        </div>
-    </div>
+  <hr class="space" />
+
+  <div class="row space">
+    <a class="button" href="{% url 'ofertar_projeto' turma.id%}"
+      >Ofertar projeto</a
+    >
+    <a class="button">Incluir aluno</a>
+  </div>
+  <div class="row space">
+    <a class="button">Participantes</a>
+    <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
+  </div>
+</div>
 {% endblock %}

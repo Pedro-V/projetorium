@@ -52,14 +52,14 @@ tr{
 
 .button {
     padding: 10px 20px;
-    max-height: 40px;
     background-color: #A1B6FF;
     color: black;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 35%;
+    text-decoration: none;
     text-align: center;
+    width: 30%;
 }
 
 .button:hover {
