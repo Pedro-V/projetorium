@@ -140,7 +140,6 @@ class OfertarProjeto(View):
             titulo=request.POST['titulo'],
             descricao=request.POST['descricao'],
             tags=request.POST['tags'],
-            disponivel=request.POST[True],
             turma=turma,
         )
 
@@ -196,7 +195,17 @@ class Escolher_projeto(View):
     def get(self, request, id_turma):
         turma = Turma.objects.get(pk=id_turma)
         projetos = Projeto.objects.filter(turma=turma)
-        return render(request, self.template_name, {'projetos': projetos})
+        return render(request, self.template_name, {'projetos': projetos, 'turma': turma })
+
+class Escolher_membros_grupo(View):
+    template_name = 'aluno/escolher_membros_grupo.html'
+
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        alunos = turma.alunos.all()
+        return render(request, self.template_name, {'alunos': alunos})
+
+
 
 
 class ProporProjeto(View):
