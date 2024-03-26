@@ -4,7 +4,6 @@
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 * COMP0439 - ENGENHARIA DE SOFTWARE II (2023.2 - T01)
 
-* [Protótipos de telas](https://www.figma.com/team_invite/redeem/41WAUZlTE9xhkFDD1W9q3R)
 * [Documento Inicial](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
 * [Documento Final](https://docs.google.com/document/d/1KWhU55doeSM8PALuLFXCkBpOdmWq39lkzJLJ5kxgTK4/edit?usp=sharing)
 
@@ -24,13 +23,13 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 ### Necessário
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
+  - Tratar caminhos não-felizes (???)
+  - Consertar aparência da tela de detalhes de projeto (Max)
+  - Ligar tela de detalhes de projeto na tela principal de aluno (Pedro V.)
   - RFs
-    - 06-09 e 12 (Carlos/Max)
-    - 13-17 (Matheus/Jonas)
-    - 18-23 (Pedro A./Rayan)
-    - 10-11 (???)
-  - Permitir alteração de dados de aluno/professor. (???)
-  - Permitir reavaliação de uma proposta (Pedro V.)
+    - 06,09 (Max)
+    - Alteração de detalhes de projeto: 08,10,18 (???)
+    - Filtros na consulta: 12,13,14 (???)
 
 ### Seria legal
 
