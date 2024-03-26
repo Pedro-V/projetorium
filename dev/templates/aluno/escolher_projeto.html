@@ -36,7 +36,7 @@
         </div>    
 
         <div class="btn_center">
-            <a class="button" href="{% url 'escolher_membros_grupo' turma.id %}">Escolher projeto</a>
+            <a class="button" href="#" onclick="selectProjeto()">Escolher projeto</a>
         </div>
 
         <script>
@@ -51,9 +51,27 @@
         </script>
 
         <script>
-            function mudaDisponibilidade() {
-
+            function getIdProjetoSelecionado() {
+                var checkboxes = document.getElementsByName("projeto_checkbox");
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        return checkboxes[i].value;
+                    }
+                }
+                return null;
             }
         </script>
+
+        <script>
+            function selectProjeto() {
+                var idProjeto = getIdProjetoSelecionado();
+                if (idProjeto) {
+                    window.location.href = "{% url 'escolher_membros_grupo' turma.id idProjeto %}";
+                } else {
+                    alert('Por favor, selecione um projeto.');
+                }
+            }
+        </script>
+
     </div>
 {% endblock %}

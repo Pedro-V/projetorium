@@ -200,10 +200,11 @@ class Escolher_projeto(View):
 class Escolher_membros_grupo(View):
     template_name = 'aluno/escolher_membros_grupo.html'
 
-    def get(self, request, id_turma):
+    def get(self, request, id_turma, id_projeto):
         turma = Turma.objects.get(pk=id_turma)
         alunos = turma.alunos.all()
-        return render(request, self.template_name, {'alunos': alunos})
+        projeto = Projeto.objects.get(pk=id_projeto)
+        return render(request, self.template_name, {'alunos': alunos, 'projeto': projeto})
 
 
 
