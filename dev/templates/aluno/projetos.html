@@ -18,8 +18,6 @@
                 <tr>
                     <th class="header">Nome</th>
                     <th class="header">Estado</th>
-                    <th class="header">Periodo</th>
-                    <th class="header">Disciplina</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,18 +27,13 @@
             <table class="tabela">
                 {% for proj in projetos %}
                     <tr>
-                        <td><input type="radio" name="rd-button">{{proj.nome}}</td>
-                        <td>{{proj.fase_projeto}}</td>
-                        <td>{{proj.periodo}}</td>
-                        <td>{{proj.disciplina}}</td>
+                        <td><a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a></td>
+                        <td>{{proj.status}}</td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
 
-        <div class="btn_center">
-            <button class="button">Ver projeto</button>
-        </div>
         
     </div>
 {% endblock %}

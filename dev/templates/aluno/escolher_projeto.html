@@ -8,70 +8,25 @@
 {% block 'content' %}
     <div class="container">
         <div class="row">
-            <p>Escolha um projeto disponível</p>
-            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
+            <p>Escolher projeto</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
         <hr class="space">
 
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th class="header">Nome</th>
-                    <th class="header">Disponivel</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="scroll">
-            <table class="tabela">
+        <form class="registration-form" method="post" class="form">
+            {% csrf_token %}
+                
+            <label for="projeto">Escolha o projeto que quer participar:</label>
+            <select name="projeto" required>
                 {% for proj in projetos %}
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="projeto_checkbox" value="{{ proj.id }}"onclick="handleCheckbox(this)">
-                            <a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a>
-                        </td>
-                        <td>{{proj.disponível}}</td>
-                    </tr>
+                    <option value="{{ proj.id }}">{{ proj.titulo }} - {{ proj.descricao }}</option>
                 {% endfor %}
-            </table>
-        </div>    
+            </select>
+            <br>
 
-        <div class="btn_center">
-            <a class="button" href="#" onclick="selectProjeto()">Escolher projeto</a>
-        </div>
-
-        <script>
-            function handleCheckbox(checkbox) {
-                var checkboxes = document.getElementsByName("projeto_checkbox");
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i] !== checkbox) {
-                        checkboxes[i].checked = false;
-                    }
-                }
-            }
-        </script>
-
-        <script>
-            function getIdProjetoSelecionado() {
-                var checkboxes = document.getElementsByName("projeto_checkbox");
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked) {
-                        return checkboxes[i].value;
-                    }
-                }
-                return null;
-            }
-        </script>
-
-        <script>
-            function selectProjeto() {
-                var idProjeto = getIdProjetoSelecionado();
-                if (idProjeto) {
-                    window.location.href = "{% url 'escolher_membros_grupo' turma.id idProjeto %}";
-                } else {
-                    alert('Por favor, selecione um projeto.');
-                }
-            }
-        </script>
-
+            <div style="text-align: center; display: block; margin: 0 auto;">
+                <input type="submit" class="button" value="Escolher">
+            </div>
+        </form>
     </div>
 {% endblock %}

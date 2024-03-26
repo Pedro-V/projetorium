@@ -189,25 +189,29 @@ class DetalheProposta(View):
 
         return redirect('detalhe_proposta', id_turma, id_proposta)
 
-class Escolher_projeto(View):
+class EscolherProjeto(View):
     template_name = 'aluno/escolher_projeto.html'
 
     def get(self, request, id_turma):
         turma = Turma.objects.get(pk=id_turma)
-        projetos = Projeto.objects.filter(turma=turma)
+        projetos = Projeto.objects.filter(turma=turma, disponivel=True)
         return render(request, self.template_name, {'projetos': projetos, 'turma': turma })
+    
+    def post(self, request, id_turma):
+        projeto_id = request.POST.get('projeto')
+        projeto = Projeto.objects.get(pk=projeto_id)
 
-class Escolher_membros_grupo(View):
-    template_name = 'aluno/escolher_membros_grupo.html'
+        projeto.disponivel = False
 
-    def get(self, request, id_turma, id_projeto):
-        turma = Turma.objects.get(pk=id_turma)
-        alunos = turma.alunos.all()
-        projeto = Projeto.objects.get(pk=id_projeto)
-        return render(request, self.template_name, {'alunos': alunos, 'projeto': projeto})
+        grupo = Grupo.objects.create()
+        aluno = Aluno.objects.get(user=request.user)
+        grupo.add_membro(aluno)
 
+        projeto.grupo = grupo
 
+        projeto.save()
 
+        return redirect('escolher_projeto', id_turma) 
 
 class ProporProjeto(View):
     """
@@ -232,11 +236,14 @@ class ProporProjeto(View):
 
         return redirect('detalhe_turma', id_turma)
 
-def projetos(request):
+class Projetos(View):
     template_name = 'aluno/projetos.html'
 
-    if request.method == 'GET':
-        return render(request, template_name)
+    def get(self, request):
+        aluno = Aluno.objects.get(user=request.user)
+        user_grupos = Grupo.objects.filter(membros=aluno)
+        projetos = Projeto.objects.filter(grupo__in=user_grupos)
+        return render(request, self.template_name, {'projetos': projetos, 'aluno': aluno})
 
 class ProjetoDetalhe(View):
     template_name = 'projeto.html'

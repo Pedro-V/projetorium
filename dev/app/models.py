@@ -78,6 +78,8 @@ class Grupo(models.Model):
     def add_membro(self, aluno):
         self.membros.add(aluno)
 
+    
+
 
 class Turma(models.Model):
     codigo = models.CharField(max_length=12)
@@ -148,6 +150,7 @@ class Proposta(models.Model):
             grupo=grupo,
             status=Projeto.Status.EM_PROGRESSO,
             turma=self.turma,
+            disponivel=False,
         )
 
 
