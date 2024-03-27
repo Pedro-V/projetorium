@@ -27,7 +27,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - Consertar aparência da tela de detalhes de projeto (Max)
   - Ligar tela de detalhes de projeto na tela principal de aluno (Pedro V.)
   - RFs
-    - 06,09 (Max)
+    - 09 (Max)
     - Alteração de detalhes de projeto: 08,10,18 (???)
     - Filtros na consulta: 12,13,14 (matheus/Jonas)
 
