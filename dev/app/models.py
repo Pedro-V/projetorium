@@ -78,8 +78,6 @@ class Grupo(models.Model):
     def add_membro(self, aluno):
         self.membros.add(aluno)
 
-    
-
 
 class Turma(models.Model):
     codigo = models.CharField(max_length=12)
@@ -102,6 +100,12 @@ class Turma(models.Model):
 
     def __str__(self):
         return f'{self.disciplina} -  T{self.codigo}'
+
+    def get_alunos(self):
+        """
+        Alunos que estudam nessa turma.
+        """
+        return self.alunos.all()
 
 
 class Projeto(models.Model):

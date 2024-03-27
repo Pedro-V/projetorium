@@ -69,7 +69,7 @@ class CadastroAlunoTurma(View):
 
     def get(self, request):
         prof = get_user(request.user)
-        turmas = prof.turmas();
+        turmas = prof.turmas()
         alunos = Aluno.objects.all()
 
         context = {
@@ -212,6 +212,18 @@ class EscolherProjeto(View):
         projeto.save()
 
         return redirect('escolher_projeto', id_turma) 
+
+class ParticipantesTurma(View):
+    """
+    Lista os alunos participantes de uma turma.
+    """
+    template_name = 'participantes_turma.html'
+
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        alunos = turma.get_alunos()
+        return render(request, self.template_name, { 'alunos': alunos })
+
 
 class ProporProjeto(View):
     """

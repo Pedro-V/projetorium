@@ -14,13 +14,10 @@
   <hr class="space" />
 
   <div class="row space">
-    <a class="button" href="{% url 'ofertar_projeto' turma.id%}"
-      >Ofertar projeto</a
-    >
-    <a class="button">Incluir aluno</a>
+    <a class="button" href="{% url 'ofertar_projeto' turma.id %}">Ofertar projeto</a>
   </div>
   <div class="row space">
-    <a class="button">Participantes</a>
+    <a class="button" href="{% url 'participantes_turma' turma.id %}">Participantes</a>
     <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
   </div>
 </div>

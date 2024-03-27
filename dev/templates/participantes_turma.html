@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/turmas.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Turmas</p>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
+        </div>
+        <hr class="space">
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="header">Matricula</th>
+                    <th class="header">Nome</th>
+                    <th class="header">Curso</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for aluno in alunos %}
+              <tr>
+                <td>{{ aluno.matricula }}</td>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.curso }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
