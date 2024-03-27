@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="{% static '/css/escolher_projeto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/esc_proj.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block 'content' %}
@@ -11,7 +11,7 @@
             <p>Escolher projeto</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
-        <hr class="space">
+        
 
         <form class="registration-form" method="post" class="form">
             {% csrf_token %}
