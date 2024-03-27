@@ -29,7 +29,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
   - RFs
     - 06,09 (Max)
     - Alteração de detalhes de projeto: 08,10,18 (???)
-    - Filtros na consulta: 12,13,14 (???)
+    - Filtros na consulta: 12,13,14 (matheus/Jonas)
 
 ### Seria legal
 
