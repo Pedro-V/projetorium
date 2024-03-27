@@ -222,7 +222,12 @@ class ParticipantesTurma(View):
     def get(self, request, id_turma):
         turma = Turma.objects.get(pk=id_turma)
         alunos = turma.get_alunos()
-        return render(request, self.template_name, { 'alunos': alunos })
+        context = {
+            'alunos': alunos,
+            'turma': turma,
+        }
+
+        return render(request, self.template_name, context)
 
 
 class ProporProjeto(View):
