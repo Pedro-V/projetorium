@@ -119,13 +119,13 @@ class Projeto(models.Model):
     disponivel = models.BooleanField(default=True)
 
     class Status(models.TextChoices):
-        CONCLUIDO    = ('CO', 'Concluido')
-        CANCELADO    = ('CA', 'Cancelado')
-        SUSPENSO     = ('SU', 'Suspenso')
-        EM_PROGRESSO = ('EP', 'Em progresso')
+        CONCLUIDO    = ('Concluido')
+        CANCELADO    = ('Cancelado')
+        SUSPENSO     = ('Suspenso')
+        EM_PROGRESSO = ('Em progresso')
     
     status = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=Status.choices,
         default=Status.EM_PROGRESSO
     )
