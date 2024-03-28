@@ -4,7 +4,6 @@
 * COMP0438 - ENGENHARIA DE SOFTWARE I (2023.1 - T01)
 * COMP0439 - ENGENHARIA DE SOFTWARE II (2023.2 - T01)
 
-* [Documento Inicial](https://docs.google.com/document/d/1_U4rpsdHIMNtEIF37tJauM6HSGS_AoE69NjjJnROhYg/edit?usp=sharing)
 * [Documento Final](https://docs.google.com/document/d/1KWhU55doeSM8PALuLFXCkBpOdmWq39lkzJLJ5kxgTK4/edit?usp=sharing)
 
 ## Estrutura
