@@ -24,7 +24,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
   - Tratar caminhos não-felizes (???)
-  - Consertar aparência da tela de detalhes de projeto (Max)
   - RFs
     - 09 (Max)
     - Alteração de detalhes de projeto: 08,10,18 (???)
