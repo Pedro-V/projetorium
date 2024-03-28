@@ -267,4 +267,6 @@ class ProjetoDetalhe(View):
 
     def get(self, request, id):
         projeto = get_object_or_404(Projeto, pk=id)
-        return render(request, self.template_name, {'projeto': projeto})
+        grupo = projeto.grupo
+        membros = grupo.membros.all()
+        return render(request, self.template_name, {'projeto': projeto, 'membros': membros})

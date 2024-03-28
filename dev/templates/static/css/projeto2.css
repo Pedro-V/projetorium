@@ -1,18 +1,26 @@
+.container {
+    width: 900px;
+    background-color: #D1D3EC;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
 p{
-    color: white;
+    color: black;
     font-size: 20px;
 }
+
+h2, h3{
+    color: black;
+}
+
 
 .scroll{
     overflow-y: auto;
     max-height: 200px;
     display: block;
     margin-bottom: 50px;
-}
- 
-.container {
-    width: 800px;
-    padding: 25px 30px;
 }
 
 .row{

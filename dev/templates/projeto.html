@@ -2,61 +2,32 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="{% static 'css/projeto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/projeto2.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 {% endblock %}
 
 {% block 'content' %}
     <div class="container">
         <div class="row">
-            <h2 style="color: white;">{{projeto.titulo}}</h2>
+            <h2>{{projeto.titulo}}</h2>
             <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
         <div class="content">
             <div class="column">
-                <p>{{projeto.departamento}}</p>
-                <p>Origem: {{projeto.origem}}</p>
-                <p>{{projeto.disciplina}}</p>
+                <p>Departamento: {{projeto.turma.disciplina.departamento}}</p>
+                <p>Disciplina: {{projeto.turma.disciplina}}</p>
             </div>
             <div class="column">
-                <p>{{projeto.status}}</p>
-                <p>Entrega prevista: {{projeto.entrega}}</p>
-                <p>{{projeto.professor}}</p>
+                <p>Estado: {{projeto.status}}</p>
+                <p>Professor: {{projeto.turma.professor}}</p>
             </div>
         </div>
         <div>
-            <p>
-                {{projeto.descricao}}
-            </p>
+            <p>Descricao: {{projeto.descricao}}</p>
         </div>
+
         <div>
-            <h3 style="color: white;">Documentos</h3>
-            <table class="tabela">
-                <thead>
-                    <tr>
-                        <th class="header">Nome</th>
-                        <th class="header">Formato</th>
-                        <th class="header">Tamanho</th>
-                    </tr>
-                </thead>
-            </table>
-            <div class="scroll">
-                <table class="tabela">
-                    {% for doc in projeto.documentos %}
-                        <tr>
-                            <td>{{doc.nome}}</td>
-                            <td>{{doc.tipo_arquivo}}</td>
-                            <td>{{doc.tamanho}}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
-        <div class="space">
-            <a style="color: #5BEBFF;" href="">Anexar documentos</a>
-        </div>
-        <div>
-            <h3 style="color: white;">Equipe</h3>
+            <h3>Equipe</h3>
             <table class="tabela">
                 <thead>
                     <tr>
@@ -68,7 +39,7 @@
             </table>
             <div class="scroll">
                 <table class="tabela">
-                    {% for aluno in projeto.grupo.all %}
+                    {% for aluno in membros %}
                         <tr>
                             <td>{{aluno.nome}}</td>
                             <td>{{aluno.user.email}}</td>
