@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/cad_aluno.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Adicionar membro a um projeto</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+        </div>
+
+        <div class="message">
+            {% if error_msg %}
+                <p class="error_message">{{ error_msg }}</p>
+            {% endif %}
+        </div>
+
+        <form class="registration-form" method="post" class="form">
+            {% csrf_token %}
+            
+            <label for="aluno">Selecione o aluno que quer adicionar:</label>
+            <select name="aluno" required>
+              {% for aluno in alunos %}
+                <option value="{{ aluno.matricula }}">{{ aluno.nome }} - {{ aluno.matricula }}</option>
+              {% endfor %}
+            </select>
+            <br>
+
+            <label for="projeto">Selecione o projeto:</label>
+            <select name="projeto" required style="margin-bottom: 20px;">
+              {% for proj in projetos_aluno %}
+                <option value="{{ proj.id }}">{{ proj.titulo }} - {{ proj.descricao }} </option>
+              {% endfor %}
+            </select>
+
+            <div style="text-align: center; display: block; margin: 0 auto;">
+                <input type="submit" class="button" value="Adicionar">
+            </div>
+        </form>
+    </div>
+{% endblock %}

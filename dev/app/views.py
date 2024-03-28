@@ -259,8 +259,39 @@ class Projetos(View):
     def get(self, request):
         aluno = Aluno.objects.get(user=request.user)
         user_grupos = Grupo.objects.filter(membros=aluno)
-        projetos = Projeto.objects.filter(grupo__in=user_grupos)
-        return render(request, self.template_name, {'projetos': projetos, 'aluno': aluno})
+        projetos_aluno = Projeto.objects.filter(grupo__in=user_grupos)
+        return render(request, self.template_name, {'projetos': projetos_aluno, 'aluno': aluno})
+
+class AdicionarMembro(View):
+    template_name = 'aluno/adicionar_membro.html'
+
+    def get(self, request):
+        aluno = Aluno.objects.get(user=request.user)
+        user_grupos = Grupo.objects.filter(membros=aluno)
+        projetos_aluno = Projeto.objects.filter(grupo__in=user_grupos)
+
+        turmas_aluno = aluno.turmas() #turmas em que o aluno está
+        alunos = Aluno.objects.filter(turma__in=turmas_aluno).distinct()
+        alunos = alunos.exclude(pk=aluno.pk) #para o pr´prio aluno não aparecer na lista
+
+        return render(request, self.template_name, {'projetos_aluno': projetos_aluno, 'alunos' :alunos})
+    
+    def post(self, request):
+        id_projeto=request.POST['projeto']
+        matricula=request.POST['aluno'] 
+
+        aluno = Aluno.objects.get(matricula=matricula)
+        projeto = Projeto.objects.get(id=id_projeto)
+
+        try:
+            grupo = projeto.grupo
+            grupo.add_membro(aluno)
+            projeto.grupo = grupo
+            projeto.save()
+        except IntegrityError:
+            return self.get(request, "O aluno selecionado já está associado ao projeto")
+
+        return redirect('adicionar_membro')
 
 class ProjetoDetalhe(View):
     template_name = 'projeto.html'
