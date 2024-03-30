@@ -17,16 +17,14 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Adicionar parte de Arquitetura no documento. (Matheus e Jonas)
+- Requisitos a serem implementados (veja o documento para ver suas descrições):
+  - RFs
+    - Alteração de detalhes de projeto: 08,10,18 (???)
+    - Filtros na consulta: 12,13,14 (matheus/Jonas)
 
 ### Necessário
 
-- Requisitos a serem implementados (veja o documento para ver suas descrições):
-  - Tratar caminhos não-felizes (???)
-  - RFs
-    - 09 (Max)
-    - Alteração de detalhes de projeto: 08,10,18 (???)
-    - Filtros na consulta: 12,13,14 (matheus/Jonas)
+- Tratar caminhos não-felizes (Carlos,Pedro V.)
 
 ### Seria legal
 
