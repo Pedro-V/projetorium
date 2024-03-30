@@ -23,8 +23,15 @@
             </div>
         </div>
         <div>
-            <p>Descricao: {{projeto.descricao}}</p>
+            <p>Descrição: {{projeto.descricao}}</p>
         </div>
+
+        {% if autorizado %}
+          <div class="row space">
+              <a class="button" href="{% url 'adicionar_membro' projeto.pk %}">Adicionar membro a um projeto</a>
+              <a class="button" href="{% url 'editar_projeto' projeto.pk %}">Editar detalhes do projeto</a>
+          </div>
+        {% endif %}
 
         <div>
             <h3>Equipe</h3>

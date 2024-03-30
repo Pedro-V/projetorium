@@ -31,6 +31,7 @@ def perfil(request):
         user, template_name = get_user(request.user, 'perfil.html')
         return render(request, template_name, { 'usuario': user })
 
+
 class ConsultaProjeto(View):
     template_name = 'consulta_projeto.html'
 
@@ -41,12 +42,14 @@ class ConsultaProjeto(View):
         nome_filtro = request.POST['nome_proj']
         return redirect('resultado_projeto', nome=nome_filtro)
 
+
 class ResultadoProjeto(View):
     template_name = 'resultado_projeto.html'
 
     def get(self, request, nome):
         projetos = Projeto.objects.filter(titulo__icontains=nome)
         return render(request, self.template_name, {'projetos': projetos})
+
 
 class ListaTurmas(View):
     template_name = 'turmas.html'
@@ -193,6 +196,7 @@ class DetalheProposta(View):
 
         return redirect('detalhe_proposta', id_turma, id_proposta)
 
+
 class EscolherProjeto(View):
     template_name = 'aluno/escolher_projeto.html'
 
@@ -216,6 +220,7 @@ class EscolherProjeto(View):
         projeto.save()
         messages.add_message(request, constants.SUCCESS, "Projeto escolhido com sucesso.")
         return redirect('escolher_projeto', id_turma) 
+
 
 class ParticipantesTurma(View):
     """
@@ -257,7 +262,8 @@ class ProporProjeto(View):
         messages.add_message(request, constants.SUCCESS, "Proposta criada com sucesso.")
         return redirect('detalhe_turma', id_turma)
 
-class Projetos(View):
+
+class ListarProjetos(View):
     template_name = 'aluno/projetos.html'
 
     def get(self, request):
@@ -266,43 +272,45 @@ class Projetos(View):
         projetos_aluno = Projeto.objects.filter(grupo__in=user_grupos)
         return render(request, self.template_name, {'projetos': projetos_aluno, 'aluno': aluno})
 
+
 class AdicionarMembro(View):
-    template_name = 'aluno/adicionar_membro.html'
+    template_name = 'adicionar_membro.html'
 
-    def get(self, request):
-        aluno = Aluno.objects.get(user=request.user)
-        user_grupos = Grupo.objects.filter(membros=aluno)
-        projetos_aluno = Projeto.objects.filter(grupo__in=user_grupos)
+    def get(self, request, id_proj):
+        proj = get_object_or_404(Projeto, pk=id_proj)
+        pk_membros = [membro.pk for membro in proj.grupo.get_membros()]
+        alunos_elegiveis = Aluno.objects.exclude(pk__in=pk_membros)
 
-        turmas_aluno = aluno.turmas() #turmas em que o aluno está
-        alunos = Aluno.objects.filter(turma__in=turmas_aluno).distinct()
-        alunos = alunos.exclude(pk=aluno.pk) #para o pr´prio aluno não aparecer na lista
-
-        return render(request, self.template_name, {'projetos_aluno': projetos_aluno, 'alunos' :alunos})
+        return render(request, self.template_name, { 'alunos': alunos_elegiveis })
     
-    def post(self, request):
-        id_projeto=request.POST['projeto']
-        matricula=request.POST['aluno'] 
-
+    def post(self, request, id_proj):
+        proj = get_object_or_404(Projeto, pk=id_proj)
+        matricula = request.POST['aluno']
         aluno = Aluno.objects.get(matricula=matricula)
-        projeto = Projeto.objects.get(id=id_projeto)
+        proj.grupo.add_membro(aluno)
 
-        if(aluno in projeto.grupo.membros.all()):
-            messages.add_message(request, constants.ERROR, "O aluno selecionado já está associado ao projeto.")
-        else:
-            grupo = projeto.grupo
-            grupo.add_membro(aluno)
-            projeto.grupo = grupo
-            projeto.save()
-            messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
+        messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
+        return redirect('adicionar_membro', id_proj)
 
-        return redirect('adicionar_membro')
+
+class EditarProjeto(View):
+    template_name = 'editar_projeto.html'
+
 
 class ProjetoDetalhe(View):
     template_name = 'projeto.html'
 
-    def get(self, request, id):
-        projeto = get_object_or_404(Projeto, pk=id)
+    def get(self, request, id_proj):
+        projeto = get_object_or_404(Projeto, pk=id_proj)
         grupo = projeto.grupo
         membros = grupo.membros.all()
-        return render(request, self.template_name, {'projeto': projeto, 'membros': membros})
+
+        autorizado = request.user in [membro.user for membro in membros]
+
+        context = {
+            'projeto': projeto,
+            'membros': membros,
+            'autorizado': autorizado,
+        }
+
+        return render(request, self.template_name, context)

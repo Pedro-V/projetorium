@@ -8,7 +8,7 @@
 {% block 'content' %}
     <div class="container">
         <div class="row">
-            <p>Adicionar membro a um projeto</p>
+            <p>Adicionar membro ao projeto</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
 
@@ -30,13 +30,6 @@
               {% endfor %}
             </select>
             <br>
-
-            <label for="projeto">Selecione o projeto:</label>
-            <select name="projeto" required style="margin-bottom: 20px;">
-              {% for proj in projetos_aluno %}
-                <option value="{{ proj.id }}">{{ proj.titulo }} - {{ proj.descricao }} </option>
-              {% endfor %}
-            </select>
 
             <div style="text-align: center; display: block; margin: 0 auto;">
                 <input type="submit" class="button" value="Adicionar">
