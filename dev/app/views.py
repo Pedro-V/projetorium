@@ -13,7 +13,9 @@ from app.models import *
 
 def get_user(user, template_name=None):
     """
-    Retorna o objeto que especifica o papel de user, e a versão específica 
+    Retorna o objeto que especifica o papel de user, e a versão específica do
+    template.
+
     Nesse caso, o objeto será um Professor ou Aluno.
     """
     UserClass = Professor if user.is_teacher else Aluno
