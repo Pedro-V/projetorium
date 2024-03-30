@@ -19,12 +19,12 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
   - RFs
-    - Alteração de detalhes de projeto: 08,10,18 (Rayan Tavares)
+    - Alteração de detalhes de projeto: 08,10,18 (Rayan Tavares, Pedro A.)
     - Filtros na consulta: 12,13,14 (matheus/Jonas)
 
 ### Necessário
 
-- Tratar caminhos não-felizes (Carlos,Pedro V.)
+- Tratar caminhos não-felizes (Carlos, Pedro V., Max)
 
 ### Seria legal
 
