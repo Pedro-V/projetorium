@@ -4,6 +4,8 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import student_required, teacher_required
 from django.utils.decorators import method_decorator
+from django.contrib.messages import constants
+from django.contrib import messages
 
 from app.signals import *
 from app.models import *
@@ -119,8 +121,10 @@ class CadastroTurma(View):
                 codigo=request.POST['codigo'],
             )
         except IntegrityError:
-            return self.get(request, "Uma turma com esses dados já existe!")
+            messages.add_message(request, constants.ERROR, "Uma turma com esses dados já existe!")
+            return redirect('cadastro_turma')
 
+        messages.add_message(request, constants.SUCCESS, "Turma criada com sucesso.")
         return redirect('cadastro_turma')
 
 
@@ -142,7 +146,7 @@ class OfertarProjeto(View):
             tags=request.POST['tags'],
             turma=turma,
         )
-
+        messages.add_message(request, constants.SUCCESS, "Projeto criado com sucesso")
         return redirect('ofertar_projeto', id_turma)
 
 
@@ -210,7 +214,7 @@ class EscolherProjeto(View):
         projeto.grupo = grupo
 
         projeto.save()
-
+        messages.add_message(request, constants.SUCCESS, "Projeto escolhido com sucesso.")
         return redirect('escolher_projeto', id_turma) 
 
 class ParticipantesTurma(View):
@@ -250,7 +254,7 @@ class ProporProjeto(View):
             autor=aluno,
             turma=turma,
         )
-
+        messages.add_message(request, constants.SUCCESS, "Proposta criada com sucesso.")
         return redirect('detalhe_turma', id_turma)
 
 class Projetos(View):
@@ -283,13 +287,14 @@ class AdicionarMembro(View):
         aluno = Aluno.objects.get(matricula=matricula)
         projeto = Projeto.objects.get(id=id_projeto)
 
-        try:
+        if(aluno in projeto.grupo.membros.all()):
+            messages.add_message(request, constants.ERROR, "O aluno selecionado já está associado ao projeto.")
+        else:
             grupo = projeto.grupo
             grupo.add_membro(aluno)
             projeto.grupo = grupo
             projeto.save()
-        except IntegrityError:
-            return self.get(request, "O aluno selecionado já está associado ao projeto")
+            messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
 
         return redirect('adicionar_membro')
 

@@ -12,7 +12,13 @@
   </div>
 
   <hr class="space" />
-
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{message.tags}}">
+          {{message}}
+      </div>
+    {% endfor %}
+  {% endif %}
   <div class="row space">
     <a class="button" href="{% url 'escolher_projeto' turma.id %}"
       >Escolher projeto</a

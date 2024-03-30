@@ -12,11 +12,13 @@
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
 
-        <div class="message">
-            {% if error_msg %}
-                <p class="error_message">{{ error_msg }}</p>
-            {% endif %}
-        </div>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
 
         <form class="registration-form" method="post">
             {% csrf_token %}

@@ -11,7 +11,13 @@
             <p>Ofertar projeto</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
-
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
         <form class="registration-form" method="post">
             {% csrf_token %}
             <div class="column space">
