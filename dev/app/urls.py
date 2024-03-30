@@ -3,7 +3,6 @@ from app.views import *
 
 urlpatterns = [
     path("perfil/", perfil, name='perfil'),
-    path('cadastro_aluno_turma/', CadastroAlunoTurma.as_view(), name='cadastro_aluno_turma'),
     path('cadastro_turma', CadastroTurma.as_view(), name='cadastro_turma'),
     path('turmas/', ListaTurmas.as_view(), name='turmas'),
     path('turma/<int:id_turma>/', DetalheTurma.as_view(), name='detalhe_turma'),
@@ -13,6 +12,7 @@ urlpatterns = [
     path('turma/<int:id_turma>/propostas/<int:id_proposta>', DetalheProposta.as_view(), name='detalhe_proposta'),
     path('turma/<int:id_turma>/participantes', ParticipantesTurma.as_view(), name='participantes_turma'),
     path('turma/<int:id_turma>/ofertar_projeto', OfertarProjeto.as_view(), name='ofertar_projeto'),
+    path('turma/<int:id_turma>/addicionar_aluno/', AdicionarAluno.as_view(), name='adicionar_aluno'),
     path('consulta/', ConsultaProjeto.as_view(), name='consulta_projeto'),
     path('consulta/?nome=<str:nome>', ResultadoProjeto.as_view(), name='resultado_projeto'),
     path('projetos/', ListarProjetos.as_view(), name='projetos'),

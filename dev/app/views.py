@@ -68,26 +68,22 @@ class DetalheTurma(View):
         return render(request, template_name, { 'turma': turma })
 
 
-class CadastroAlunoTurma(View):
+class AdicionarAluno(View):
     """
-    Um professor cadastra um aluno numa turma.
+    Um professor adiciona um aluno numa turma.
     """
-    template_name = 'professor/cad_aluno.html'
+    template_name = 'professor/adicionar_aluno.html'
 
-    def get(self, request):
+    def get(self, request, id_turma):
+        turma = get_object_or_404(Turma, pk=id_turma)
         prof = get_user(request.user)
-        turmas = prof.turmas()
-        alunos = Aluno.objects.all()
 
-        context = {
-            "turmas": turmas,
-            "alunos": alunos,
-        }
+        pk_alunos_atuais = [aluno.pk for aluno in turma.alunos.all()]
+        alunos_elegiveis = Aluno.objects.exclude(pk__in=pk_alunos_atuais)
 
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, { 'alunos': alunos_elegiveis })
 
-    def post(self, request):
-        id_turma = request.POST['turma']
+    def post(self, request, id_turma):
         matricula = request.POST['aluno']
 
         turma = Turma.objects.get(id=id_turma)
@@ -95,7 +91,8 @@ class CadastroAlunoTurma(View):
 
         turma.alunos.add(aluno)
 
-        return redirect('cadastro_aluno_turma')
+        messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
+        return redirect('adicionar_aluno', id_turma)
 
 
 class CadastroTurma(View):
@@ -285,7 +282,7 @@ class AdicionarMembro(View):
 
         return render(request, self.template_name, { 'alunos': alunos_elegiveis })
     
-    def post(self, request, id_proj):
+    def post(self, request):
         proj = get_object_or_404(Projeto, pk=id_proj)
         matricula = request.POST['aluno']
         aluno = Aluno.objects.get(matricula=matricula)

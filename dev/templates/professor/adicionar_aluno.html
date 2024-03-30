@@ -8,9 +8,18 @@
 {% block 'content' %}
     <div class="container">
         <div class="row">
-            <p>Cadastro de Aluno</p>
+            <p>Adicionar aluno à turma</p>
             <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
         </div>
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+
         <form class="registration-form" method="post" class="form">
             {% csrf_token %}
             
@@ -22,15 +31,8 @@
             </select>
             <br>
 
-            <label for="turma">Selecione a turma:</label>
-            <select name="turma" required style="margin-bottom: 20px;">
-              {% for turma in turmas %}
-                <option value="{{ turma.id }}">{{ turma }}</option>
-              {% endfor %}
-            </select>
-
             <div style="text-align: center; display: block; margin: 0 auto;">
-                <input type="submit" class="button" value="Cadastrar">
+                <input type="submit" class="button" value="Adicionar">
             </div>
         </form>
     </div>
