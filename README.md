@@ -19,7 +19,7 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 - Requisitos a serem implementados (veja o documento para ver suas descrições):
   - RFs
-    - Alteração de detalhes de projeto: 08,10,18 (???)
+    - Alteração de detalhes de projeto: 08,10,18 (Rayan Tavares)
     - Filtros na consulta: 12,13,14 (matheus/Jonas)
 
 ### Necessário
