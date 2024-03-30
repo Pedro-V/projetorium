@@ -78,6 +78,9 @@ class Grupo(models.Model):
     def add_membro(self, aluno):
         self.membros.add(aluno)
 
+    def get_membros(self):
+        return self.membros.all()
+
 
 class Turma(models.Model):
     codigo = models.CharField(max_length=12)
