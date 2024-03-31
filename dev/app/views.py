@@ -72,16 +72,16 @@ class ResultadoProjeto(View):
 
         if data == "":
             projetos = Projeto.objects.filter(
-            Q(publico=True) | 
-            Q(publico=False, grupo__in=user_grupos) | 
-            Q(publico=False, turma__professor__user=request.user)
-            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag)
+            Q(publico=True) | # Se o projeto for publico
+            Q(publico=False, grupo__in=user_grupos) | # Se o projeto for privado, mas o aluno faz parte do projeto
+            Q(publico=False, turma__professor__user=request.user) # Se o projeto for privado, mas o professor faz parte do projeto
+            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag) # Filtragem normal
             return render(request, self.template_name, {'projetos': projetos})
         else:
             projetos = Projeto.objects.filter(
-            Q(publico=False) | 
-            Q(publico=True, user_grupo=request.user) | 
-            Q(publico=True, turma__professor__user=request.user)
+            Q(publico=True) | 
+            Q(publico=False, grupo__in=user_grupos) | 
+            Q(publico=False, turma__professor__user=request.user)
             ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
 
