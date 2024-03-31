@@ -132,6 +132,7 @@ p {
 .field label, .field2 label, .field3 label, .field4 label {
     position: relative;
     top: -20px; /* Ajustado para mover os rótulos para cima */
+    width: 200px;
 }
 
 select {
