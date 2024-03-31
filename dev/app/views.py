@@ -41,6 +41,8 @@ class ConsultaProjeto(View):
         return render(request, self.template_name)
 
     def post(self, request):
+        print(request.POST)
+
         nome_filtro = request.POST['nome_proj']
         tag_filtro = request.POST['tag']
         turma_filtro = request.POST['turma']
@@ -52,7 +54,7 @@ class ResultadoProjeto(View):
     template_name = 'resultado_projeto.html'
 
     def get(self, request, nome, tag, turma, data):
-        Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
+        projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
         return render(request, self.template_name, {'projetos': projetos})
 
 
