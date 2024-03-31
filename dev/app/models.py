@@ -101,7 +101,7 @@ class Turma(models.Model):
 
 
     def __str__(self):
-        return f'{self.disciplina} -  T{self.codigo}'
+        return f'{self.disciplina} -  T{self.codigo} - {self.ano}.{self.periodo}'
 
     def get_alunos(self):
         """
