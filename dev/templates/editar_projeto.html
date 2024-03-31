@@ -36,7 +36,13 @@
               </select>
 
               <label for="status">Atualizar estado:</label>
-              <input type="text" name="status" value="{{ projeto.status }}">
+              <select name="status">
+                <option value={{ projeto.status }} selected>{{ projeto.status }}</option>
+                {% for op in outras_opcoes %}
+                <option type="text" value="{{ op }}">{{ op }}</option>
+                {% endfor %}
+              </select>
+
             </div>
 
               <input class="button" type="submit" value="Salvar Alterações"></button>

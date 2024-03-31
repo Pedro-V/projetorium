@@ -343,14 +343,24 @@ class EditarProjeto(View):
 
     def get(self, request, id_proj):
         projeto = get_object_or_404(Projeto, pk=id_proj)
-        return render(request, self.template_name, {'projeto': projeto})
+        outras_opcoes = projeto.outras_opcoes()
+        context = {
+            'projeto': projeto,
+            'outras_opcoes': outras_opcoes,
+        }
+        return render(request, self.template_name, context)
 
     def post(self, request, id_proj):
         projeto = get_object_or_404(Projeto, pk=id_proj)
 
         projeto.tags = request.POST.get('tags', projeto.tags)
-        projeto.versao = request.POST.get('versao', projeto.versao)            
+        projeto.versao = request.POST.get('versao', projeto.versao)
         projeto.publico = bool(request.POST.get('visibilidade', projeto.publico))
+        projeto.descricao = request.POST.get('descricao', projeto.descricao)
+        projeto.titulo = request.POST.get('titulo', projeto.titulo)
+        projeto.status = request.POST.get('status', projeto.status)
+        print(request.POST['status'])
+        print(projeto.status)
 
         projeto.save()
 

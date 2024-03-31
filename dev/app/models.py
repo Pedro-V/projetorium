@@ -140,6 +140,10 @@ class Projeto(models.Model):
         tags = self.tags.split(' ') 
         return ", ".join(tags)
 
+    def outras_opcoes(self):
+        opcoes = [choice for choice in self.Status.values if choice != self.status]
+        return opcoes
+
     def editar_tags(self, novas_tags):
         """
         Edita as tags do projeto.
