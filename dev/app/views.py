@@ -313,11 +313,16 @@ class AdicionarMembro(View):
     def get(self, request, id_proj):
         proj = get_object_or_404(Projeto, pk=id_proj)
         pk_membros = [membro.pk for membro in proj.grupo.get_membros()]
-        alunos_elegiveis = Aluno.objects.exclude(pk__in=pk_membros)
+
+        alunos_elegiveis = (
+            Aluno.objects
+            .exclude(pk__in=pk_membros)
+            .filter(turma=proj.turma)
+        )
 
         return render(request, self.template_name, { 'alunos': alunos_elegiveis })
     
-    def post(self, request):
+    def post(self, request, id_proj):
         proj = get_object_or_404(Projeto, pk=id_proj)
         matricula = request.POST['aluno']
         aluno = Aluno.objects.get(matricula=matricula)
