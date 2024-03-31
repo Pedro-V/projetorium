@@ -65,7 +65,7 @@ class ResultadoProjeto(View):
             projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
         else:
-            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
+            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
 
 
