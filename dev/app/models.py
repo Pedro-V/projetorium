@@ -89,7 +89,6 @@ class Turma(models.Model):
     alunos = models.ManyToManyField(Aluno, db_table="app_estuda")
     ano = models.IntegerField(default=datetime.now().year)
     periodo = models.IntegerField(default=1)
-    
 
     class Meta:
         constraints = [

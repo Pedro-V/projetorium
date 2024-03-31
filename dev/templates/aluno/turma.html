@@ -19,18 +19,20 @@
       </div>
     {% endfor %}
   {% endif %}
+
   <div class="row space">
-    <a class="button" href="{% url 'escolher_projeto' turma.id %}"
-      >Escolher projeto</a
-    >
-    <a class="button" href="{% url 'propor_projeto' turma.id %}"
-      >Propor projeto</a
-    >
+    <a class="button" href="{% url 'escolher_projeto' turma.id %}">Escolher projeto</a>
+    <a class="button" href="{% url 'propor_projeto' turma.id %}">Propor projeto</a>
   </div>
 
   <div class="row space">
     <a class="button" href="{% url 'participantes_turma' turma.id %}">Participantes</a>
     <a class="button" href="{% url 'propostas' turma.id %}">Propostas</a>
   </div>
+
+  <div class="row space">
+    <a class="button" href="{% url 'projetos_turma' turma.id %}">Projetos</a>
+  </div>
+
 </div>
 {% endblock %}

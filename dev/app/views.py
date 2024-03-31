@@ -67,6 +67,13 @@ class ResultadoProjeto(View):
         else:
             projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
+class ProjetosTurma(View):
+    template_name = 'projetos_turma.html'
+
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        projetos = Projeto.objects.filter(turma=turma)
+        return render(request, self.template_name, { 'projetos': projetos, 'turma': turma })
 
 
 class ListaTurmas(View):
