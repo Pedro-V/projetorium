@@ -133,3 +133,14 @@ p {
     position: relative;
     top: -20px; /* Ajustado para mover os rótulos para cima */
 }
+
+select {
+    border: none;
+    padding: 7px;
+    margin-bottom: 8px;
+    width: 93%;
+    height: 60%;
+    border-radius: 4px;
+    text-align: left;
+    background-color: white;
+}
