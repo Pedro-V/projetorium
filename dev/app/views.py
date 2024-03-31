@@ -7,6 +7,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.urls import reverse
+from django.db.models import Q
+
 
 
 from app.signals import *
@@ -60,12 +62,27 @@ class ResultadoProjeto(View):
         tag = request.GET.get('tag',"")
         turma = request.GET.get('turma',"")
         data = request.GET.get('data',"")
-        print(nome)
+
+        try: # Se for uma aluno, tente
+            aluno = Aluno.objects.get(user=request.user)
+            user_grupos = Grupo.objects.filter(membros=aluno)
+        except Aluno.DoesNotExist: # Se for um professor tente
+            aluno = None
+            user_grupos = []
+
         if data == "":
-            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag)
+            projetos = Projeto.objects.filter(
+            Q(publico=True) | 
+            Q(publico=False, grupo__in=user_grupos) | 
+            Q(publico=False, turma__professor__user=request.user)
+            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
         else:
-            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
+            projetos = Projeto.objects.filter(
+            Q(publico=False) | 
+            Q(publico=True, user_grupo=request.user) | 
+            Q(publico=True, turma__professor__user=request.user)
+            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
 
 

@@ -134,7 +134,7 @@ class Projeto(models.Model):
     )
 
     def __str__(self):
-        return self.titulo
+        return {self.titulo}
 
 
 class Proposta(models.Model):
