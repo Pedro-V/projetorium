@@ -12,24 +12,35 @@
             <h2>{{projeto.titulo}}</h2>
             <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+
         <div class="content">
             <div class="column">
-                <p>Departamento: {{projeto.turma.disciplina.departamento}}</p>
-                <p>Disciplina: {{projeto.turma.disciplina}}</p>
+              <p><strong>Departamento:</strong> {{projeto.turma.disciplina.departamento}}</p>
+              <p><strong>Turma:</strong> {{ projeto.turma }}</p>
+              <p><strong>Tags:</strong> {{ tags }}</p>
             </div>
             <div class="column">
-                <p>Estado: {{projeto.status}}</p>
-                <p>Professor: {{projeto.turma.professor}}</p>
+              <p><strong>Estado:</strong> {{projeto.status}}</p>
+              <p><strong>Professor:</strong> {{projeto.turma.professor}}</p>
+              <p><strong>Descrição:</strong> {{projeto.descricao}}</p>
+              {% if projeto.versao %}
+              <p><strong>Versão:</strong> {{projeto.versao}}</p>
+              {% endif %}
             </div>
-        </div>
-        <div>
-            <p>Descrição: {{projeto.descricao}}</p>
         </div>
 
         {% if autorizado %}
           <div class="row space">
-              <a class="button" href="{% url 'adicionar_membro' projeto.pk %}">Adicionar membro a um projeto</a>
-              <a class="button" href="{% url 'editar_projeto' projeto.pk %}">Editar detalhes do projeto</a>
+            <a class="button" href="{% url 'adicionar_membro' projeto.pk %}">Adicionar membro a um projeto</a>
+            <a class="button" href="{% url 'editar_projeto' projeto.pk %}">Editar detalhes do projeto</a>
           </div>
         {% endif %}
 

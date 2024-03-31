@@ -136,6 +136,10 @@ class Projeto(models.Model):
     def __str__(self):
         return self.titulo
 
+    def tags_formatadas(self):
+        tags = self.tags.split(' ') 
+        return ", ".join(tags)
+
     def editar_tags(self, novas_tags):
         """
         Edita as tags do projeto.

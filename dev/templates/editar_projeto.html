@@ -18,16 +18,25 @@
               <label for="versao">Atualizar versão:</label>
               <input type="text" name="versao" value="{{ projeto.versao }}">
 
-              <label for="novas_tags">Atualizar tags:</label>
-              <input type="text" name="novas_tags" value="{{ projeto.tags }}">
+              <label for="tags">Atualizar tags:</label>
+              <input type="text" name="tags" value="{{ projeto.tags }}">
+
+              <label for="descricao">Atualizar descrição:</label>
+              <input type="text" name="descricao" value="{{ projeto.descricao }}">
             </div>
 
             <div class="column space">
+              <label for="nome">Atualizar título:</label>
+              <input type="text" name="nome" value="{{ projeto.titulo }}">
+
               <label for="visibilidade">Atualizar visibilidade:</label>
               <select name="visibilidade">
                 <option value="Publico" {% if projeto.publico %}selected{% endif %}>Público</option>
                 <option value="" {% if not projeto.publico %}selected{% endif %}>Privado</option>
               </select>
+
+              <label for="status">Atualizar estado:</label>
+              <input type="text" name="status" value="{{ projeto.status }}">
             </div>
 
               <input class="button" type="submit" value="Salvar Alterações"></button>
