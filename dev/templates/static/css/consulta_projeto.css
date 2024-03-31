@@ -7,10 +7,10 @@
 }
   
 
-p{
+p {
     margin-bottom: 20px;
+    font-size: 25px;
 }
-
 
 .registration-form {
     display: flex;
@@ -18,16 +18,15 @@ p{
     justify-content: space-between;
 }
 
-.row{
+.row {
     display: flex;
-    margin: auto;
     justify-content: space-between;
-    max-height: 40px;
-    width: 90%;
+    margin-bottom: 20px; /* Adicionado para separar as linhas */
 }
-  
+
 .button {
-    padding: 10px 20px;
+    padding: 15px 20px;
+    margin-top: 15px;
     background-color: #A1B6FF;
     color: black;
     border: none;
@@ -35,151 +34,102 @@ p{
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    width: 30%;
+    width: 25%;
+    height: 30%;
 }
 
 .button:hover {
     background-color: #597dff;
 }
 
-.space{
+.space {
     margin-bottom: 20px;
 }
 
-.field{
+.field, .field2, .field3, .field4 {
     height: 45px;
-    width: 30%;
+    width: 48%; /* Alterado para ocupar a largura total */
     display: flex;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.94);
-}
-.field2{
-    height: 45px;
-    width: 15%;
-    display: flex;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 4px;
+    margin-bottom: 10px; /* Adicionado para separar os campos */
+    border-radius: 10px;
+    margin-top: 20px;
     background: rgba(255,255,255,0.94);
 }
 .field3{
     height: 45px;
-    width: 20%;
+    width: 48%; /* Alterado para ocupar a largura total */
     display: flex;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 4px;
+    margin-bottom: 10px; /* Adicionado para separar os campos */
+    border-radius: 10px;
+    margin-top: 20px;
     background: rgba(255,255,255,0.94);
+
 }
 .field4{
     height: 45px;
-    width: 20%;
+    width: 48%; /* Alterado para ocupar a largura total */
     display: flex;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 4px;
+    margin-bottom: 10px; /* Adicionado para separar os campos */
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 30px;
     background: rgba(255,255,255,0.94);
+
 }
 
-.field span{
-    padding-left: 10px;
-    color: #222;
-    width: 40px;
-    line-height: 45px;
-}
-.field2 span{
-    padding-left: 10px;
-    color: #222;
-    width: 40px;
-    line-height: 45px;
-}
-.field3 span{
-    padding-left: 10px;
-    color: #222;
-    width: 30px;
-    line-height: 45px;
-}
-.field4 span{
-    padding-left: 10px;
-    color: #222;
-    width: 30px;
-    line-height: 45px;
-}
-
-
-.field input{
-    margin-left: 10px;
+.field input, .field2 input {
+    margin-left: 10px; /* Ajustado o alinhamento para todos os campos */
     height: 80%;
-    width: 80%;
+    width: calc(100% - 40px); /* Ajustado para incluir o ícone */
     background: transparent;
     border: none;
     outline: none;
     color: #222;
     font-size: 16px;
 }
-.field2 input{
-    margin-left: -25pxpx;
+.field3 input, .field4 input{
+    margin-top: auto;
+    margin-left: 10px; /* Ajustado o alinhamento para todos os campos */
     height: 80%;
-    width: 80%;
+    width: calc(100% - 40px); /* Ajustado para incluir o ícone */
     background: transparent;
     border: none;
     outline: none;
     color: #222;
     font-size: 16px;
-}
-.field3 input{
-    margin-left: -10px;
-    height: 80%;
-    width: 80%;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #222;
-    font-size: 16px;
-}
-.field4 input{
-    margin-left: 0px;
-    height:80%;
-    width: 80%;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #222;
-    font-size: 16px;
+
 }
 
-.filtro{
+.field span, .field2 span, .field3 span, .field4 span {
+    padding-left: 10px;
+    color: #222;
+    width: 40px; /* Ajustado para todos os ícones terem o mesmo tamanho */
+    line-height: 45px;
+}
+
+.filtro {
     display: flex;
-    margin: auto;
-    width: 90%;
+    justify-content: flex-end; /* Alterado para posicionar os botões à direita */
+    width: 100%;
 }
 
-#find-button{
-    padding: 5px 20px;
+#find-button, #cancel-button {
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    background-color: #A1B6FF;
+    border: none;
     width: 20%;
-    margin: auto;
+    height: 30%;
+    margin-left: 10px;
+    margin-top:15% /* Ajustado para espaçamento entre os botões */
 }
 
-#find-button:hover{
+#find-button:hover, #cancel-button:hover {
     background-color: rgb(152, 152, 152);
 }
-.field label {
+
+.field label, .field2 label, .field3 label, .field4 label {
     position: relative;
-    top: -20px;
-}
-.field2 label {
-    position: relative;
-    top: -20px;
-}
-.field3 label {
-    position: relative;
-    top: -20px;
-}
-.field4 label {
-    position: relative;
-    top: -20px;
+    top: -20px; /* Ajustado para mover os rótulos para cima */
 }

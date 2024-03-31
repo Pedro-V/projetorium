@@ -6,6 +6,8 @@ from accounts.decorators import student_required, teacher_required
 from django.utils.decorators import method_decorator
 from django.contrib.messages import constants
 from django.contrib import messages
+from django.urls import reverse
+
 
 from app.signals import *
 from app.models import *
@@ -41,21 +43,30 @@ class ConsultaProjeto(View):
         return render(request, self.template_name)
 
     def post(self, request):
-        print(request.POST)
+        nome = request.POST.get('nome_proj')
+        tag = request.POST.get('tag')
+        turma = request.POST.get('turma')
+        data = request.POST.get('data')
 
-        nome_filtro = request.POST['nome_proj']
-        tag_filtro = request.POST['tag']
-        turma_filtro = request.POST['turma']
-        data_filtro = request.POST['data']
-        return redirect('resultado_projeto', nome=nome_filtro, tag=tag_filtro, turma=turma_filtro, data=data_filtro)
+        # Passando os valores como parâmetros de consulta na URL para ResultadoProjeto
+        return redirect(reverse('resultado_projeto') + f'?nome_proj={nome}&tag={tag}&turma={turma}&data={data}')
 
 
 class ResultadoProjeto(View):
     template_name = 'resultado_projeto.html'
 
-    def get(self, request, nome, tag, turma, data):
-        projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
-        return render(request, self.template_name, {'projetos': projetos})
+    def get(self, request):
+        nome = request.GET.get('nome_proj',"")
+        tag = request.GET.get('tag',"")
+        turma = request.GET.get('turma',"")
+        data = request.GET.get('data',"")
+        print(nome)
+        if data == "":
+            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag)
+            return render(request, self.template_name, {'projetos': projetos})
+        else:
+            projetos = Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
+            return render(request, self.template_name, {'projetos': projetos})
 
 
 class ListaTurmas(View):
