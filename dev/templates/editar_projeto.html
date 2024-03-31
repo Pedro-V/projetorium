@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static '/css/cad_aluno.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Editar projeto</p>
+            <a href="{% url 'perfil' %}" class="button">Voltar para tela principal</a>
+        </div>
+
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="column space">
+              <label for="versao">Atualizar versão:</label>
+              <input type="text" name="versao" value="{{ projeto.versao }}">
+
+              <label for="novas_tags">Atualizar tags:</label>
+              <input type="text" name="novas_tags" value="{{ projeto.tags }}">
+            </div>
+
+            <div class="column space">
+              <label for="visibilidade">Atualizar visibilidade:</label>
+              <select name="visibilidade">
+                <option value="Publico" {% if projeto.publico %}selected{% endif %}>Público</option>
+                <option value="" {% if not projeto.publico %}selected{% endif %}>Privado</option>
+              </select>
+            </div>
+
+              <input class="button" type="submit" value="Salvar Alterações"></button>
+        </form>
+    </div>
+{% endblock %}

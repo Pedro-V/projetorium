@@ -17,7 +17,7 @@ urlpatterns = [
     path('consulta/', ConsultaProjeto.as_view(), name='consulta_projeto'),
     path('consulta/results', ResultadoProjeto.as_view(), name='resultado_projeto'),
     path('projetos/', ListarProjetos.as_view(), name='projetos'),
-    path('projeto/<int:id_proj>/', ProjetoDetalhe.as_view(), name='projeto'),
+    path('projeto/<int:id_proj>/', ProjetoDetalhe.as_view(), name='projeto_detalhe'),
     path('projeto/<int:id_proj>/adicionar_membro', AdicionarMembro.as_view(), name='adicionar_membro'),
     path('projeto/<int:id_proj>/editar', EditarProjeto.as_view(), name='editar_projeto'),
 ]

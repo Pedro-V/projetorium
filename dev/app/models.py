@@ -115,6 +115,7 @@ class Projeto(models.Model):
     descricao = models.CharField(max_length=800)
     data_criacao = models.DateField(auto_now_add=True)
     tags = models.CharField(max_length=800, default="")
+    versao = models.CharField(max_length=20, default="")
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     grupo = models.OneToOneField(Grupo, null=True, on_delete=models.SET_NULL)
     publico = models.BooleanField(default=False)
@@ -125,7 +126,7 @@ class Projeto(models.Model):
         CANCELADO    = ('Cancelado')
         SUSPENSO     = ('Suspenso')
         EM_PROGRESSO = ('Em progresso')
-    
+
     status = models.CharField(
         max_length=20,
         choices=Status.choices,
@@ -134,6 +135,13 @@ class Projeto(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def editar_tags(self, novas_tags):
+        """
+        Edita as tags do projeto.
+        """
+        self.tags = novas_tags
+        self.save()
 
 
 class Proposta(models.Model):
