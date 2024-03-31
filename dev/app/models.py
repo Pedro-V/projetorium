@@ -125,6 +125,11 @@ class Projeto(models.Model):
         CANCELADO    = ('Cancelado')
         SUSPENSO     = ('Suspenso')
         EM_PROGRESSO = ('Em progresso')
+
+    class Visibilidade(models.TextChoices):
+        PUBLICO = 'Público'
+        PRIVADO = 'Privado'
+
     
     status = models.CharField(
         max_length=20,
@@ -132,8 +137,21 @@ class Projeto(models.Model):
         default=Status.EM_PROGRESSO
     )
 
+    visibilidade = models.CharField(
+        max_length=10,
+        choices=Visibilidade.choices,
+        default=Visibilidade.PRIVADO
+    )
+
     def __str__(self):
         return self.titulo
+
+    def editar_tags(self, novas_tags):
+        """
+        Edita as tags do projeto.
+        """
+        self.tags = novas_tags
+        self.save()
 
 
 class Proposta(models.Model):

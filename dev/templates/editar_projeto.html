@@ -1,0 +1,22 @@
+<!-- editar_projeto.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Projeto</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="nova_versao">Nova Versão:</label>
+  <input type="text" id="nova_versao" name="nova_versao" value="{{ projeto.versao }}" required><br>
+
+  <label for="novas_tags">Novas Tags:</label>
+  <input type="text" id="novas_tags" name="novas_tags" value="{{ projeto.tags }}"><br>
+
+  <label for="nova_visibilidade">Nova Visibilidade:</label>
+  <select id="nova_visibilidade" name="nova_visibilidade">
+    <option value="Público" {% if projeto.visibilidade == 'Público' %}selected{% endif %}>Público</option>
+    <option value="Privado" {% if projeto.visibilidade == 'Privado' %}selected{% endif %}>Privado</option>
+  </select><br>
+
+  <button type="submit">Salvar Alterações</button>
+</form>
+{% endblock %}

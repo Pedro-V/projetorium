@@ -65,27 +65,27 @@ class ResultadoProjeto(View):
         turma = request.GET.get('turma',"")
         data = request.GET.get('data',"")
 
-        try:
+        try: # Se for uma aluno, tente
             aluno = Aluno.objects.get(user=request.user)
             user_grupos = Grupo.objects.filter(membros=aluno)
-        except Aluno.DoesNotExist:
+        except Aluno.DoesNotExist: # Se for um professor tente
             aluno = None
             user_grupos = []
 
-        projetos = Projeto.objects.filter(
+        if data == "":
+            projetos = Projeto.objects.filter(
+            Q(publico=True) | # Se o projeto for publico
+            Q(publico=False, grupo__in=user_grupos) | # Se o projeto for privado, mas o aluno faz parte do projeto
+            Q(publico=False, turma__professor__user=request.user) # Se o projeto for privado, mas o professor faz parte do projeto
+            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, tags__icontains=tag) # Filtragem normal
+            return render(request, self.template_name, {'projetos': projetos})
+        else:
+            projetos = Projeto.objects.filter(
             Q(publico=True) | 
             Q(publico=False, grupo__in=user_grupos) | 
             Q(publico=False, turma__professor__user=request.user)
-        ).filter(
-            titulo__icontains=nome,
-            turma__codigo__icontains=turma,
-            tags__icontains=tags
-        )
-
-        if data:
-            projetos = projetos.filter(data_criacao__gte=data)
-
-        return render(request, self.template_name, {'projetos': projetos})
+            ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
+            return render(request, self.template_name, {'projetos': projetos})
 
 class ProjetosTurma(View):
     template_name = 'projetos_turma.html'
@@ -342,6 +342,38 @@ class AdicionarMembro(View):
 
 class EditarProjeto(View):
     template_name = 'editar_projeto.html'
+
+    def get(self, request, id_proj):
+        projeto = get_object_or_404(Projeto, pk=id_proj)
+        return render(request, self.template_name, {'projeto': projeto})
+
+    def post(self, request, id_proj):
+        projeto = get_object_or_404(Projeto, pk=id_proj)
+
+        # Obtenha o valor do campo de tags do formulário
+        novas_tags = request.POST.get('novas_tags', '')
+        # Obtenha o valor do campo de versão do formulário
+        nova_versao = request.POST.get('nova_versao', projeto.versao)            
+        # Obtenha o valor do campo de visibilidade do formulário
+        nova_visibilidade = request.POST.get('nova_visibilidade', projeto.visibilidade)
+
+        # Se a visibilidade foi alterada, atualize o projeto
+        if nova_visibilidade != projeto.visibilidade:
+            projeto.visibilidade = nova_visibilidade
+            projeto.save()
+
+        # Verifique se a versão foi alterada, atualize o projeto
+        if nova_versao != projeto.versao:
+            projeto.versao = nova_versao
+            projeto.save()
+        
+        if novas_tags != projeto.tags:
+            projeto.tags = novas_tags
+            projeto.save()
+
+        projeto.editar_tags(novas_tags)
+
+        return redirect('projeto_detalhe', id_proj=id_proj)
 
 
 class ProjetoDetalhe(View):
