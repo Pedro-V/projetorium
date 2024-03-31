@@ -42,14 +42,17 @@ class ConsultaProjeto(View):
 
     def post(self, request):
         nome_filtro = request.POST['nome_proj']
-        return redirect('resultado_projeto', nome=nome_filtro)
+        tag_filtro = request.POST['tag']
+        turma_filtro = request.POST['turma']
+        data_filtro = request.POST['data']
+        return redirect('resultado_projeto', nome=nome_filtro, tag=tag_filtro, turma=turma_filtro, data=data_filtro)
 
 
 class ResultadoProjeto(View):
     template_name = 'resultado_projeto.html'
 
-    def get(self, request, nome):
-        projetos = Projeto.objects.filter(titulo__icontains=nome)
+    def get(self, request, nome, tag, turma, data):
+        Projeto.objects.filter(titulo__icontains=nome, turma__codigo=turma, data_criacao__gte=data, tags__icontains=tag)
         return render(request, self.template_name, {'projetos': projetos})
 
 

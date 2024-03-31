@@ -48,9 +48,38 @@ p{
 
 .field{
     height: 45px;
-    width: 90%;
+    width: 30%;
     display: flex;
     margin: auto;
+    margin-top: 5%;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.94);
+}
+.field2{
+    height: 45px;
+    width: 15%;
+    display: flex;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.94);
+}
+.field3{
+    height: 45px;
+    width: 20%;
+    display: flex;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.94);
+}
+.field4{
+    height: 45px;
+    width: 20%;
+    display: flex;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 4px;
     background: rgba(255,255,255,0.94);
 }
 
@@ -60,11 +89,60 @@ p{
     width: 40px;
     line-height: 45px;
 }
+.field2 span{
+    padding-left: 10px;
+    color: #222;
+    width: 40px;
+    line-height: 45px;
+}
+.field3 span{
+    padding-left: 10px;
+    color: #222;
+    width: 30px;
+    line-height: 45px;
+}
+.field4 span{
+    padding-left: 10px;
+    color: #222;
+    width: 30px;
+    line-height: 45px;
+}
+
 
 .field input{
     margin-left: 10px;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #222;
+    font-size: 16px;
+}
+.field2 input{
+    margin-left: -25pxpx;
+    height: 80%;
+    width: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #222;
+    font-size: 16px;
+}
+.field3 input{
+    margin-left: -10px;
+    height: 80%;
+    width: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #222;
+    font-size: 16px;
+}
+.field4 input{
+    margin-left: 0px;
+    height:80%;
+    width: 80%;
     background: transparent;
     border: none;
     outline: none;
@@ -88,4 +166,20 @@ p{
 
 #find-button:hover{
     background-color: rgb(152, 152, 152);
+}
+.field label {
+    position: relative;
+    top: -20px;
+}
+.field2 label {
+    position: relative;
+    top: -20px;
+}
+.field3 label {
+    position: relative;
+    top: -20px;
+}
+.field4 label {
+    position: relative;
+    top: -20px;
 }

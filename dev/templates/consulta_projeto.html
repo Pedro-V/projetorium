@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="{% static 'css/consulta_projeto.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="{% static 'css/consulta_projeto.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block 'content' %}
@@ -12,22 +13,28 @@
             <p>Consulta de projeto</p>
             <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
         </div>
-        <hr class="space">
+        <hr class="row">
         <form class="registration-form space" id="proj-form" method="post"> {% csrf_token %}
-            <div class="field">
-                <input name="nome_proj" type="text" id="nome-proj" autofocus="true" placeholder="Digite o nome do projeto" required>
-                <span class="fas fa-search"></span>
-            </div>
-        </form>
-        
-        <a href="" style="text-decoration: none;">
-            <div class="filtro">
-                <i class="fas fa-sliders-h" style="margin-top: 16px; margin-right: 10px;"></i>
-                <p>Filtros de pesquisa</p>
-            </div>
-        </a>
 
-        <div class="space"></div>
+            <div class="field">
+                <label for="nome">Nome </label>
+                <input name="nome_proj" type="text" id="nome-proj" autofocus="true" placeholder=" Obrigatório*" required >
+            </div>
+            <div class="field2">
+                <label for="tag">Tag </label>
+                <input name="tag" type="text" id="tag" autofocus="true" placeholder=" Opcional" >
+            </div>
+            <div class="field3">
+                <label for="turma">Turma </label>
+                <input name="turma" type="text" id="turma" autofocus="true" placeholder=" Opcional" >
+            </div>
+            <div class="field4">
+                <label for="data">Data </label>
+                <input name="data" type="date" id="data" autofocus="true" placeholder="Opcional" >
+            </div>
+        
+
+        <div class="row"></div>
         <div class="filtro">
             <button id="find-button" type="submit" form="proj-form">Buscar</button>
             <button id="find-button" >Cancelar</button>
