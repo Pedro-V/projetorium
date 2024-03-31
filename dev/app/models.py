@@ -89,7 +89,6 @@ class Turma(models.Model):
     alunos = models.ManyToManyField(Aluno, db_table="app_estuda")
     ano = models.IntegerField(default=datetime.now().year)
     periodo = models.IntegerField(default=1)
-    
 
     class Meta:
         constraints = [
@@ -102,7 +101,7 @@ class Turma(models.Model):
 
 
     def __str__(self):
-        return f'{self.disciplina} -  T{self.codigo}'
+        return f'{self.disciplina} -  T{self.codigo} - {self.ano}.{self.periodo}'
 
     def get_alunos(self):
         """

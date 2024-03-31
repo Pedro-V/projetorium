@@ -42,16 +42,18 @@ class ConsultaProjeto(View):
     template_name = 'consulta_projeto.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        turmas = Turma.objects.all()
+        return render(request, self.template_name, { 'turmas': turmas })
 
     def post(self, request):
         nome = request.POST.get('nome_proj')
-        tag = request.POST.get('tag')
+        tags = request.POST.get('tags')
         turma = request.POST.get('turma')
         data = request.POST.get('data')
 
         # Passando os valores como parâmetros de consulta na URL para ResultadoProjeto
-        return redirect(reverse('resultado_projeto') + f'?nome_proj={nome}&tag={tag}&turma={turma}&data={data}')
+        get_params = f'?nome_proj={nome}&tags={tags}&turma={turma}&data={data}'
+        return redirect(reverse('resultado_projeto') + get_params)
 
 
 class ResultadoProjeto(View):
@@ -59,7 +61,7 @@ class ResultadoProjeto(View):
 
     def get(self, request):
         nome = request.GET.get('nome_proj',"")
-        tag = request.GET.get('tag',"")
+        tags = request.GET.get('tags',"")
         turma = request.GET.get('turma',"")
         data = request.GET.get('data',"")
 
@@ -84,6 +86,14 @@ class ResultadoProjeto(View):
             Q(publico=False, turma__professor__user=request.user)
             ).filter(titulo__icontains=nome, turma__codigo__icontains=turma, data_criacao__gte=data, tags__icontains=tag)
             return render(request, self.template_name, {'projetos': projetos})
+
+class ProjetosTurma(View):
+    template_name = 'projetos_turma.html'
+
+    def get(self, request, id_turma):
+        turma = Turma.objects.get(pk=id_turma)
+        projetos = Projeto.objects.filter(turma=turma)
+        return render(request, self.template_name, { 'projetos': projetos, 'turma': turma })
 
 
 class ListaTurmas(View):
@@ -311,11 +321,16 @@ class AdicionarMembro(View):
     def get(self, request, id_proj):
         proj = get_object_or_404(Projeto, pk=id_proj)
         pk_membros = [membro.pk for membro in proj.grupo.get_membros()]
-        alunos_elegiveis = Aluno.objects.exclude(pk__in=pk_membros)
+
+        alunos_elegiveis = (
+            Aluno.objects
+            .exclude(pk__in=pk_membros)
+            .filter(turma=proj.turma)
+        )
 
         return render(request, self.template_name, { 'alunos': alunos_elegiveis })
     
-    def post(self, request):
+    def post(self, request, id_proj):
         proj = get_object_or_404(Projeto, pk=id_proj)
         matricula = request.POST['aluno']
         aluno = Aluno.objects.get(matricula=matricula)

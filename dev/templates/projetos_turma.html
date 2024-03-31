@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'css/resultado_projeto.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <div class="row">
+            <p>Projetos - {{ turma }}</p>
+            <a class="button" href="{% url 'perfil' %}">Voltar para tela principal</a>
+        </div>
+        <hr class="space">
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="header">Nome</th>
+                    <th class="header">Estado</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll">
+            <table class="tabela">
+                {% for proj in projetos %}
+                    <tr>
+                        <td><a href="{% url 'projeto' proj.id %}">{{proj.titulo}}</a></td>
+                        <td>{{proj.status}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>        
+    </div>
+{% endblock %}
