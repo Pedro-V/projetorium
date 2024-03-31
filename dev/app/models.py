@@ -115,6 +115,7 @@ class Projeto(models.Model):
     descricao = models.CharField(max_length=800)
     data_criacao = models.DateField(auto_now_add=True)
     tags = models.CharField(max_length=800, default="")
+    versao = models.CharField(max_length=20, default="")
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     grupo = models.OneToOneField(Grupo, null=True, on_delete=models.SET_NULL)
     publico = models.BooleanField(default=False)
@@ -126,21 +127,10 @@ class Projeto(models.Model):
         SUSPENSO     = ('Suspenso')
         EM_PROGRESSO = ('Em progresso')
 
-    class Visibilidade(models.TextChoices):
-        PUBLICO = 'Público'
-        PRIVADO = 'Privado'
-
-    
     status = models.CharField(
         max_length=20,
         choices=Status.choices,
         default=Status.EM_PROGRESSO
-    )
-
-    visibilidade = models.CharField(
-        max_length=10,
-        choices=Visibilidade.choices,
-        default=Visibilidade.PRIVADO
     )
 
     def __str__(self):

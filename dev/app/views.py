@@ -350,28 +350,11 @@ class EditarProjeto(View):
     def post(self, request, id_proj):
         projeto = get_object_or_404(Projeto, pk=id_proj)
 
-        # Obtenha o valor do campo de tags do formulário
-        novas_tags = request.POST.get('novas_tags', '')
-        # Obtenha o valor do campo de versão do formulário
-        nova_versao = request.POST.get('nova_versao', projeto.versao)            
-        # Obtenha o valor do campo de visibilidade do formulário
-        nova_visibilidade = request.POST.get('nova_visibilidade', projeto.visibilidade)
+        projeto.tags = request.POST.get('tags', projeto.tags)
+        projeto.versao = request.POST.get('versao', projeto.versao)            
+        projeto.publico = bool(request.POST.get('visibilidade', projeto.publico))
 
-        # Se a visibilidade foi alterada, atualize o projeto
-        if nova_visibilidade != projeto.visibilidade:
-            projeto.visibilidade = nova_visibilidade
-            projeto.save()
-
-        # Verifique se a versão foi alterada, atualize o projeto
-        if nova_versao != projeto.versao:
-            projeto.versao = nova_versao
-            projeto.save()
-        
-        if novas_tags != projeto.tags:
-            projeto.tags = novas_tags
-            projeto.save()
-
-        projeto.editar_tags(novas_tags)
+        projeto.save()
 
         return redirect('projeto_detalhe', id_proj=id_proj)
 
