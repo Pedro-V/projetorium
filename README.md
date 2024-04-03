@@ -17,10 +17,6 @@ Tarefas com ??? é pq precisam de alguém para fazer.
 
 ### Urgente
 
-- Requisitos a serem implementados (veja o documento para ver suas descrições):
-  - RFs
-    - Alteração de detalhes de projeto: 08,10,18 (Rayan Tavares, Pedro A.)
-
 ### Necessário
 
 - Tratar caminhos não-felizes (Carlos, Pedro V., Max)
