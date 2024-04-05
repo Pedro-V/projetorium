@@ -85,6 +85,7 @@ class ResultadoProjeto(View):
 
         return render(request, self.template_name, {'projetos': projetos})
 
+@method_decorator(login_required, name="dispatch")
 class ProjetosTurma(View):
     template_name = 'projetos_turma.html'
 
@@ -93,7 +94,7 @@ class ProjetosTurma(View):
         projetos = Projeto.objects.filter(turma=turma)
         return render(request, self.template_name, { 'projetos': projetos, 'turma': turma })
 
-
+@method_decorator(login_required, name="dispatch")
 class ListaTurmas(View):
     template_name = 'turmas.html'
 
@@ -101,14 +102,14 @@ class ListaTurmas(View):
         user = get_user(request.user)
         return render(request, self.template_name, { 'turmas': user.turmas() })
 
-
+@method_decorator(login_required, name="dispatch")
 class DetalheTurma(View):
     def get(self, request, id_turma):
         _, template_name = get_user(request.user, 'turma.html')
         turma = Turma.objects.get(id=id_turma)
         return render(request, template_name, { 'turma': turma })
 
-
+@method_decorator(teacher_required, name="dispatch")
 class AdicionarAluno(View):
     """
     Um professor adiciona um aluno numa turma.
@@ -135,7 +136,7 @@ class AdicionarAluno(View):
         messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
         return redirect('adicionar_aluno', id_turma)
 
-
+@method_decorator(teacher_required, name="dispatch")
 class CadastroTurma(View):
     """
     Um professor cadastra uma nova turma.
@@ -170,7 +171,7 @@ class CadastroTurma(View):
         messages.add_message(request, constants.SUCCESS, "Turma criada com sucesso.")
         return redirect('cadastro_turma')
 
-
+@method_decorator(teacher_required, name="dispatch")
 class OfertarProjeto(View):
     """
     Um professor oferta projetos a uma turma específica
@@ -192,7 +193,7 @@ class OfertarProjeto(View):
         messages.add_message(request, constants.SUCCESS, "Projeto criado com sucesso")
         return redirect('ofertar_projeto', id_turma)
 
-
+@method_decorator(login_required, name="dispatch")
 class ListarPropostas(View):
     template_name = 'professor/propostas.html'
 
@@ -207,7 +208,7 @@ class ListarPropostas(View):
         
         return render(request, self.template_name, context)
 
-
+@method_decorator(login_required, name="dispatch")
 class DetalheProposta(View):
     template_name = 'detalhe_proposta.html'
     
@@ -236,7 +237,7 @@ class DetalheProposta(View):
 
         return redirect('detalhe_proposta', id_turma, id_proposta)
 
-
+@method_decorator(login_required, name="dispatch")
 class EscolherProjeto(View):
     template_name = 'aluno/escolher_projeto.html'
 
@@ -261,7 +262,7 @@ class EscolherProjeto(View):
         messages.add_message(request, constants.SUCCESS, "Projeto escolhido com sucesso.")
         return redirect('escolher_projeto', id_turma) 
 
-
+@method_decorator(login_required, name="dispatch")
 class ParticipantesTurma(View):
     """
     Lista os alunos participantes de uma turma.
@@ -278,7 +279,7 @@ class ParticipantesTurma(View):
 
         return render(request, self.template_name, context)
 
-
+@method_decorator(student_required, name="dispatch")
 class ProporProjeto(View):
     """
     Um aluno propõem um projeto para o professor da turma.
@@ -302,7 +303,7 @@ class ProporProjeto(View):
         messages.add_message(request, constants.SUCCESS, "Proposta criada com sucesso.")
         return redirect('detalhe_turma', id_turma)
 
-
+@method_decorator(login_required, name="dispatch")
 class ListarProjetos(View):
     template_name = 'aluno/projetos.html'
 
@@ -312,7 +313,7 @@ class ListarProjetos(View):
         projetos_aluno = Projeto.objects.filter(grupo__in=user_grupos)
         return render(request, self.template_name, {'projetos': projetos_aluno, 'aluno': aluno})
 
-
+@method_decorator(login_required, name="dispatch")
 class AdicionarMembro(View):
     template_name = 'adicionar_membro.html'
 
@@ -337,7 +338,7 @@ class AdicionarMembro(View):
         messages.add_message(request, constants.SUCCESS, "Aluno adicionado com sucesso.")
         return redirect('adicionar_membro', id_proj)
 
-
+@method_decorator(login_required, name="dispatch")
 class EditarProjeto(View):
     template_name = 'editar_projeto.html'
 
@@ -368,22 +369,23 @@ class EditarProjeto(View):
 
         return redirect('projeto', id_proj=id_proj)
 
-
+@method_decorator(login_required, name="dispatch")
 class ProjetoDetalhe(View):
     template_name = 'projeto.html'
 
     def get(self, request, id_proj):
         projeto = get_object_or_404(Projeto, pk=id_proj)
         grupo = projeto.grupo
-        membros = grupo.membros.all()
-
-        autorizado = request.user in [membro.user for membro in membros]
-
         context = {
             'projeto': projeto,
-            'membros': membros,
-            'autorizado': autorizado,
             'tags': projeto.tags_formatadas(),
         }
+        if grupo is not None:
+            membros = grupo.membros.all()
+
+            autorizado = request.user in [membro.user for membro in membros]
+
+            context['autorizado'] = autorizado
+            context['membros'] = membros
 
         return render(request, self.template_name, context)
