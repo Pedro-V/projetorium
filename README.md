@@ -11,18 +11,6 @@
 * `diagramas/`: Código-fonte dos arquivos PUML e os binários gerados por eles.
 * `dev/`: Desenvolvimento da aplicação: frontend, backend, SQL, entre outros.
 
-## TODO
-
-Tarefas com ??? é pq precisam de alguém para fazer.
-
-### Urgente
-
-### Necessário
-
-- Tratar caminhos não-felizes (Carlos, Pedro V., Max)
-
-### Seria legal
-
 ## Membros
 
 * [Carlos Eduardo](https://github.com/Eduardocesn) - [carlos.nascimento@dcomp.ufs.br](mailto:carlos.nascimento@dcomp.ufs.br)
