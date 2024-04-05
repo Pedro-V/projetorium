@@ -19,6 +19,8 @@ p{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    min-width: 600px;
+    min-height: 200px;
 }
   
 .field input[type="submit"] {
