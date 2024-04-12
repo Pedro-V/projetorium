@@ -69,26 +69,26 @@ def initialize_user_data():
         },
         {
             'email': 'michel@dcomp.ufs.br',
-            'password': 'michel',
             'is_teacher': True,
             'is_student': False,
         },
         {
             'email': 'pedro@academico.ufs.br',
-            'password': 'pedro',
             'is_teacher': False,
             'is_student': True,
         },
         {
             'email': 'tiago@dcomp.ufs.br',
-            'password': 'tiago',
             'is_teacher': False,
             'is_student': True,
         },
     ]
     for user in users:
         obj = User.objects.create(**user)
-        obj.set_password(user['password'])
+        # Senha é a primeira parte do email.
+        password, _ = user['email'].split('@', 1)
+        obj.set_password(password)
+        obj.save()
 
     professors = [
         {
@@ -123,6 +123,7 @@ def initialize_user_data():
 
 def initialize_data():
     initialize_basic_data()
+    initialize_user_data()
 
 @receiver(post_migrate)
 def initialize_data_after_migrate(sender, **kwargs):
